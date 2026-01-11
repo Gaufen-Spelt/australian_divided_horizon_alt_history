@@ -6,7 +6,7 @@ go-to: post_event if started = 1; start_menu if started = 0
 new-page: true
 go-to: start_menu_2
 
-= Social Democracy: An Alternate History
+= Divided Horizon: Australian Dawn
 
 @start_menu_2
 
@@ -21,7 +21,7 @@ on-arrival: {!
 Q.started = 1;
 // time elapsed (in months)
 Q.time = 1;
-Q.year = 1928;
+Q.year = 1949;
 Q.month = 1;
 // how many actions have been taken this month?
 Q.month_actions = 0;
@@ -579,9 +579,9 @@ Q.stampfer_advisor = 0; // Friedrich Stampfer
 set-bg: img/map_2.jpg
 new-page: true
 
-> *"Such a general development cannot be attributed to the false tactics of any single party or to the mistakes of individual leaders. On the contrary, the conduct of individual leaders is determined largely by the sentiments of the people as a whole. It would be erroneous, however, to regard the sentiments of the moment as reflecting the natural make-up and character of the people. They are merely the consequence of the special circumstances which have brought about this profound degradation of the entire nation."*
+> *"The prime minister, the foreign minister and the trade minister were the three wise monkeys: they saw no evil, they spoke no evil, they heard no evil but they knew all about it. It's a sorry story of a government in a mode of reckless negligence"*
 
- - Karl Kautsky, *Hitlerism and Social Democracy*, 1934
+ - Kim Beazley Sr., on the government of the Howard, 1951
 
 This is a game of alternate history. While historical accuracy is a major concern, keep in mind that this is a *game*, and that any divergence from actual events will necessarily have to involve some element of make-believe. Nevertheless, please let the author know if there are any glaring mistakes.
 
@@ -627,8 +627,7 @@ go-to: main if difficulty >= 0; main.main_easy if difficulty < 0
 
 = 1928
 
-It is a bright time for German democracy. After a period of struggle, inflation is finally under control, and the economy is expanding steadily. In foreign policy, we have reached agreements with the Western powers and the Soviet Union that might make genuine peace a reality. 
+Citizens of the Commonwealth. The year is 1949. The 'Great Silence' of the Pacific has ended, but the peace is a heavy one. Under the terms of the Atlanto-Pacific Defense Organization and the Debt Realignment of 1947, our course is clear. To maintain the Gold Standard is to maintain our honor. To man the Papua Line is to ensure our survival. The government asks for your 'discipline.' The banks ask for your 'patience.' From the smelting pots of Port Pirie to the docks of East Sydney, the price of freedom is being tallied in Taft Dollars. 
 
-Now, the task of Social Democracy is to prepare for the next election. The bourgeois-right government of Wilhelm Marx is unpopular, and we stand to gain. Perhaps the next government will have a socialist majority.
-
+Australia stands as the Bastion of the South. Do not look at the shadows in the union halls. Do not listen to the agitators in the streets. The Empire of Japan is watching. Washington is waiting. Work hard. Keep quiet. For the King, and for the Debt
 
