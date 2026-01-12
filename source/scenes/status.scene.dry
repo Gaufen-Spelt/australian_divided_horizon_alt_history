@@ -84,6 +84,35 @@ Sterling reserves: [+ sterling_reserves +] (balance of payments health)
 
 @paramilitaries
 on-arrival: {!
+// Artificially define all variables for testing
+Q.actu_strength = Q.actu_strength || 800;
+Q.actu_militancy = Q.actu_militancy || 0.3;
+Q.actu_communist = Q.actu_communist || 0.2;
+
+Q.wharfies_strength = Q.wharfies_strength || 25;
+Q.wharfies_militancy = Q.wharfies_militancy || 0.7;
+Q.wharfies_communist = Q.wharfies_communist || 0.8;
+
+Q.miners_strength = Q.miners_strength || 50;
+Q.miners_militancy = Q.miners_militancy || 0.5;
+Q.miners_communist = Q.miners_communist || 0.4;
+
+Q.aru_strength = Q.aru_strength || 35;
+Q.aru_militancy = Q.aru_militancy || 0.3;
+Q.aru_communist = Q.aru_communist || 0.2;
+
+Q.adf_strength = Q.adf_strength || 20;
+Q.adf_militancy = Q.adf_militancy || 1;
+Q.adf_loyalty = Q.adf_loyalty || 0.5;
+
+Q.police_strength = Q.police_strength || 15;
+Q.police_militancy = Q.police_militancy || 1;
+Q.police_loyalty = Q.police_loyalty || 0.4;
+
+Q.asio_strength = Q.asio_strength || 0;
+Q.asio_formed = Q.asio_formed || 0;
+
+// Now create the display variables
 Q.actu_strength_2 = Q.actu_strength.toFixed(1);
 Q.wharfies_strength_2 = Q.wharfies_strength.toFixed(1);
 Q.miners_strength_2 = Q.miners_strength.toFixed(1);
@@ -102,14 +131,31 @@ ACTU Communist influence: [+ actu_communist : influence +]
 
 WWF Militancy: [+ wharfies_militancy : militancy +]
 
+WWF Communist influence: [+ wharfies_communist : influence +]
+
 {!<span class="tooltip-text" title="Miners Federation">Miners</span>!} Strength: [+ miners_strength_2 +] thousand
 
 Miners Militancy: [+ miners_militancy : militancy +]
+
+Miners Communist influence: [+ miners_communist : influence +]
 
 {!<span class="tooltip-text" title="Australian Railways Union">ARU</span>!} Strength: [+ aru_strength_2 +] thousand
 
 ARU Militancy: [+ aru_militancy : militancy +]
 
+ARU Communist influence: [+ aru_communist : influence +]
+
+= Security Forces
+
+Australian Defence Force: [+ adf_strength +] thousand personnel
+
+Military Loyalty: [+ adf_loyalty : loyalty +]
+
+Commonwealth Police: [+ police_strength +] thousand members
+
+Police loyalty: [+ police_loyalty : loyalty +]
+
+[? if asio_formed: ASIO strength: [+ asio_strength : security_apparatus +] ?]
 
 @polls
 on-arrival: {!
