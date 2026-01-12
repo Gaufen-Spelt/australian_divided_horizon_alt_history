@@ -46,53 +46,44 @@ body.dark-mode .tools {
 }
 
 /* FIXED LAYOUT ENGINE */
-
-/* Sidebars stay fixed */
-.tools.left {
-    position: fixed;
-    top: 0;       /* start at top */
-    left: 0;
-    width: 570px;
-    height: 100%;
-    overflow-y: auto;
-}
-
-.tools.right {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 570px;
-    height: 100%;
-    overflow-y: auto;
-}
-
-/* Main content panel */
-#mid_panel {
-    margin-left: 570px;           /* space for left sidebar */
-    margin-right: 570px;          /* space for right sidebar */
-    margin-top: 120px;            /* offset from top for header */
-    width: calc(100% - 1140px);   /* fill space between sidebars */
-    min-height: calc(100vh - 120px); /* fill remaining height */
-    display: flex;
-    flex-direction: column;
-    align-items: center;          /* center content horizontally */
-}
-
-/* FIXED LAYOUT ENGINE */
+/* 1. Reset the container to use a clean 3-column Grid */
 #page {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  /* Left Sidebar: 300px | Center: Flexible | Right Sidebar: 300px */
+  grid-template-columns: 300px 1fr 300px;
+  gap: 20px;
   width: 100%;
-  gap: 1rem;
-  padding: 1rem;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
 }
 
-header, #content, footer {
-  max-width: 540px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--text-color);
-  overflow: auto;
+/* 2. Sidebars: Sticky is often better than Fixed for grid layouts */
+.tools.left, .tools.right {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%; /* Spans the 300px grid column */
+  overflow-y: auto;
+  background-color: var(--content-bg-color);
+  box-shadow: 2px 0 12px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+/* 3. Main Content Panel */
+#mid_panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers children horizontally */
+  padding-top: 50px;
+  width: 100%;
+}
+
+/* 4. The actual content box inside the mid panel */
+#content, header, footer {
+  width: 100%;
+  max-width: 600px; /* Adjust this to your preferred reading width */
+  margin: 0 auto 1em auto; /* margin: auto handles the centering */
 }
 
 #content {
