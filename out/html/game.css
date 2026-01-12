@@ -48,17 +48,16 @@ body.dark-mode .tools {
 /* FIXED LAYOUT ENGINE */
 
 .tools.left {
-  grid-column: 1;
-  position: sticky;
+  position: fixed;
+  left: 0;
   top: 1rem;
-  align-self: start;
-  justify-self: start;
 }
 
 #mid_panel {
-  grid-column: 2;
-  max-width: 800px;
-  margin: 0 auto;  /* Add this line */
+  margin: 0 auto;
+  padding-left: 270px;  /* Width of left tools + some space */
+  padding-right: 270px; /* Width of right tools + some space */
+  max-width: 100%;
 }
 
 /* FIXED LAYOUT ENGINE */
@@ -71,11 +70,9 @@ body.dark-mode .tools {
 }
 
 .tools.right {
-  grid-column: 3;
-  position: sticky;
+  position: fixed;
+  right: 0;
   top: 1rem;
-  align-self: start;
-  justify-self: end;
 }
 
 header, #content, footer {
