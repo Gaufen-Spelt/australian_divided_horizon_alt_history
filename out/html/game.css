@@ -47,36 +47,42 @@ body.dark-mode .tools {
 
 /* FIXED LAYOUT ENGINE */
 /* 1. Reset the container to use a clean 3-column Grid */
+/* Unified Grid Layout */
 #page {
   display: grid;
-  /* Left Sidebar: 300px | Center: Flexible | Right Sidebar: 300px */
-  grid-template-columns: 300px 1fr 300px;
-  gap: 20px;
+  /* Left Sidebar: 250px | Main: Flexible | Right Sidebar: 250px */
+  grid-template-columns: 250px 1fr 250px;
+  gap: 15px;
   width: 100%;
   min-height: 100vh;
   padding: 0;
-  margin: 0;
 }
 
-/* 2. Sidebars: Sticky is often better than Fixed for grid layouts */
+/* SIDEBARS: Using 'sticky' instead of 'fixed' keeps them in the grid 
+   while letting them stay on screen as you scroll. */
 .tools.left, .tools.right {
   position: sticky;
   top: 0;
   height: 100vh;
-  width: 100%; /* Spans the 300px grid column */
+  width: 100%; /* Spans the grid column width */
   overflow-y: auto;
-  background-color: var(--content-bg-color);
-  box-shadow: 2px 0 12px rgba(0,0,0,0.1);
   z-index: 10;
 }
 
-/* 3. Main Content Panel */
+/* CENTER PANEL: This will now properly fill the middle and center its content */
 #mid_panel {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centers children horizontally */
-  padding-top: 50px;
+  align-items: center; /* Centers the content box horizontally */
+  padding: 20px;
   width: 100%;
+}
+
+/* The actual content box inside mid_panel */
+#content {
+  width: 100%;
+  max-width: 600px; /* Limits reading width for better UX */
+  margin: 0 auto;
 }
 
 /* 4. The actual content box inside the mid panel */
@@ -86,13 +92,6 @@ body.dark-mode .tools {
   margin: 0 auto 1em auto; /* margin: auto handles the centering */
 }
 
-#content {
-  position: relative;
-  background-color: var(--content-bg-color);
-  font-size: 1.1em;
-  padding: 1em 1.5em 1.5em 1.5em;
-  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
-}
 footer {
   margin-top: 1em;
   font-size: 0.8em;
