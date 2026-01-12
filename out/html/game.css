@@ -47,15 +47,35 @@ body.dark-mode .tools {
 
 /* FIXED LAYOUT ENGINE */
 
+/* Sidebars stay fixed */
 .tools.left {
-  position: fixed;
-  left: 0;
-  top: 1rem;
+    position: fixed;
+    top: 0;       /* start at top */
+    left: 0;
+    width: 570px;
+    height: 100%;
+    overflow-y: auto;
 }
 
+.tools.right {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 570px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* Main content panel */
 #mid_panel {
-    min-height: 100vh;     /* fill vertical screen height */
-    overflow-y: auto;      /* scroll if content is long */
+    margin-left: 570px;           /* space for left sidebar */
+    margin-right: 570px;          /* space for right sidebar */
+    margin-top: 120px;            /* offset from top for header */
+    width: calc(100% - 1140px);   /* fill space between sidebars */
+    min-height: calc(100vh - 120px); /* fill remaining height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;          /* center content horizontally */
 }
 
 /* FIXED LAYOUT ENGINE */
@@ -65,12 +85,6 @@ body.dark-mode .tools {
   width: 100%;
   gap: 1rem;
   padding: 1rem;
-}
-
-.tools.right {
-  position: fixed;
-  right: 0;
-  top: 1rem;
 }
 
 header, #content, footer {
