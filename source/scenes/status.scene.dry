@@ -133,7 +133,7 @@ Support for British ties: [+ pro_british_disp +]%
 
 Support for immigration: [+ immigration_support_disp +]%
 
-@paramilitary
+@unions
 on-arrival: {!
 if (Q.actu_strength) {
     Q.actu_strength_2 = Q.actu_strength.toFixed(1);
