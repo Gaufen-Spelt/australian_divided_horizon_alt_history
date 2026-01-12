@@ -1,3 +1,7 @@
+Here's the adapted Root Scene for 1949 Australia:
+
+---
+
 title: Root Scene
 new-page: true
 go-to: post_event if started = 1; start_menu if started = 0
@@ -33,13 +37,12 @@ Q.difficulty = 0;
 Q.historical_mode = 0;
 // old demographics
 Q.old_demographics = 0;
-// use decimals for reichstag seats
-// TODO: not yet implemented
+// use decimals for house seats
 Q.use_decimals = 0;
 
 // party resources
 Q.resources = 2;
-// party dues
+// party dues/union affiliations
 Q.dues = 2;
 
 // the state of the party
@@ -47,589 +50,491 @@ Q.dues = 2;
 Q.dissent = 0.05;
 Q.dissent_percent = 5;
 
-// factions
-Q.factions = ['left', 'center', 'labor', 'reformist', 'neorevisionist'];
-// should this be normalized to 100%?
-Q.left_strength = 15;
-Q.left_dissent = 20;
-Q.center_strength = 30;
-Q.center_dissent = 0;
-Q.labor_strength = 25;
-Q.labor_dissent = 5;
-Q.reformist_strength = 25;
-Q.reformist_dissent = 5;
-Q.neorevisionist_strength = 5;
-Q.neorevisionist_dissent = 10;
+// factions - ALP internal groups
+Q.factions = ['left', 'centre', 'nsw_right', 'groupers', 'labor_council'];
+// Labor factions in 1949
+Q.left_strength = 20; // Socialist Left
+Q.left_dissent = 15;
+Q.centre_strength = 30; // Pragmatic centre
+Q.centre_dissent = 5;
+Q.nsw_right_strength = 25; // NSW machine politics
+Q.nsw_right_dissent = 10;
+Q.groupers_strength = 20; // Catholic anti-communist Industrial Groups
+Q.groupers_dissent = 5;
+Q.labor_council_strength = 5; // Trade union officials
+Q.labor_council_dissent = 8;
 
 // secret events...
 Q.unions_independent = 0;
-Q.centrists_resign = 0;
+Q.centre_resign = 0;
 Q.left_split = 0;
-Q.reformists_resigned = 0;
+Q.groupers_split = 0; // Future DLP split potential
 
-// have we discovered neorevisionism?
-Q.neorevisionism = 0;
-
-// crisis_urgency indicates how seriously the SPD is taking the economic crisis - scale from 0 to 10.
+// crisis_urgency indicates how seriously the ALP is taking economic challenges - scale from 0 to 10.
 Q.crisis_urgency = 0;
-// nazi_urgency indicates how seriously the SPD takes the nazis - scale from 0 to 10.
-Q.nazi_urgency = 0;
-// radicalization indicates how radical the SPD's rhetoric is - scale from 0 to 10.
+// communist_urgency indicates how seriously the ALP takes communist influence - scale from 0 to 10.
+Q.communist_urgency = 3; // Higher baseline in 1949 Cold War
+// radicalization indicates how radical the ALP's rhetoric is - scale from 0 to 10.
 Q.radicalization = 0;
-// Support for the WTB plan and proto-Keynesian works creation plans in general
-Q.wtb_support = 0;
-// Support for Pacifism within the SPD relative to 1928
-Q.pacifism = 0;
-// Support for democratic reform within the SPD relative to 1928
-Q.democratization = 0;
-// Support for a communist coalition relative to 1928
-Q.communist_coalition = 0;
+// Support for economic interventionism
+Q.interventionism_support = 0;
+// Support for breaking from Britain
+Q.independence_support = 0;
+// Support for immigration program
+Q.immigration_support = 0;
+// Support for working with communists
+Q.communist_cooperation = 0;
 // economic_plan: have we adopted *any* economic plan?
-// 1 - WTB plan, 2 - AfA-bund plan, 3 - radical plan (mass nationalization of industries)
+// 1 - Keynesian stimulus, 2 - gradual reform, 3 - radical (nationalization)
 Q.economic_plan = 0;
-// have we officially adopted the WTB plan?
-Q.wtb_adopted = 0;
-// have we formed the iron front?
-Q.iron_front_formed = 0;
-// people's party support
-Q.peoples_party_support = 0;
+Q.keynesian_adopted = 0;
 // support for nationalizations
 Q.nationalization_support = 0;
 Q.nationalization_adopted = 0;
 // moderate economic plan
 Q.moderate_plan_support = 0;
 Q.moderate_plan_adopted = 0;
+// White Australia policy stance
+Q.white_australia_support = 80; // High baseline support in 1949
+Q.white_australia_reformed = 0;
 
 // organizations
 
 // inter-party relations
-Q.z_relation = 50;
-Q.kpd_relation = 25;
-Q.ddp_relation = 60;
-Q.dvp_relation = 35;
-// DNVP and NSDAP are invariably hostile
-Q.DNVP_relation = 10;
-Q.NSDAP_relation = 0;
+Q.liberal_relation = 30;
+Q.cpa_relation = 15; // Communist Party of Australia
+Q.country_relation = 25; // Country Party
+// Liberal-Country Coalition is hostile
+Q.coalition_relation = 20;
+Q.dlp_formed = 0; // Democratic Labor Party doesn't exist yet
+Q.dlp_relation = 50;
 
-Q.kpd_leader = "Thälmann";
-// alternative is the Conciliators as party leader
-Q.kpd_party_leader = "Thälmann";
-Q.z_leader = "Brüning";
-// party leader - can be Ludwig Kaas, Joseph Joos, or Adam Stegerwald after the 1928 December conference. Joos will be most friendly to the SPD.
-Q.z_party_leader = "Marx";
-Q.nsdap_leader = "Hitler";
+Q.cpa_leader = "Sharkey";
+Q.liberal_leader = "Menzies";
+Q.country_leader = "Fadden";
 
-// hmm... maybe we can play nice with Hindenburg???
-Q.hindenburg_relation = 25;
-// whether or not hindenburg can dismiss the government.
-Q.hindenburg_enabled = 0;
+// relationship with Governor-General
+Q.governor_general_relation = 40;
+// can the GG dismiss the government?
+Q.governor_general_enabled = 0;
 
+// Does the ALP control state governments?
+Q.alp_nsw = 1;
+Q.alp_victoria = 0;
+Q.alp_queensland = 1;
+Q.alp_sa = 1;
+Q.alp_wa = 0;
+Q.alp_tasmania = 1;
 
-// Does the SPD lead in Prussia?
-Q.spd_prussia = 1;
-// Options: spd, z, dnvp, papen, nsdap
-Q.prussian_government = "SPD";
+// The array of forces - union strength and loyalty
+// Union membership in 1949 (in thousands)
+Q.actu_strength = 800; // ACTU umbrella
+Q.actu_militancy = 0.3;
+Q.actu_communist = 0.2; // Communist influence in unions
+Q.wharfies_strength = 25; // Waterside Workers Federation
+Q.wharfies_militancy = 0.7;
+Q.wharfies_communist = 0.8; // Very high communist influence
+Q.miners_strength = 50;
+Q.miners_militancy = 0.5;
+Q.miners_communist = 0.4;
+Q.aru_strength = 35; // Australian Railways Union
+Q.aru_militancy = 0.3;
+Q.aru_communist = 0.2;
 
-// The array of forces - paramilitary groups
-// Number of members in 1928 (in thousands)
-// Reichsbanner, stahlhelm, SA, rotfrontkämpferbund
-Q.rb_strength = 2000;
-Q.rb_militancy = 0.01;
-Q.women_in_rb = 0;
-Q.rb_banned = 0;
-Q.sh_strength = 500;
-Q.sh_militancy = 0.5;
-Q.sh_banned = 0;
-Q.sh_banned_prussia = 0;
-Q.sa_strength = 80;
-Q.sa_militancy = 0.5;
-Q.sa_banned = 0;
-Q.sa_banned_prussia = 0;
-Q.rfb_strength = 130;
-Q.rfb_militancy = 0.5;
-Q.rfb_banned = 0;
-Q.rfb_banned_prussia = 0;
+// Security forces
+Q.adf_strength = 20; // Australian Defence Force (peacetime)
+Q.adf_militancy = 1;
+Q.adf_loyalty = 0.5;
 
-Q.interior_police_strength = 50;
-Q.interior_police_militancy = 1;
-Q.interior_police_loyalty = 0.45;
+Q.police_strength = 15;
+Q.police_militancy = 1;
+Q.police_loyalty = 0.4;
 
-Q.prussian_police_strength = 90;
-Q.prussian_police_militancy = 1;
-Q.prussian_police_loyalty = 0.5;
-
-// strength includes actual military and de facto reserves?
-Q.reichswehr_strength = 100;
-Q.reichswehr_militancy = 5;
-Q.reichswehr_loyalty = 0.2;
+// ASIO doesn't exist yet but intelligence apparatus does
+Q.asio_strength = 0;
+Q.asio_formed = 0;
+Q.intelligence_loyalty = 0.3;
 
 // The state of the country
 
 // popular opinion
-// national ideology - on a binary scale
-// nationalism vs internationalism or pacifism or non-nationalism
-Q.nationalism = 60;
-// socialism vs capitalism
-Q.socialism = 40;
-// pro-republic vs anti-republic
-Q.pro_republic = 59;
+// national ideology
+// imperialism vs independence
+Q.imperialism = 70; // Strong British ties in 1949
+// capitalism vs socialism
+Q.socialism = 35;
+// support for Labor/democratic governance
+Q.support_labor = 48;
+// anti-communism (higher = more anti-communist)
+Q.anti_communist = 60; // Cold War beginning
 
 Q.emergency_rule = 0;
 
-// minimum percentage of votes to be represented in the Reichstag
-Q.electoral_threshold = 0;
-// constitutional reform level
+// constitutional issues
 Q.constitutional_reform = 0;
-// constructive vote of no confidence
-Q.constructive_vonc = 0;
-// reduction in presidential powers
-Q.presidential_powers = 0;
-// allows banning of non-constitutional parties
-Q.constitutional_protection = 0;
-Q.kpd_banned = 0;
-Q.nsdap_banned = 0;
+// referendum success threshold
+Q.referendum_threshold = 50; // Need majority of states + majority of voters
+// allows banning of parties (doesn't exist in Australia)
+Q.cpa_banned = 0;
+Q.ban_referendum_held = 0;
 
-// coups and capital strikes happen when you upset the right or the capitalists too much with your policies. they're an additional check on your policies, when purely electoral checks don't suffice.
-// when coup_progress reaches 10 or capital_strike_progress reaches 10, there's a special event that launches the coup.
-Q.coup_progress = 0;
+// economic pressure from business/foreign creditors
 Q.capital_strike_progress = 0;
+Q.debt_crisis_progress = 0; // Post-war debt burden
+Q.sterling_pressure = 5; // Pressure from sterling area obligations
 
-Q.budget = 4;
+Q.budget = 0; // Budget balance (surplus/deficit in millions)
 
-// Proportion of different social groups
-// source: https://surface.syr.edu/cgi/viewcontent.cgi?filename=3&article=1016&context=books&type=additional page 45, table 3.4 - using 1925 figures
-Q.workers = 48; // industry and trade
-Q.old_middle = 13; // "old mittelstand"
-// 16.4 trade & commerce, 6.6 public and private services, 4.4 domestic help
-Q.new_middle = 14; // "new mittelstand"
-Q.rural = 25; // agriculture and forestry employment... but many of those are proletarians so...
-// source: https://surface.syr.edu/cgi/viewcontent.cgi?filename=3&article=1016&context=books&type=additional page 43, table 3.3
-Q.unemployed = 8.6;
-Q.catholics = 30;
+// Proportion of different social groups (1949 Australia)
+Q.workers = 45; // Industrial workers
+Q.white_collar = 18; // New middle class
+Q.small_business = 12; // Old middle class
+Q.rural = 15; // Farmers and rural workers
+Q.unemployed = 2.5; // Low post-war unemployment
+Q.catholics = 20; // Significant Catholic population
+Q.migrants = 2; // New Australians (growing)
 
-// unemployment: 1929 - 13.3, 1930 - 22.7, 1931 - 34.3, 1932 - 43.8 (same source as above)
+// unemployment: 1949 ~2.5%, rises in early 1950s
+// Post-war migration program beginning
 
-// income for industrial workers in reichsmarks/year - 1928 = 1600 Reichsmarks/year; 1931 = 1440 Reichsmarks/year; 1933 = 1138 Reichsmarks/year - source: https://babel.hathitrust.org/cgi/pt?id=uiug.30112104147985&seq=50
-Q.income = 1600;
-// what about incomes for different classes? rural workers? middle-class workers?
+// income for workers in pounds/year - 1949 baseline
+Q.income = 520; // Annual income in pounds
 
-// inflation (in %; 1928: 2.9; 1929: 0; 1930: -5%; 1931: -10%; 1932: -10%) - source: https://en.wikipedia.org/wiki/File:BSPDRWeltkriseEngl.PNG, derived from https://www.destatis.de/DE/Methoden/WISTA-Wirtschaft-und-Statistik/2009/03/rezession-betrachtung-032009.pdf?__blob=publicationFile
-Q.inflation = 2.9;
+// inflation (in %; 1949: ~10% post-war inflation; should decline)
+Q.inflation = 10;
 
-// economic growth - same source as above, Table 2 (preisbereinigt) - this is also the source for the yearly changes in the great depression.
-Q.economic_growth = 4.4;
+// economic growth
+Q.economic_growth = 5.0; // Post-war boom
 
-// economic expansion timer
+// economic expansion/contraction tracker
 Q.economic_expansion = 0;
 
-// quality of life (as % of 1928 - currently unused - should be welfare-adjusted.)
+// quality of life (as % of 1949)
 Q.workers_qol = 100;
 Q.rural_qol = 100;
 Q.unemployed_qol = 100;
-Q.old_middle_qol = 100;
-Q.new_middle_qol = 100;
+Q.small_business_qol = 100;
+Q.white_collar_qol = 100;
 
-Q.classes = ['workers', 'old_middle', 'new_middle', 'rural', 'unemployed', 'catholics'];
-Q.parties = ['spd', 'kpd', 'z', 'ddp', 'dvp', 'dnvp', 'nsdap', 'other'];
+Q.classes = ['workers', 'white_collar', 'small_business', 'rural', 'unemployed', 'catholics', 'migrants'];
+Q.parties = ['alp', 'liberal', 'country', 'cpa', 'lang', 'other'];
 
-// TODO: add 'sapd' later on
-Q.sapd_formed = 0;
+Q.lang_formed = 1; // Lang Labor exists
+Q.dlp_formed = 0; // DLP doesn't form until 1955
 
 // Support for party by social group
-// they don't have to sum to 100 since the electoral calculations will be normalized.
-Q.workers_spd = 60;
-Q.workers_kpd = 20;
-Q.workers_z = 5;
-Q.workers_ddp = 0;
-Q.workers_dvp = 0;
-Q.workers_dnvp = 5;
-Q.workers_nsdap = 0;
-Q.workers_other = 10;
+Q.workers_alp = 65;
+Q.workers_liberal = 10;
+Q.workers_country = 0;
+Q.workers_cpa = 15;
+Q.workers_lang = 5;
+Q.workers_other = 5;
 
-Q.old_middle_spd = 5;
-Q.old_middle_kpd = 0;
-Q.old_middle_z = 5;
-Q.old_middle_ddp= 10;
-Q.old_middle_dvp = 25;
-Q.old_middle_dnvp = 25;
-Q.old_middle_nsdap = 10;
-Q.old_middle_other = 10;
+Q.white_collar_alp = 30;
+Q.white_collar_liberal = 45;
+Q.white_collar_country = 5;
+Q.white_collar_cpa = 5;
+Q.white_collar_lang = 0;
+Q.white_collar_other = 15;
 
-Q.new_middle_spd = 5;
-Q.new_middle_kpd = 1;
-Q.new_middle_z = 10;
-Q.new_middle_ddp= 25;
-Q.new_middle_dvp = 25;
-Q.new_middle_dnvp = 10;
-Q.new_middle_nsdap = 5;
-Q.new_middle_other = 15;
+Q.small_business_alp = 15;
+Q.small_business_liberal = 50;
+Q.small_business_country = 20;
+Q.small_business_cpa = 0;
+Q.small_business_lang = 0;
+Q.small_business_other = 15;
 
-Q.rural_spd = 10;
-Q.rural_kpd = 0;
-Q.rural_z = 5;
-Q.rural_ddp= 5;
-Q.rural_dvp = 15;
-Q.rural_dnvp = 45;
-Q.rural_nsdap = 5;
+Q.rural_alp = 20;
+Q.rural_liberal = 20;
+Q.rural_country = 50;
+Q.rural_cpa = 0;
+Q.rural_lang = 0;
 Q.rural_other = 10;
 
-Q.unemployed_spd = 25;
-Q.unemployed_kpd = 55;
-Q.unemployed_z = 1;
-Q.unemployed_ddp = 0;
-Q.unemployed_dvp = 0;
-Q.unemployed_dnvp = 5;
-Q.unemployed_nsdap = 15;
-Q.unemployed_other = 9;
+Q.unemployed_alp = 45;
+Q.unemployed_liberal = 10;
+Q.unemployed_country = 0;
+Q.unemployed_cpa = 35;
+Q.unemployed_lang = 5;
+Q.unemployed_other = 5;
 
-Q.catholics_spd = 15;
-Q.catholics_kpd = 2;
-Q.catholics_z = 50;
-Q.catholics_ddp = 0;
-Q.catholics_dvp = 5;
-Q.catholics_dnvp = 5;
-Q.catholics_nsdap = 0;
-Q.catholics_other = 12;
+Q.catholics_alp = 55;
+Q.catholics_liberal = 25;
+Q.catholics_country = 10;
+Q.catholics_cpa = 5;
+Q.catholics_lang = 0;
+Q.catholics_other = 5;
 
+Q.migrants_alp = 60; // New Australians favor Labor initially
+Q.migrants_liberal = 20;
+Q.migrants_country = 0;
+Q.migrants_cpa = 10;
+Q.migrants_lang = 0;
+Q.migrants_other = 10;
 
-// Current Reichstag composition
-// % of Reichstag in Jan 1928
-// source: wikipedia
-// note: the Z figures also include the BVP (Bavarian people's party)
-// since they were ideologically similar, but they were separate parties.
-// They did not have a CDU/CSU-style relationship.
-Q.spd_r = 26;
-Q.kpd_r = 9;
-Q.z_r = 17;
-Q.ddp_r = 6;
-Q.dvp_r = 10;
-Q.dnvp_r = 20;
-Q.nsdap_r = 3;
-Q.other_r = 9;
+// Current House of Representatives composition (1949 election results)
+// ALP: 47 seats (37.8%), Liberal: 55 (39.4%), Country: 19 (10.7%), Others: 3
+Q.alp_seats = 47;
+Q.liberal_seats = 55;
+Q.country_seats = 19;
+Q.cpa_seats = 0;
+Q.lang_seats = 0;
+Q.other_seats = 3;
 
-// diff from prev
-Q.old_spd_r = 26;
-Q.old_kpd_r = 9;
-Q.old_z_r = 17;
-Q.old_ddp_r = 6;
-Q.old_dvp_r = 10;
-Q.old_dnvp_r = 20;
-Q.old_nsdap_r = 3;
-Q.old_other_r = 9;
+// Percentages
+Q.alp_percent = 37.8;
+Q.liberal_percent = 39.4;
+Q.country_percent = 10.7;
+Q.cpa_percent = 0;
+Q.lang_percent = 0;
+Q.other_percent = 2.4;
 
-// sapd isn't formed yet, but it may be formed
-Q.sapd_r = 0;
-Q.old_sapd_r = 0;
+// diff from prev (1946 election)
+Q.old_alp_seats = 43;
+Q.old_liberal_seats = 55;
+Q.old_country_seats = 19;
+Q.old_cpa_seats = 0;
+Q.old_lang_seats = 0;
+Q.old_other_seats = 3;
 
-// for changing the DDP's name to the DStP
-Q.ddp_name = "DDP";
-
-// array of objects of the form {date: Date(), spd: 10, kpd: 12, ...} for each election
+// election records
 Q.election_records = [];
-// party support records for every month
 Q.party_support_records = [];
-// inflation and unemployment records
 Q.economic_records = [];
 
-
 // State of the government
-Q.president = "Hindenburg";
-// starting chancellor: Wilhelm Marx
-Q.chancellor = "Marx";
-Q.chancellor_party = 'Z';
-Q.spd_in_government = 0;
-Q.z_in_government = 1;
-Q.ddp_in_government = 0;
-Q.dvp_in_government = 1;
-Q.dnvp_in_government = 1;
-Q.kpd_in_government = 0;
-Q.nsdap_in_government = 0;
+Q.governor_general = "McKell"; // William McKell
+// starting PM: Robert Menzies (Liberal)
+Q.prime_minister = "Menzies";
+Q.prime_minister_party = 'Liberal';
+Q.alp_in_government = 0;
+Q.liberal_in_government = 1;
+Q.country_in_government = 1;
+Q.cpa_in_government = 0;
 
-Q.in_right_coalition = 0;
-// Weimar coalition = SPD + Z + DDP
-Q.in_weimar_coalition = 0;
-// Grand coalition = SPD + Z + BVP + DDP + DVP
-// also includes the "new grand coalition" of SPD + Z + BVP + DDP + DVP + Others
-Q.in_grand_coalition = 0;
-// Popular front = SPD + KPD + Z + DDP
-Q.in_popular_front = 0;
-// left coalition = SPD + KPD + left-splinters
-Q.in_left_front = 0;
-// emergency government containing the SPD: only president Braun can do this.
-Q.in_emergency_government = 0;
-Q.in_spd_majority = 0;
-Q.grand_coalition_failed = 0;
-// if the SPD is ruling as part of a minority government
-Q.in_minority_government = 0;
-// national unity governmet
+// Coalition types
+Q.in_liberal_coalition = 1; // Liberal-Country Coalition
+Q.alp_majority = 0;
+Q.alp_minority = 0;
+Q.labor_coalition = 0; // Potential ALP-minor party coalition
 
-// if you're in a coalition, this is an incremental counter for how many times dissent has happened from the right.
+// if in coalition/minority, dissent tracker
 Q.coalition_dissent = 0;
-// dissent from the KPD, in a popular front or left front government
-Q.kpd_coalition_dissent = 0;
 
-// does the SPD tolerate the government even if it is not a participant?
-Q.spd_toleration = 0;
+// does the ALP support the government from opposition?
+Q.alp_cooperation = 0;
 
-// is the current government a presidential minority government?
-Q.minority_government = 0;
-
-// ministries - which parties control the ministries?
-// starting with the 4th Marx cabinet https://en.wikipedia.org/wiki/Fourth_Marx_cabinet
-// is the agricultural ministry useful at all?
-Q.foreign_minister = 'Streseman';
-Q.foreign_minister_party = 'DVP';
-Q.interior_minister = 'von Keudell';
-Q.interior_minister_party = 'DNVP';
-Q.justice_minister = 'Hergt';
-Q.justice_minister_party = 'DNVP';
-Q.labor_minister = 'Brauns';
-Q.labor_minister_party = 'Z';
-Q.reichswehr_minister = 'Groener';
-Q.reichswehr_minister_party = 'I';
-Q.economic_minister = 'Curtius';
-Q.economic_minister_party = 'DVP';
-Q.finance_minister = 'Köhler';
-Q.finance_minister_party = 'Z';
-Q.agriculture_minister = 'Schiele';
-Q.agriculture_minister_party = 'DNVP';
+// ministries - Liberal-Country Coalition cabinet
+Q.foreign_minister = 'Spender';
+Q.foreign_minister_party = 'Liberal';
+Q.treasury_minister = 'Fadden';
+Q.treasury_minister_party = 'Country';
+Q.defence_minister = 'Holt';
+Q.defence_minister_party = 'Liberal';
+Q.labor_minister = 'Holt'; // Also held Labour portfolio
+Q.labor_minister_party = 'Liberal';
+Q.immigration_minister = 'Calwell'; // Actually Labor's shadow - adjust
+Q.immigration_minister_party = 'Liberal';
+Q.trade_minister = 'McEwen';
+Q.trade_minister_party = 'Country';
+Q.attorney_general = 'Spicer';
+Q.attorney_general_party = 'Liberal';
 
 // Events: what has occurred?
-Q.panzerkreuzer_seen = 0;
-Q.panzerkreuzer_funded = 0;
-Q.panzerkreuzer_failed = 0;
-Q.unemployment_insurance_seen = 0;
-// unemployment insurance event is seen if the unemployment level is at least 4 more than the threshold...
-Q.unemployment_insurance_threshold = 10;
-Q.blutmai = 0;
+Q.chifley_death = 0; // Ben Chifley dies in 1951
+Q.bank_nationalization_seen = 0;
+Q.bank_nationalization_failed = 0;
+Q.petrov_affair_seen = 0; // 1954 event
+Q.korean_war_seen = 0; // Begins 1950
+Q.menzies_ban_referendum = 0; // 1951 referendum to ban CPA
 
-// have we reformed these institutions to be more democratic?
-Q.judicial_reform = 0;
-Q.bureaucratic_reform = 0;
-Q.military_reform = 0;
-Q.womens_rights = 0;
-// level of welfare relative to 1928 (can go negative)
-Q.welfare = 0;
-// level of support for farmers
-Q.agricultural_policy = 0;
-Q.land_reform = 0;
-// works-creation programs (i.e. WTB-plan) - how much have they implemented?
-Q.works_program = 0;
-Q.wtb_implemented = 0;
-// Relations with the Western countries (France, UK).
-Q.west_relation = 0;
-// Relations with the Eastern countries (Poland, Czechoslovakia)
-Q.east_relation = 0;
-// Relations with the Soviet Union
-Q.soviet_relation = 0;
-// How much have we exposed the secret rearmament programs?
-Q.rearmament_exposed = 0;
-// reparations vs baseline: young plan is -1.
-Q.reparations = 0;
-Q.reparations_negotiation = 0;
-// nationalization_progress is part of the left economic plan.
+// reforms and policies
+Q.welfare_expansion = 0;
+Q.immigration_program = 0; // Post-war migration
+Q.snowy_scheme = 0; // Snowy Mountains Scheme
+Q.university_expansion = 0;
+Q.housing_program = 0;
+Q.health_reform = 0;
+// Relations with UK
+Q.uk_relation = 70;
+// Relations with USA
+Q.usa_relation = 50;
+// Relations with Asia (Indonesia, Malaya, etc.)
+Q.asia_relation = 30;
+// ANZUS treaty negotiations
+Q.anzus_progress = 0;
+// Colombo Plan (aid to Asia)
+Q.colombo_plan = 0;
+// How much have we challenged White Australia?
+Q.white_australia_challenged = 0;
+// nationalization attempts
 Q.nationalization_progress = 0;
-// socializations is part of the economic democracy card.
-Q.socializations = 0;
-Q.nationalize_budget = 4;
-// have there been any factory takeovers?
-Q.factory_takeovers = 0;
-// progress on the moderate economic plan
-Q.moderate_plan_progress = 0;
-// European Union negotiation process
-Q.eu = 0;
-Q.eu_progress = 0;
-// science/education
-Q.science = 0;
-Q.education_science = 0;
+// Bank nationalization specifically
+Q.bank_nationalization = 0;
 
-// Tax rates relative to 1928 baseline
+// Tax rates relative to 1949 baseline
 Q.lower_tax_rates = 0;
 Q.upper_tax_rates = 0;
-Q.tariffs = 0;
+Q.tariffs = 0; // Protection vs free trade
 
-Q.electoral_threshold = 0;
-
-// our conduct in the government, and the conduct of our coalition opponents.
-// did the SPD vote against the previous government in a vote of no confidence?
-Q.spd_no_confidence = 0;
-// was the last SPD government taken down in a vote of no confidence by right-wing coalition partners?
-Q.no_confidence_against_spd = 0;
+// our conduct and relationships
+Q.alp_no_confidence = 0;
+Q.no_confidence_against_alp = 0;
 
 // Advisors/Leaders
 Q.n_advisors = 3;
-// timer - this decrements by 1 every turn, and is set to 5 whenever an advisor action is used, so that you can only use one advisor action every 5 months.
-// let's just put all of the timers here...
-// most party affairs and government affairs cards are on a timer.
-Q.timers = ['advisor_action', 'confronting_nazis', 'crisis_program',
+// Timers for various actions
+Q.timers = ['advisor_action', 'confronting_communists', 'crisis_program',
             'fundraising', 'ideology',
             'inter_party_relationships', 'international_relations',
-            'iron_front', 'media', 'enemies',
-            'party_organizations', 'rally', 'reichsbanner',
-            'shuffle_leadership', 'streetfighting', 'peoples_party',
-            'party_disunity',
+            'union_relations', 'media', 'enemies',
+            'party_organizations', 'rally', 'actu',
+            'shuffle_leadership', 'industrial_action', 'immigration_policy',
+            'party_unity',
             // govt
-            'agricultural_policy', 'domestic_enemies', 'fiscal_policy',
-            'foreign_policy', 'judiciary', 'labor_affairs', 'military_policy',
-            'police', 'prussian_affairs', 'shuffle_cabinet', 'social_welfare',
-            'homosexual_rights', 'economic_policy', 'coalition_affairs',
-            'war_guilt', 'womens_rights', 'economic_democracy',
-            'dealing_with_toleration',
-            'constitutional_reform', 'labor_rights',
-            'education_science', 'curriculum',
+            'agricultural_policy', 'domestic_security', 'fiscal_policy',
+            'foreign_policy', 'judiciary', 'labor_affairs', 'defence_policy',
+            'immigration', 'state_affairs', 'shuffle_cabinet', 'social_welfare',
+            'indigenous_rights', 'economic_policy', 'coalition_affairs',
+            'asian_relations', 'womens_policy', 'economic_planning',
+            'constitutional_reform', 'union_policy',
+            'education_science', 'white_australia',
             // events
-            'emergency_cuts', 'unemployment_insurance',
-            'sa_ban', 'sh_ban', 'papen_chancellor',
-            'kpd_policy', 'kpd_ultimatum', 'popular_front_dispute',
-            'high_inflation', 'banking_crisis', 'march_on_berlin',
-            'understanding_enemy', 'schleichers_schemes'];
+            'bank_nationalization', 'communist_ban',
+            'korean_war', 'petrov_affair',
+            'industrial_disputes', 'cold_war_pressure'];
+
 Q.advisor_action_timer = 0;
 // party affairs timers
-Q.confronting_nazis_timer = 0;
+Q.confronting_communists_timer = 0;
 Q.crisis_program_timer = 0;
 Q.fundraising_timer = 0;
 Q.ideology_timer = 0;
 Q.inter_party_relationships_timer = 0;
 Q.international_relations_timer = 0;
-Q.iron_front_timer = 0;
+Q.union_relations_timer = 0;
 Q.media_timer = 0;
 Q.enemies_timer = 0;
-Q.party_organizations_timer =  0;
+Q.party_organizations_timer = 0;
 Q.rally_timer = 0;
-Q.reichsbanner_timer = 0;
+Q.actu_timer = 0;
 Q.shuffle_leadership_timer = 0;
-Q.streetfighting_timer = 0;
-Q.peoples_party_timer = 0;
-// n_elections is the number of elections that have happened since the start of the game.
+Q.industrial_action_timer = 0;
+Q.immigration_policy_timer = 0;
+
+// elections
 Q.n_elections = 0;
-// number of elections without a clear majority.
-Q.no_majority_elections = 0;
-// elections are not on a timer, but rather there is an indicator for whether you're in an electoral cycle.
-Q.in_election = 1;
-Q.next_election_year = 1928;
-Q.next_election_month = 5;
-Q.next_election_time = 5;
+Q.hung_parliament_elections = 0;
+Q.in_election = 0;
+Q.next_election_year = 1951;
+Q.next_election_month = 4; // April 1951 (roughly)
+Q.next_election_time = 28; // ~28 months away
+
 // government affairs timers
 Q.agricultural_policy_timer = 0;
-Q.domestic_enemies_timer = 0;
+Q.domestic_security_timer = 0;
 Q.economic_policy_timer = 0;
 Q.fiscal_policy_timer = 0;
 Q.foreign_policy_timer = 0;
 Q.judiciary_timer = 0;
 Q.labor_affairs_timer = 0;
-Q.military_policy_timer = 0;
-Q.police_timer = 0;
-Q.prussian_affairs_timer = 0;
+Q.defence_policy_timer = 0;
+Q.immigration_timer = 0;
+Q.state_affairs_timer = 0;
 Q.shuffle_cabinet_timer = 0;
 Q.social_welfare_timer = 0;
-Q.war_guilt_timer = 0;
-Q.womens_rights_timer = 0;
-Q.homosexual_rights_timer = 0;
-Q.economic_democracy_timer = 0;
+Q.asian_relations_timer = 0;
+Q.womens_policy_timer = 0;
+Q.indigenous_rights_timer = 0;
+Q.economic_planning_timer = 0;
 Q.coalition_affairs_timer = 0;
 // event timers
-Q.emergency_cuts_timer = 0;
-Q.unemployment_insurance_timer = 0;
-Q.sa_ban_timer = 0;
-Q.sh_ban_timer = 0;
-Q.kpd_ultimatum_timer = 0;
-Q.march_on_berlin_timer = 0;
+Q.bank_nationalization_timer = 0;
+Q.communist_ban_timer = 0;
+Q.korean_war_timer = 0;
 
+// ALP Leadership - starting with post-1949 leadership
+Q.chifley_leader = 1; // Ben Chifley - leader
+Q.evatt_deputy = 1; // H.V. Evatt - deputy
+Q.calwell_advisor = 1; // Arthur Calwell
 
-// all the initial advisors are centrists.
-Q.wels_advisor = 1; // Otto Wels
-Q.muller_advisor = 1; // Hermann Müller
-Q.muller_dead = 0;
-// okay I know Arthur Crispien was a leader irl but i couldn't find much interesting about him...
-Q.crispien_advisor = 0; // Arthur Crispien
-Q.hilferding_advisor = 1; // Rudolf Hilferding
+// Left advisors
+Q.ward_advisor = 0; // Eddie Ward - firebrand left
+Q.cairns_advisor = 0; // Jim Cairns (later)
+Q.kenny_advisor = 0; // Tom Kenny
 
-// left advisors
-Q.sender_advisor = 0; // Toni Sender
-Q.levi_advisor = 0; // Paul Levi
-Q.levi_dead = 0;
-Q.rosenfeld_advisor = 0; // Kurt Rosenfeld
-Q.seydewitz_advisor = 0; // Max Seydewitz
+// Centre advisors
+Q.dedman_advisor = 0; // John Dedman
+Q.makin_advisor = 0; // Norman Makin
 
-// centrist alternate advisors
-Q.pfulf_advisor = 0; // Antonie Pfülf
-Q.breitscheid_advisor = 0; // Rudolf Breitscheid
+// Right/Grouper advisors
+Q.santamaria_advisor = 0; // B.A. Santamaria - outside party but influential
+Q.mannix_advisor = 0; // Archbishop Mannix influence
 
-// Reformist advisors
-Q.severing_advisor = 0; // Carl Severing
-Q.braun_advisor = 0; // Otto Braun
-Q.juchacz_advisor = 0; // Marie Juchacz
-Q.baade_advisor = 0; // Fritz Baade
+// NSW Right advisors
+Q.lang_advisor = 0; // Jack Lang (outside party)
+Q.cahill_advisor = 0; // J.J. Cahill (NSW)
 
-// Labor advisors
-Q.leipart_advisor = 0; // Theodor Leipart
-Q.aufhauser_advisor = 0; // Siegfried Aufhäuser
-Q.woytinsky_advisor = 0; // Wladimir Woytinsky (post-1930)
-Q.wissell_advisor = 0; // Rudolf Wissell
+// Labor Council advisors
+Q.monk_advisor = 0; // Albert Monk - ACTU
+Q.healey_advisor = 0; // Jim Healey - Waterside Workers
 
-// Revisionist advisors
-Q.mierendorff_advisor = 0; // Carlo Mierendorf (post-1930)
-
-Q.leber_advisor = 0; // Julius Leber (post-1930)
-Q.schumacher_advisor = 0; // Kurt Schumacher (post-1930)
-
-// Nonfactional advisors
-Q.hirschfeld_advisor = 0; // Magnus Hirschfeld
-Q.radbruch_advisor = 0; // Gustav Radbruch
-Q.stampfer_advisor = 0; // Friedrich Stampfer
+// Other advisors
+Q.menzies_knowledge = 0; // Understanding opponent
+Q.whitlam_advisor = 0; // Gough Whitlam (very young in 1949)
 !}
-set-bg: img/map_2.jpg
+set-bg: img/australia_1949.jpg
 new-page: true
 
 > *"The prime minister, the foreign minister and the trade minister were the three wise monkeys: they saw no evil, they spoke no evil, they heard no evil but they knew all about it. It's a sorry story of a government in a mode of reckless negligence"*
 
- - Kim Beazley Sr., on the government of the Howard, 1951
+ - Kim Beazley Sr., on the Menzies government, 1951
 
 This is a game of alternate history. While historical accuracy is a major concern, keep in mind that this is a *game*, and that any divergence from actual events will necessarily have to involve some element of make-believe. Nevertheless, please let the author know if there are any glaring mistakes.
 
-For more information on the politics and government of the German Republic, see the "Library" page on the top left. If this is your first time playing the game, it is strongly recommended that you read at least some of this information.
+For more information on the politics and government of post-war Australia, see the "Library" page on the top left. If this is your first time playing the game, it is strongly recommended that you read at least some of this information.
 
-- @1928_easy: Begin (easy difficulty)
-- @1928_main: Begin (normal difficulty)
-- @1928_hard: Begin (hard difficulty)
-- @1928_historical: Begin (historical mode)
+- @1949_easy: Begin (easy difficulty)
+- @1949_main: Begin (normal difficulty)
+- @1949_hard: Begin (hard difficulty)
+- @1949_historical: Begin (historical mode)
 
-@1928_easy
-on-arrival: difficulty = -1; resources = 4; dues = 3; rb_strength = 2500; kpd_relation = 29; z_relation = 54; dvp_relation = 49; budget = 5;
-go-to: 1928_main
+@1949_easy
+on-arrival: difficulty = -1; resources = 4; dues = 3; actu_strength = 1000; cpa_relation = 20; liberal_relation = 35; country_relation = 30; budget = 2;
+go-to: 1949_main
 
-@1928_hard
-on-arrival: difficulty = 1; resources = 0; dues = 1; rb_strength = 1000; reformist_dissent = 25; left_dissent = 30; labor_dissent = 25; center_dissent = 25; z_relation = 41; kpd_relation = 16; dvp_relation = 31; budget = 3;
-go-to: 1928_main
+@1949_hard
+on-arrival: difficulty = 1; resources = 0; dues = 1; actu_strength = 600; left_dissent = 25; centre_dissent = 20; nsw_right_dissent = 30; groupers_dissent = 25; liberal_relation = 25; cpa_relation = 10; country_relation = 20; budget = -2; actu_communist = 0.3;
+go-to: 1949_main
 
-@1928_historical
+@1949_historical
 subtitle: Saving, loading, and polls will be disabled. [? if not achievement_game_completed: Not recommended for a first playthrough. ?]
 on-arrival: {!
 Q.difficulty = 2;
 Q.historical_mode = 1;
 Q.resources = 2;
 Q.dues = 1;
-Q.rb_strength = 2000;
-Q.reformist_dissent = 25;
-Q.left_dissent = 30;
-Q.labor_dissent = 25;
-Q.center_dissent = 25;
-Q.z_relation = 41;
-Q.kpd_relation = 16;
-Q.dvp_relation = 31;
-Q.budget = 2;
+Q.actu_strength = 800;
+Q.left_dissent = 20;
+Q.centre_dissent = 10;
+Q.nsw_right_dissent = 25;
+Q.groupers_dissent = 15;
+Q.liberal_relation = 30;
+Q.cpa_relation = 15;
+Q.country_relation = 25;
+Q.budget = 0;
+Q.actu_communist = 0.2;
 this.state.disableSaves = true;
 !}
-go-to: 1928_main
+go-to: 1949_main
 
-@1928_main
-audio: shuffle music/1928_1930/FruhlingsliedMendelssohn.mp3 music/1928_1930/AUF_HOHEN_BERGEN_noise_reduced.mp3 music/1928_1930/MarekWeber.mp3 music/1928_1930/BAUERNKAPELLE.mp3 music/1928_1933/DERLINDENBAUM_normalized.mp3 music/1928_1933/ZurSonne_zurFreiheit.mp3 music/1928_1933/arbeiter_marseille.mp3 music/1928_1933/Wann_wir_schreiten_Seit_an_Seit.mp3 music/1930_1933/Internationale-de_normalized.ogg music/1928_1930/LiedDerPompadour.mp3 music/1928_1933/SozialistenMarsch.mp3
+@1949_main
+audio: shuffle music/1949_aus/WaltzingMatilda.mp3 music/1949_aus/AdvanceAustraliaFair.mp3 music/1949_aus/SolidaryForever.mp3
 new-page: true
 go-to: main if difficulty >= 0; main.main_easy if difficulty < 0
 
-= 1928
+= 1949
 
 Citizens of the Commonwealth. The year is 1949. The 'Great Silence' of the Pacific has ended, but the peace is a heavy one. Under the terms of the Atlanto-Pacific Defense Organization and the Debt Realignment of 1947, our course is clear. To maintain the Gold Standard is to maintain our honor. To man the Papua Line is to ensure our survival. The government asks for your 'discipline.' The banks ask for your 'patience.' From the smelting pots of Port Pirie to the docks of East Sydney, the price of freedom is being tallied in Taft Dollars. 
 
-Australia stands as the Bastion of the South. Do not look at the shadows in the union halls. Do not listen to the agitators in the streets. The Empire of Japan is watching. Washington is waiting. Work hard. Keep quiet. For the King, and for the Debt
-
+Australia stands as the Bastion of the South. Do not look at the shadows in the union halls. Do not listen to the agitators in the streets. The Empire of Japan is watching. Washington is waiting. Work hard. Keep quiet. For the King, and for the Debt...
