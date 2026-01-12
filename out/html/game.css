@@ -17,9 +17,6 @@ body {
   padding: 0;
   line-height: 155%;
   overflow-y: scroll;
-  width: 100%;
-  margin: 0;
-  padding: 0;
 }
 body.dark-mode {
   --bg-color: #000;
@@ -44,54 +41,19 @@ body.dark-mode .tools {
   border-width: 4px;
   border-color: #888;
 }
-
-/* FIXED LAYOUT ENGINE */
-/* 1. Reset the container to use a clean 3-column Grid */
-/* Unified Grid Layout */
-#page {
-  display: grid;
-  /* Left Sidebar: 250px | Main: Flexible | Right Sidebar: 250px */
-  grid-template-columns: 250px 1fr 250px;
-  gap: 15px;
-  width: 100%;
-  min-height: 100vh;
-  padding: 0;
-}
-
-/* SIDEBARS: Using 'sticky' instead of 'fixed' keeps them in the grid 
-   while letting them stay on screen as you scroll. */
-.tools.left, .tools.right {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  width: 100%; /* Spans the grid column width */
-  overflow-y: auto;
-  z-index: 10;
-}
-
-/* CENTER PANEL: This will now properly fill the middle and center its content */
-#mid_panel {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centers the content box horizontally */
-  padding: 20px;
-  width: 100%;
-}
-
-/* The actual content box inside mid_panel */
-#content {
-  width: 100%;
-  max-width: 600px; /* Limits reading width for better UX */
+header, #content, footer {
+  color: var(--text-color);
+  max-width: 540px;
   margin: 0 auto;
+  overflow: auto;
 }
-
-/* 4. The actual content box inside the mid panel */
-#content, header, footer {
-  width: 100%;
-  max-width: 600px; /* Adjust this to your preferred reading width */
-  margin: 0 auto 1em auto; /* margin: auto handles the centering */
+#content {
+  position: relative;
+  background-color: var(--content-bg-color);
+  font-size: 1.1em;
+  padding: 1em 1.5em 1.5em 1.5em;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
 }
-
 footer {
   margin-top: 1em;
   font-size: 0.8em;
@@ -206,17 +168,37 @@ blockquote.attribution {
 blockquote + blockquote.attribution {
   margin-top: -1em;
 }
-
-/* MODIFIED TOOLS STYLING */
+/* This is mostly copied from undum. */
+#mid_panel {
+  margin: 0 16rem;
+}
+#page {
+  margin: 0 auto;
+  position: relative;
+}
+#tools_wrapper {
+  position: absolute;
+  width: 100%;
+  max-width: 69em;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
 .tools {
   padding: 0.6em;
-  width: 100%;
-  max-width: 250px;
+  width: 14rem;
   color: var(--text-color);
   background-color: var(--content-bg-color);
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
 }
-
+.tools.left {
+  float: left;
+  left: 0.4em;
+}
+.tools.right {
+  float: right;
+  right: 0.4em;
+}
 #qualities {
   text-indent: 0;
   line-height: 1.3em;
@@ -245,25 +227,14 @@ blockquote + blockquote.attribution {
     margin-left: -0.6em;
     margin-right: -0.6em;
 }
-
-/* First tab container - left aligned */
-.tab_container:first-of-type {
-    text-align: left;
-}
-
-/* Second tab container - right aligned */
-.tab_container:nth-of-type(2) {
-    text-align: right;
-}
-
 .tab_button {
     font-family: "Minion Pro", Georgia, serif;
     background-color: var(--tab-color);
     color: var(--text-color);
+    /*float: left;*/
     border: none;
     outline: none;
     padding: 10px;
-    display: inline-block;
 }
 .tab_button.active {
     background-color: var(--content-bg-color);
@@ -481,50 +452,49 @@ img {
     top: 50%;
 }
 
-/* TABLET BREAKPOINT */
+/* smaller screens: hide left margin */
 @media screen and (max-width: 1200px) {
-  #page {
-    grid-template-columns: minmax(150px, 1fr) minmax(400px, 2fr) minmax(150px, 1fr);
-  }
-
   .tools {
-    max-width: 200px;
+      margin-right: 0.4em;
+      margin-left: 0.4em;
   }
-}
-
-/* MOBILE BREAKPOINT */
-@media screen and (max-width: 800px) {
-  #page {
-    display: flex; /* Stack vertically on small screens */
-    flex-direction: column;
-  }
-
-  .tools.left, .tools.right {
-    position: static;
-    height: auto;
-    width: 100%;
-    max-width: none;
-  }
-
   #mid_panel {
-    order: -1; /* Puts the main content at the TOP on mobile */
+      margin-right: 0.4em;
   }
 }
-
-  .tools {
-    max-width: none;
-    width: auto;
-    margin: 0.5em 0;
+/* mobile: move the stat box to the top if the screen is too small,
+ * and reduce font size slightly. */
+@media screen and (max-width: 560px) {
+  #page {
+      position: static;
   }
-
   #content {
-    font-size: 1em;
-    line-height: 160%;
-    padding: 1em 1em 1.5em 1em;
+      position: static;
+      font-size: 1em;
+      line-height: 160%;
+      padding: 1em 1em 1.5em 1em;
   }
-
   #qualities {
-    font-size: 1em;
+      font-size: 1em;
+  }
+  #tools_wrapper {
+    position: static;
+  }
+  .tools {
+      width: 90%;
+      margin: 2em 0 1em 0;
+      margin: 0.4em;
+  }
+  .tools.left {
+      float: none;
+      left: 0;
+  }
+  .tools.right {
+      float: none;
+      right: 0;
+  }
+  #mid_panel {
+      margin: 0 auto;
   }
 
   /* cards are smaller on mobile */
@@ -566,29 +536,38 @@ table {
     border-spacing: 0.5em;
 }
 
-/* Styles for Australian parties */
-.seat.alp {
-    fill: #E13940;
+/* Styles for parties */
+.seat.kpd {
+    fill: #8B0000;
+}
+.seat.spd {
+    fill: #E3000F;
     stroke: var(--border-color);
     stroke-width: 1.5px;
 }
-.seat.liberal {
-    fill: #0047AB;
+.seat.ddp {
+    fill: #DCCA4A;
 }
-.seat.country {
-    fill: #006644;
+.seat.z {
+    fill: #000;
 }
-.seat.cpa {
-    fill: #CD5C5C;
+.seat.bvp {
+    fill: #69A2BE;
 }
-.seat.dlp {
-    fill: #0066CC;
-}
-.seat.lang {
-    fill: #8B0000;
+.seat.dvp {
+    fill: #D5AC27;
 }
 .seat.other {
     fill: #909090;
+}
+.seat.dnvp {
+    fill: #3F7BC1;
+}
+.seat.nsdap {
+    fill: #954B00;
+}
+.seat.sapd {
+    fill: #C40000;
 }
 
 .tooltip-text {
