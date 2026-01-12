@@ -41,12 +41,41 @@ body.dark-mode .tools {
   border-width: 4px;
   border-color: #888;
 }
-header, #content, footer {
-  color: var(--text-color);
-  max-width: 540px;
+
+/* NEW LAYOUT ENGINE */
+#page {
+  display: grid;
+  grid-template-columns: 14rem minmax(540px, 1fr) 14rem;
+  max-width: 1200px;
   margin: 0 auto;
+  column-gap: 1rem;
+  align-items: start;
+}
+
+.tools.left {
+  grid-column: 1;
+  position: sticky;
+  top: 1rem;
+}
+
+#mid_panel {
+  grid-column: 2;
+}
+
+.tools.right {
+  grid-column: 3;
+  position: sticky;
+  top: 1rem;
+}
+
+header, #content, footer {
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--text-color);
   overflow: auto;
 }
+
 #content {
   position: relative;
   background-color: var(--content-bg-color);
@@ -168,38 +197,16 @@ blockquote.attribution {
 blockquote + blockquote.attribution {
   margin-top: -1em;
 }
-/* This is mostly copied from undum. */
-#mid_panel {
-  margin: 0 16rem;
-}
-#page {
-  margin: 0 auto;
-  position: relative;
-}
-#tools_wrapper {
-  position: absolute;
-  width: 80%;
-  max-width: 69em;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-}
+
+/* MODIFIED TOOLS STYLING */
 .tools {
   padding: 0.6em;
-  width: 14rem;
+  width: 100%;
   color: var(--text-color);
   background-color: var(--content-bg-color);
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
 }
-.tools.left {
-  float: none;
-  left: 0.4em;
-}
-.tools.right {
-  float: none;
-  right: 0.4em;
-  position: relative;
-}
+
 #qualities {
   text-indent: 0;
   line-height: 1.3em;
@@ -453,49 +460,51 @@ img {
     top: 50%;
 }
 
-/* smaller screens: hide left margin */
+/* TABLET BREAKPOINT */
 @media screen and (max-width: 1200px) {
-  .tools {
-      margin-right: 0.4em;
-      margin-left: 0.4em;
+  #page {
+    grid-template-columns: 1fr minmax(540px, 1fr) 1fr;
   }
-  #mid_panel {
-      margin-right: 0.4em;
+
+  .tools {
+    max-width: 14rem;
   }
 }
-/* mobile: move the stat box to the top if the screen is too small,
- * and reduce font size slightly. */
+
+/* MOBILE BREAKPOINT */
 @media screen and (max-width: 560px) {
   #page {
-      position: static;
+    grid-template-columns: 1fr;
   }
-  #content {
-      position: static;
-      font-size: 1em;
-      line-height: 160%;
-      padding: 1em 1em 1.5em 1em;
+
+  #mid_panel {
+    order: 1;
   }
-  #qualities {
-      font-size: 1em;
-  }
-  #tools_wrapper {
+
+  .tools.left {
+    order: 2;
     position: static;
   }
-  .tools {
-      width: 90%;
-      margin: 2em 0 1em 0;
-      margin: 0.4em;
-  }
-  .tools.left {
-      float: none;
-      left: 0;
-  }
+
   .tools.right {
-      float: none;
-      right: 0;
+    order: 3;
+    position: static;
   }
-  #mid_panel {
-      margin: 0 auto;
+
+  .tools {
+    max-width: none;
+    width: auto;
+    margin: 0.5em;
+  }
+
+  #content {
+    font-size: 1em;
+    line-height: 160%;
+    padding: 1em 1em 1.5em 1em;
+  }
+
+  #qualities {
+    font-size: 1em;
   }
 
   /* cards are smaller on mobile */
@@ -537,7 +546,32 @@ table {
     border-spacing: 0.5em;
 }
 
-/* Styles for parties */
+/* Styles for Australian parties */
+.seat.alp {
+    fill: #E13940;
+    stroke: var(--border-color);
+    stroke-width: 1.5px;
+}
+.seat.liberal {
+    fill: #0047AB;
+}
+.seat.country {
+    fill: #006644;
+}
+.seat.cpa {
+    fill: #CD5C5C;
+}
+.seat.dlp {
+    fill: #0066CC;
+}
+.seat.lang {
+    fill: #8B0000;
+}
+.seat.other {
+    fill: #909090;
+}
+
+/* Keep old Weimar colors commented for reference if needed
 .seat.kpd {
     fill: #8B0000;
 }
@@ -570,8 +604,8 @@ table {
 .seat.sapd {
     fill: #C40000;
 }
+*/
 
 .tooltip-text {
     text-decoration: underline;
     text-decoration-style: dotted;
-}
