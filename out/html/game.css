@@ -46,12 +46,6 @@ body.dark-mode .tools {
 }
 
 /* FIXED LAYOUT ENGINE */
-#page {
-  display: grid;
-  grid-template-columns: auto minmax(540px, 2fr) auto;
-  gap: 1rem;
-  padding: 1rem;
-}
 
 .tools.left {
   grid-column: 1;
