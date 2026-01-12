@@ -243,14 +243,25 @@ blockquote + blockquote.attribution {
     margin-left: -0.6em;
     margin-right: -0.6em;
 }
+
+/* First tab container - left aligned */
+.tab_container:first-of-type {
+    text-align: left;
+}
+
+/* Second tab container - right aligned */
+.tab_container:nth-of-type(2) {
+    text-align: right;
+}
+
 .tab_button {
     font-family: "Minion Pro", Georgia, serif;
     background-color: var(--tab-color);
     color: var(--text-color);
-    /*float: left;*/
     border: none;
     outline: none;
     padding: 10px;
+    display: inline-block;
 }
 .tab_button.active {
     background-color: var(--content-bg-color);
