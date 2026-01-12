@@ -20,30 +20,42 @@ if (Q.economic_growth) {
 
 Resources available: [+ resources +]
 
-ALP position: [? if alp_opposition : opposition ?][? if alp_in_government : in government ?][? if alp_minority : minority government ?]
-[? if alp_coalition : Coalition government ?][? if alp_majority : majority government ?]
+SPD position: [? if spd_toleration : toleration ?][? if spd_in_government : in government - ?][? if spd_toleration == 0 and spd_in_government == 0 and spd_caretaker == 0 : opposition ?][? if spd_caretaker : caretaker government ?]
+[? if in_weimar_coalition and spd_in_government: Weimar Coalition ?][? if in_grand_coalition and spd_in_government: Grand Coalition ?][? if in_popular_front and spd_in_government: Popular Front ?][? if in_left_front and spd_in_government: Left Front ?][? if in_spd_majority and spd_in_government: SPD majority ?][? if in_minority_government and spd_in_government: minority government ?][? if in_emergency_government and spd_in_government: emergency government ?]
 
-[? if alp_in_government and not alp_majority : Coalition/crossbench dissent: [+ coalition_dissent : coalition_dissent +] ?]
+[? if spd_in_government and not in_spd_majority and not in_left_front : Coalition dissent: [+ coalition_dissent : coalition_dissent +] ?]
+
+[? if spd_in_government and (in_left_front or in_popular_front): KPD coalition dissent: [+ kpd_coalition_dissent : coalition_dissent +] ?]
 
 Internal dissent: [+ dissent_percent : dissent +]
 
 = Government
 
-Governor-General: [+ governor_general +]
+President: [+ president +]
 
-Prime Minister: [+ prime_minister +] ([+ prime_minister_party +])
+Chancellor: [+ chancellor +] ([+ chancellor_party +])
 
-House of Representatives composition:
+Reichstag composition:
 
-# 1949 actual: ALP 47, Liberal 55, CP 19, Others 3
-{!<span class="tooltip-text" title="Australian Labor Party">ALP</span>!}: [+ alp_seats +] seats ([+ alp_percent +]%)
-{!<span class="tooltip-text" title="Liberal Party of Australia">Liberal</span>!}: [+ lib_seats +] seats ([+ lib_percent +]%)
-{!<span class="tooltip-text" title="Australian Country Party">Country Party</span>!}: [+ cp_seats +] seats ([+ cp_percent +]%)
-{!<span class="tooltip-text" title="Communist Party of Australia">CPA</span>!}: [+ cpa_seats +] seats ([+ cpa_percent +]%)
-{!<span class="tooltip-text" title="Lang Labor and other splinter groups">Lang Labor</span>!}: [+ lang_seats +] seats ([+ lang_percent +]%)
-{!<span class="tooltip-text" title="Independents and minor parties">Others</span>!}: [+ other_seats +] seats ([+ other_percent +]%)
+# 1928: 30, 1930: 25, 1932: 22
+{!<span class="tooltip-text" title="Social Democratic Party of Germany">SPD</span>!}: [+ spd_r +]%
+[? if sapd_formed and sapd_r > 0: SAPD: [+ sapd_r +]% ?]
+# 1928: 15, 1930: 15, 1932: 
+{!<span class="tooltip-text" title="Center Party + Bavarian People's Party">Z + BVP</span>!}: [+ z_r +]%
+# 1928: 10, 1930: 13
+{!<span class="tooltip-text" title="Communist Party of Germany">KPD</span>!}: [+ kpd_r +]%
+# 1928: 5, 1930: 4 (as DstP)
+{!<span class="tooltip-text" title="German Democratic Party">!}[? if not ddp_name: DDP?][? if ddp_name != 0 : [+ ddp_name +]?]{!</span>!}: [+ ddp_r +]%
+# 1928: 9, 1930: 5
+{!<span class="tooltip-text" title="German People's Party">DVP</span>!}: [+ dvp_r +]%
+# 1928: 14, 1930: 7
+{!<span class="tooltip-text" title="German National People's Party">DNVP</span>!}: [+ dnvp_r +]%
+# 1928: 3, 1930: 18
+{!<span class="tooltip-text" title="National-Socialist German Worker's Party (Nazis)">NSDAP</span>!}: [+ nsdap_r +]%
+# 1928: 9, 1930: 10
+Others: [+ other_r +]%
 
-[? if alp_in_government = 1 : Budget surplus/deficit: £[+ budget +] million ?]
+[? if spd_in_government = 1 : Budget: [+ budget +] ?]
 
 Next election: [+ next_election_month : month +] [+ next_election_year +]
 
@@ -51,11 +63,11 @@ Next election: [+ next_election_month : month +] [+ next_election_year +]
 
 Inflation: [+ inflation_2 +]%
 
-Unemployment: [+ unemployed_2 +]%
+[? if black_thursday_seen = 1 : Unemployment: [+ unemployed_2 +]% ?]
 
 Economic growth: [+ economic_growth_2 +]%
 
-Sterling reserves: [+ sterling_reserves +] (balance of payments health)
+
 
 # = Public Opinion
 
@@ -63,23 +75,31 @@ Sterling reserves: [+ sterling_reserves +] (balance of payments health)
 
 = Inter-party Relations
 
-{!<span class="tooltip-text" title="Liberal Party of Australia">Liberal</span>!}: [+ lib_relation : relationships +]
 
-{!<span class="tooltip-text" title="Australian Country Party">Country Party</span>!}: [+ cp_relation : relationships +]
+{!<span class="tooltip-text" title="Center Party">Z</span>!}: [+ z_relation : relationships +]
 
-{!<span class="tooltip-text" title="Communist Party of Australia">CPA</span>!}: [+ cpa_relation : relationships +]
+{!<span class="tooltip-text" title="German Democratic Party">!}[? if not ddp_name: DDP?][? if ddp_name != 0 : [+ ddp_name +]?]{!</span>!}: [+ ddp_relation : relationships +]
 
-{!<span class="tooltip-text" title="Democratic Labor Party (if formed from split)">DLP</span>!}: [+ dlp_relation : relationships +]
+{!<span class="tooltip-text" title="German People's Party">DVP</span>!}: [+ dvp_relation : relationships +]
 
-= Internal Factions of the ALP
+{!<span class="tooltip-text" title="Communist Party of Germany">KPD</span>!}: [+ kpd_relation : relationships +]
 
-{!<span class="tooltip-text" title="The Left supports socialist policies, close union ties, and anti-imperialism">Left/Socialist</span>!} strength: [+ left_strength : strength +], dissent: [+ left_dissent : dissent +]
+{!<span class="tooltip-text" title="German National People's Party">DNVP</span>!}: [+ dnvp_relation : relationships +]
 
-{!<span class="tooltip-text" title="The Centre-Left balances union support with pragmatic governance">Centre-Left</span>!} strength: [+ centre_strength : strength +], dissent: [+ centre_dissent : dissent +]
+{!<span class="tooltip-text" title="National-Socialist German Worker's Party (Nazis)">NSDAP</span>!}: [+ nsdap_relation : relationships +]
 
-{!<span class="tooltip-text" title="The Right/Industrial Group supports moderate policies and Catholic social teaching">Right/Groupers</span>!} strength: [+ right_strength : strength +], dissent: [+ right_dissent : dissent +]
+= Internal Factions of the SPD
 
-{!<span class="tooltip-text" title="The NSW Right includes both moderates and Lang Labor sympathizers">NSW Right</span>!} strength: [+ nsw_strength : strength +], dissent: [+ nsw_dissent : dissent +]
+{!<span class="tooltip-text" title="The Left is interested in radical, transformative policies and cooperation with the KPD.">Left</span>!} strength: [+ left_strength : strength +], dissent: [+ left_dissent : dissent +]
+
+{!<span class="tooltip-text" title="The Center is a faction of Center Marxists, between reform and revolution.">Center</span>!} strength: [+ center_strength : strength +], dissent: [+ center_dissent : dissent +]
+
+{!<span class="tooltip-text" title="Labor's goal is economic reform and benefits for organized workers.">Labor</span>!} strength: [+ labor_strength : strength +], dissent: [+ labor_dissent : dissent +]
+
+{!<span class="tooltip-text" title="Reformists are pragmatic participants in government, and seek to expand the welfare state and defend democracy.">Reformist</span>!} strength: [+ reformist_strength : strength +], dissent: [+ reformist_dissent : dissent +]
+
+[? if neorevisionism > 0 : Neorevisionist strength: [+ neorevisionist_strength : strength +], dissent: [+ neorevisionist_dissent : dissent +] ?]
+
 
 @paramilitaries
 on-arrival: {!
@@ -127,55 +147,47 @@ Prussian police loyalty: [+ prussian_police_loyalty : loyalty +]
 
 [? if spd_in_government : Interior police loyalty: [+ interior_police_loyalty : loyalty +] ?]
 
-
 @polls
 on-arrival: {!
-Q.support_labor_disp = Math.round(Q.support_labor);
-Q.anti_communist_disp = Math.round(Q.anti_communist);
-Q.pro_british_disp = Math.round(Q.pro_british);
-Q.immigration_support_disp = Math.round(Q.immigration_support);
+Q.pro_republic_disp = Math.round(Q.pro_republic);
+Q.nationalism_disp = Math.round(Q.nationalism);
+Q.socialism_disp = Math.round(Q.socialism);
 !}
 
 = Projected election results
 
 (if the election were to be held now):
 
-ALP: [+ alp_votes +]%
+SPD: [+ spd_votes +]%
 
-Liberal: [+ lib_votes +]%
+[? if sapd_formed: SAPD: [+ sapd_votes +]% ?]
 
-Country Party: [+ cp_votes +]%
+Z + BVP: [+ z_votes +]%
 
-CPA: [+ cpa_votes +]%
+KPD: [+ kpd_votes +]%
 
-[? if dlp_formed = 1 : DLP: [+ dlp_votes +]% ?]
+[? if not ddp_name: DDP?][? if ddp_name != 0 : [+ ddp_name +]?]: [+ ddp_votes +]%
 
-Lang Labor: [+ lang_votes +]%
+DVP: [+ dvp_votes +]%
+
+DNVP: [+ dnvp_votes +]%
+
+NSDAP: [+ nsdap_votes +]%
 
 Others: [+ other_votes +]%
 
 **Detailed results for each demographic**
 
-Industrial Workers: ALP: [+ workers_alp_display +]%, Liberal: [+ workers_lib_display +]%, CP: [+ workers_cp_display +]%, CPA: [+ workers_cpa_display +]%, Others: [+ workers_other_display +]%
+Workers: SPD: [+ workers_spd_display +]%, Z: [+ workers_z_display +]%, KPD: [+ workers_kpd_display +]%, [? if not ddp_name: DDP?][? if ddp_name != 0 : [+ ddp_name +]?]: [+ workers_ddp_display +]%, DVP: [+ workers_dvp_display +]%; DNVP: [+ workers_dnvp_display +]%, NSDAP: [+ workers_nsdap_display +]%, Others: [+ workers_other_display +]% [? if sapd_formed: SAPD: [+ workers_sapd_display +]% ?]
 
-White Collar Workers: ALP: [+ white_collar_alp_display +]%, Liberal: [+ white_collar_lib_display +]%, CP: [+ white_collar_cp_display +]%, CPA: [+ white_collar_cpa_display +]%, Others: [+ white_collar_other_display +]%
+New Middle Class: SPD: [+ new_middle_spd_display +]%, Z: [+ new_middle_z_display +]%, KPD: [+ new_middle_kpd_display +]%, [? if not ddp_name: DDP?][? if ddp_name != 0 : [+ ddp_name +]?]: [+ new_middle_ddp_display +]%, DVP: [+ new_middle_dvp_display +]%; DNVP: [+ new_middle_dnvp_display +]%, NSDAP: [+ new_middle_nsdap_display +]%, Others: [+ new_middle_other_display +]% [? if sapd_formed: SAPD: [+ new_middle_sapd_display +]% ?]
 
-Small Business: ALP: [+ business_alp_display +]%, Liberal: [+ business_lib_display +]%, CP: [+ business_cp_display +]%, CPA: [+ business_cpa_display +]%, Others: [+ business_other_display +]%
+Old Middle Class: SPD: [+ old_middle_spd_display +]%, Z: [+ old_middle_z_display +]%, KPD: [+ old_middle_kpd_display +]%, [? if not ddp_name: DDP?][? if ddp_name != 0 : [+ ddp_name +]?]: [+ old_middle_ddp_display +]%, DVP: [+ old_middle_dvp_display +]%; DNVP: [+ old_middle_dnvp_display +]%, NSDAP: [+ old_middle_nsdap_display +]%, Others: [+ old_middle_other_display +]% [? if sapd_formed: SAPD: [+ old_middle_sapd_display +]% ?]
 
-Rural/Farmers: ALP: [+ rural_alp_display +]%, Liberal: [+ rural_lib_display +]%, CP: [+ rural_cp_display +]%, CPA: [+ rural_cpa_display +]%, Others: [+ rural_other_display +]%
+Rural: SPD: [+ rural_spd_display +]%, Z: [+ rural_z_display +]%, KPD: [+ rural_kpd_display +]%, [? if not ddp_name: DDP?][? if ddp_name != 0 : [+ ddp_name +]?]: [+ rural_ddp_display +]%, DVP: [+ rural_dvp_display +]%; DNVP: [+ rural_dnvp_display +]%, NSDAP: [+ rural_nsdap_display +]%, Others: [+ rural_other_display +]% [? if sapd_formed: SAPD: [+ rural_sapd_display +]% ?]
 
-Unemployed: ALP: [+ unemployed_alp_display +]%, Liberal: [+ unemployed_lib_display +]%, CP: [+ unemployed_cp_display +]%, CPA: [+ unemployed_cpa_display +]%, Others: [+ unemployed_other_display +]%
+Unemployed: SPD: [+ unemployed_spd_display +]%, Z: [+ unemployed_z_display +]%, KPD: [+ unemployed_kpd_display +]%, [? if not ddp_name: DDP?][? if ddp_name != 0 : [+ ddp_name +]?]: [+ unemployed_ddp_display +]%, DVP: [+ unemployed_dvp_display +]%; DNVP: [+ unemployed_dnvp_display +]%, NSDAP: [+ unemployed_nsdap_display +]%, Others: [+ unemployed_other_display +]% [? if sapd_formed: SAPD: [+ unemployed_sapd_display +]% ?]
 
-Catholics: ALP: [+ catholics_alp_display +]%, Liberal: [+ catholics_lib_display +]%, CP: [+ catholics_cp_display +]%, CPA: [+ catholics_cpa_display +]%, Others: [+ catholics_other_display +]%
+Catholics: SPD: [+ catholics_spd_display +]%, Z: [+ catholics_z_display +]%, KPD: [+ catholics_kpd_display +]%, [? if not ddp_name: DDP?][? if ddp_name != 0 : [+ ddp_name +]?]: [+ catholics_ddp_display +]%, DVP: [+ catholics_dvp_display +]%; DNVP: [+ catholics_dnvp_display +]%, NSDAP: [+ catholics_nsdap_display +]%, Others: [+ catholics_other_display +]% [? if sapd_formed: SAPD: [+ catholics_sapd_display +]% ?]
 
-Migrants (New Australians): ALP: [+ migrants_alp_display +]%, Liberal: [+ migrants_lib_display +]%, CP: [+ migrants_cp_display +]%, CPA: [+ migrants_cpa_display +]%, Others: [+ migrants_other_display +]%
-
-Public Opinion:
-
-Support for Labor government: [+ support_labor_disp +]%
-
-Anti-Communist sentiment: [+ anti_communist_disp +]%
-
-Support for British ties: [+ pro_british_disp +]%
-
-Support for immigration: [+ immigration_support_disp +]%
+Support for the Republic: [+ pro_republic_disp +]%
