@@ -87,7 +87,6 @@ Q.actu_strength_2 = Q.actu_strength.toFixed(1);
 Q.wharfies_strength_2 = Q.wharfies_strength.toFixed(1);
 Q.miners_strength_2 = Q.miners_strength.toFixed(1);
 Q.aru_strength_2 = Q.aru_strength.toFixed(1);
-}
 !}
 
 = Union Movement
