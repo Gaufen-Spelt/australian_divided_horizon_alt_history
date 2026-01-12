@@ -54,10 +54,9 @@ body.dark-mode .tools {
 }
 
 #mid_panel {
-  margin: 0 auto;
-  padding-left: 0;
-  padding-right: 0;
   max-width: 800px;
+  margin-left: 270px;  /* Same as tools width */
+  margin-right: 270px;
 }
 
 /* FIXED LAYOUT ENGINE */
