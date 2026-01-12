@@ -98,24 +98,47 @@ if (Q.dissent < 0) {
     Q.dissent = 0.95;
 }
 
-// 1. update dates
-if (Q.month_actions >= 1) {
-    Q.time += 1;
-    Q.month_actions = 0;
-    Q.month += 1;
-    if (Q.month >= 13) {
-        Q.month = 1;
-        Q.year += 1;
-        if (Q.historical_mode) {
-            Q.resources += 2;
+// ============================================
+// UNIFIED TIME PROGRESSION - WEEKLY TO MONTHLY
+// ============================================
+
+if (Q.actions >= 1) {
+    Q.actions = 0;
+    Q.week += 1;
+    
+    // Decrement weekly timers
+    for (timer of Q.weekly_timers || []) {
+        if (Q[timer + '_timer'] && Q[timer + '_timer'] > 0) {
+            Q[timer + '_timer'] -= 1;
         }
     }
-    // decrement timers
-    for (timer of Q.timers) {
-        if (Q[timer+'_timer'] && Q[timer+'_timer'] > 0) {
-            Q[timer+'_timer'] -= 1;
+    
+    // Check if month advances (every 4 weeks)
+    if (Q.week >= 5) {
+        Q.week = 1;
+        Q.month += 1;
+        Q.time += 1;
+        
+        // Year transition
+        if (Q.month >= 13) {
+            Q.month = 1;
+            Q.year += 1;
+            if (Q.historical_mode) {
+                Q.resources += 2;
+            }
         }
+        
+        // Decrement monthly timers
+        for (timer of Q.timers || []) {
+            if (Q[timer + '_timer'] && Q[timer + '_timer'] > 0) {
+                Q[timer + '_timer'] -= 1;
+            }
+        }
+    } else {
+        // Fractional time increase for weeks
+        Q.time += 0.25;
     }
+}
     // append to historical party support records
     var party_support_results = {'date': new Date(Q.year, Q.month - 1)};
     for (var party of Q.parties) {
