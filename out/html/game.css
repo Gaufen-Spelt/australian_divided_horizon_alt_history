@@ -41,19 +41,20 @@ body.dark-mode .tools {
   border-width: 4px;
   border-color: #888;
 }
-header, #content, footer {
-  color: var(--text-color);
-  max-width: 540px;
-  margin: 0 auto;
-  overflow: auto;
+
+#main_column {
+  flex: 1; /* Takes up the remaining space */
+  max-width: 600px; /* Keeps text lines easy to read */
 }
+
 #content {
-  position: relative;
   background-color: var(--content-bg-color);
   font-size: 1.1em;
   padding: 1em 1.5em 1.5em 1.5em;
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+  min-height: 500px;
 }
+
 footer {
   margin-top: 1em;
   font-size: 0.8em;
@@ -63,17 +64,22 @@ footer a {
   padding-right: 1em;
 }
 header {
-  text-align: right
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1em;
 }
+
 #header-links {
   text-align: left;
-  float: left;
-  display: inline-block;
-  margin-bottom: 0.5em;
-  padding-left: 1em;
+  display: flex;
+  flex-direction: column; /* Stacks links vertically like your image */
+  padding: 0.5em 1em;
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
   background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
 }
+
 #header-links a {
   padding-right: 1em;
 }
@@ -168,13 +174,27 @@ blockquote.attribution {
 blockquote + blockquote.attribution {
   margin-top: -1em;
 }
+
+
+
+
+
+
+
+
 /* This is mostly copied from undum. */
 #mid_panel {
   margin: 0 16rem;
 }
 #page {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Centers the whole game on the screen */
+  align-items: flex-start;
+  gap: 20px; /* Gap between sidebar and story */
+  max-width: 1200px;
   margin: 0 auto;
-  position: relative;
+  padding: 10px;
 }
 #tools_wrapper {
   position: absolute;
@@ -185,20 +205,15 @@ blockquote + blockquote.attribution {
   margin: 0 auto;
 }
 .tools {
+  flex: 0 0 240px; /* Fixes the sidebar width at 240px */
   padding: 0.6em;
-  width: 14rem;
   color: var(--text-color);
   background-color: var(--content-bg-color);
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+  position: sticky; /* This keeps stats on screen while you scroll text */
+  top: 10px;
 }
-.tools.left {
-  float: left;
-  left: 0.4em;
-}
-.tools.right {
-  float: right;
-  right: 0.4em;
-}
+
 #qualities {
   text-indent: 0;
   line-height: 1.3em;
