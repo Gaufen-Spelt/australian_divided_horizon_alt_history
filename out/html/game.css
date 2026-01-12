@@ -493,26 +493,23 @@ img {
 }
 
 /* MOBILE BREAKPOINT */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
   #page {
-    display: flex;
+    display: flex; /* Stack vertically on small screens */
     flex-direction: column;
-    padding: 0.5rem;
+  }
+
+  .tools.left, .tools.right {
+    position: static;
+    height: auto;
+    width: 100%;
+    max-width: none;
   }
 
   #mid_panel {
-    order: 1;
+    order: -1; /* Puts the main content at the TOP on mobile */
   }
-
-  .tools.left {
-    order: 2;
-    position: static;
-  }
-
-  .tools.right {
-    order: 3;
-    position: static;
-  }
+}
 
   .tools {
     max-width: none;
