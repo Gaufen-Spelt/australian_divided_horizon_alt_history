@@ -45,12 +45,22 @@ body.dark-mode .tools {
   border-color: #888;
 }
 
-/* NEW LAYOUT ENGINE */
+/* FIXED LAYOUT ENGINE */
+#page {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) minmax(540px, 2fr) minmax(200px, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
 .tools.left {
   grid-column: 1;
   position: sticky;
   top: 1rem;
+  align-self: start;
+  justify-self: start;
 }
 
 #mid_panel {
@@ -61,6 +71,8 @@ body.dark-mode .tools {
   grid-column: 3;
   position: sticky;
   top: 1rem;
+  align-self: start;
+  justify-self: end;
 }
 
 header, #content, footer {
@@ -197,6 +209,7 @@ blockquote + blockquote.attribution {
 .tools {
   padding: 0.6em;
   width: 100%;
+  max-width: 250px;
   color: var(--text-color);
   background-color: var(--content-bg-color);
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
@@ -458,18 +471,20 @@ img {
 /* TABLET BREAKPOINT */
 @media screen and (max-width: 1200px) {
   #page {
-    grid-template-columns: 1fr minmax(540px, 1fr) 1fr;
+    grid-template-columns: minmax(150px, 1fr) minmax(400px, 2fr) minmax(150px, 1fr);
   }
 
   .tools {
-    max-width: 14rem;
+    max-width: 200px;
   }
 }
 
 /* MOBILE BREAKPOINT */
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 768px) {
   #page {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
   }
 
   #mid_panel {
@@ -489,7 +504,7 @@ img {
   .tools {
     max-width: none;
     width: auto;
-    margin: 0.5em;
+    margin: 0.5em 0;
   }
 
   #content {
@@ -566,41 +581,7 @@ table {
     fill: #909090;
 }
 
-/* Keep old Weimar colors commented for reference if needed
-.seat.kpd {
-    fill: #8B0000;
-}
-.seat.spd {
-    fill: #E3000F;
-    stroke: var(--border-color);
-    stroke-width: 1.5px;
-}
-.seat.ddp {
-    fill: #DCCA4A;
-}
-.seat.z {
-    fill: #000;
-}
-.seat.bvp {
-    fill: #69A2BE;
-}
-.seat.dvp {
-    fill: #D5AC27;
-}
-.seat.other {
-    fill: #909090;
-}
-.seat.dnvp {
-    fill: #3F7BC1;
-}
-.seat.nsdap {
-    fill: #954B00;
-}
-.seat.sapd {
-    fill: #C40000;
-}
-*/
-
 .tooltip-text {
     text-decoration: underline;
     text-decoration-style: dotted;
+}
