@@ -1,0 +1,182 @@
+title: Status
+new-page: true
+is-special: true
+on-arrival: {!
+if (Q.unemployed) {
+    Q.unemployed_2 = Q.unemployed.toFixed(1);
+}
+if (Q.inflation) {
+    Q.inflation_2 = Q.inflation.toFixed(1);
+}
+Q.economic_growth_2 = '0';
+if (Q.economic_growth) {
+    Q.economic_growth_2 = Q.economic_growth.toFixed(1);
+}
+!}
+
+= Status
+
+[+ month : month +] [+ year +]
+
+Resources available: [+ resources +]
+
+ALP position: [? if alp_opposition : opposition ?][? if alp_in_government : in government ?][? if alp_minority : minority government ?]
+[? if alp_coalition : Coalition government ?][? if alp_majority : majority government ?]
+
+[? if alp_in_government and not alp_majority : Coalition/crossbench dissent: [+ coalition_dissent : coalition_dissent +] ?]
+
+Internal dissent: [+ dissent_percent : dissent +]
+
+= Government
+
+Governor-General: [+ governor_general +]
+
+Prime Minister: [+ prime_minister +] ([+ prime_minister_party +])
+
+House of Representatives composition:
+
+# 1949 actual: ALP 47, Liberal 55, CP 19, Others 3
+{!<span class="tooltip-text" title="Australian Labor Party">ALP</span>!}: [+ alp_seats +] seats ([+ alp_percent +]%)
+{!<span class="tooltip-text" title="Liberal Party of Australia">Liberal</span>!}: [+ lib_seats +] seats ([+ lib_percent +]%)
+{!<span class="tooltip-text" title="Australian Country Party">Country Party</span>!}: [+ cp_seats +] seats ([+ cp_percent +]%)
+{!<span class="tooltip-text" title="Communist Party of Australia">CPA</span>!}: [+ cpa_seats +] seats ([+ cpa_percent +]%)
+{!<span class="tooltip-text" title="Lang Labor and other splinter groups">Lang Labor</span>!}: [+ lang_seats +] seats ([+ lang_percent +]%)
+{!<span class="tooltip-text" title="Independents and minor parties">Others</span>!}: [+ other_seats +] seats ([+ other_percent +]%)
+
+[? if alp_in_government = 1 : Budget surplus/deficit: £[+ budget +] million ?]
+
+Next election: [+ next_election_month : month +] [+ next_election_year +]
+
+= Economics
+
+Inflation: [+ inflation_2 +]%
+
+Unemployment: [+ unemployed_2 +]%
+
+Economic growth: [+ economic_growth_2 +]%
+
+Sterling reserves: [+ sterling_reserves +] (balance of payments health)
+
+# = Public Opinion
+
+@economy
+
+= Inter-party Relations
+
+{!<span class="tooltip-text" title="Liberal Party of Australia">Liberal</span>!}: [+ lib_relation : relationships +]
+
+{!<span class="tooltip-text" title="Australian Country Party">Country Party</span>!}: [+ cp_relation : relationships +]
+
+{!<span class="tooltip-text" title="Communist Party of Australia">CPA</span>!}: [+ cpa_relation : relationships +]
+
+{!<span class="tooltip-text" title="Democratic Labor Party (if formed from split)">DLP</span>!}: [+ dlp_relation : relationships +]
+
+= Internal Factions of the ALP
+
+{!<span class="tooltip-text" title="The Left supports socialist policies, close union ties, and anti-imperialism">Left/Socialist</span>!} strength: [+ left_strength : strength +], dissent: [+ left_dissent : dissent +]
+
+{!<span class="tooltip-text" title="The Centre-Left balances union support with pragmatic governance">Centre-Left</span>!} strength: [+ centre_strength : strength +], dissent: [+ centre_dissent : dissent +]
+
+{!<span class="tooltip-text" title="The Right/Industrial Group supports moderate policies and Catholic social teaching">Right/Groupers</span>!} strength: [+ right_strength : strength +], dissent: [+ right_dissent : dissent +]
+
+{!<span class="tooltip-text" title="The NSW Right includes both moderates and Lang Labor sympathizers">NSW Right</span>!} strength: [+ nsw_strength : strength +], dissent: [+ nsw_dissent : dissent +]
+
+@military
+on-arrival: {!
+if (Q.actu_strength) {
+    Q.actu_strength_2 = Q.actu_strength.toFixed(1);
+}
+if (Q.wharfies_strength) {
+    Q.wharfies_strength_2 = Q.wharfies_strength.toFixed(1);
+}
+if (Q.miners_strength) {
+    Q.miners_strength_2 = Q.miners_strength.toFixed(1);
+}
+if (Q.aru_strength) {
+    Q.aru_strength_2 = Q.aru_strength.toFixed(1);
+}
+!}
+
+= Union Movement
+
+{!<span class="tooltip-text" title="Australian Council of Trade Unions - umbrella organization">ACTU</span>!} Strength: [+ actu_strength_2 +] thousand members
+
+ACTU Militancy: [+ actu_militancy : militancy +]
+
+ACTU Communist influence: [+ actu_communist : influence +]
+
+{!<span class="tooltip-text" title="Waterside Workers Federation">WWF (Wharfies)</span>!} Strength: [+ wharfies_strength_2 +] thousand
+
+WWF Militancy: [+ wharfies_militancy : militancy +]
+
+{!<span class="tooltip-text" title="Miners Federation">Miners</span>!} Strength: [+ miners_strength_2 +] thousand
+
+Miners Militancy: [+ miners_militancy : militancy +]
+
+{!<span class="tooltip-text" title="Australian Railways Union">ARU</span>!} Strength: [+ aru_strength_2 +] thousand
+
+ARU Militancy: [+ aru_militancy : militancy +]
+
+= Security Forces
+
+Australian Defence Force: [+ adf_strength +] thousand personnel
+
+Military Loyalty: [+ military_loyalty : loyalty +]
+
+Commonwealth Police: [+ police_strength +] members
+
+Police loyalty: [+ police_loyalty : loyalty +]
+
+ASIO strength: [+ asio_strength : security_apparatus +]
+
+@army
+on-arrival: {!
+Q.support_labor_disp = Math.round(Q.support_labor);
+Q.anti_communist_disp = Math.round(Q.anti_communist);
+Q.pro_british_disp = Math.round(Q.pro_british);
+Q.immigration_support_disp = Math.round(Q.immigration_support);
+!}
+
+= Projected election results
+
+(if the election were to be held now):
+
+ALP: [+ alp_votes +]%
+
+Liberal: [+ lib_votes +]%
+
+Country Party: [+ cp_votes +]%
+
+CPA: [+ cpa_votes +]%
+
+[? if dlp_formed : DLP: [+ dlp_votes +]% ?]
+
+Lang Labor: [+ lang_votes +]%
+
+Others: [+ other_votes +]%
+
+**Detailed results for each demographic**
+
+Industrial Workers: ALP: [+ workers_alp_display +]%, Liberal: [+ workers_lib_display +]%, CP: [+ workers_cp_display +]%, CPA: [+ workers_cpa_display +]%, Others: [+ workers_other_display +]%
+
+White Collar Workers: ALP: [+ white_collar_alp_display +]%, Liberal: [+ white_collar_lib_display +]%, CP: [+ white_collar_cp_display +]%, CPA: [+ white_collar_cpa_display +]%, Others: [+ white_collar_other_display +]%
+
+Small Business: ALP: [+ business_alp_display +]%, Liberal: [+ business_lib_display +]%, CP: [+ business_cp_display +]%, CPA: [+ business_cpa_display +]%, Others: [+ business_other_display +]%
+
+Rural/Farmers: ALP: [+ rural_alp_display +]%, Liberal: [+ rural_lib_display +]%, CP: [+ rural_cp_display +]%, CPA: [+ rural_cpa_display +]%, Others: [+ rural_other_display +]%
+
+Unemployed: ALP: [+ unemployed_alp_display +]%, Liberal: [+ unemployed_lib_display +]%, CP: [+ unemployed_cp_display +]%, CPA: [+ unemployed_cpa_display +]%, Others: [+ unemployed_other_display +]%
+
+Catholics: ALP: [+ catholics_alp_display +]%, Liberal: [+ catholics_lib_display +]%, CP: [+ catholics_cp_display +]%, CPA: [+ catholics_cpa_display +]%, Others: [+ catholics_other_display +]%
+
+Migrants (New Australians): ALP: [+ migrants_alp_display +]%, Liberal: [+ migrants_lib_display +]%, CP: [+ migrants_cp_display +]%, CPA: [+ migrants_cpa_display +]%, Others: [+ migrants_other_display +]%
+
+Public Opinion:
+
+Support for Labor government: [+ support_labor_disp +]%
+
+Anti-Communist sentiment: [+ anti_communist_disp +]%
+
+Support for British ties: [+ pro_british_disp +]%
+
+Support for immigration: [+ immigration_support_disp +]%
