@@ -46,14 +46,6 @@ body.dark-mode .tools {
 }
 
 /* NEW LAYOUT ENGINE */
-#page {
-  display: grid;
-  grid-template-columns: 14rem minmax(540px, 1fr) 14rem;
-  width: 100vw;
-  margin: 0;
-  column-gap: 1rem;
-  align-items: start;
-}
 
 .tools.left {
   grid-column: 1;
