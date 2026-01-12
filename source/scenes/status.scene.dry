@@ -83,16 +83,9 @@ Sterling reserves: [+ sterling_reserves +] (balance of payments health)
 
 @paramilitaries
 on-arrival: {!
-if (Q.actu_strength) {
     Q.actu_strength_2 = Q.actu_strength.toFixed(1);
-}
-if (Q.wharfies_strength) {
     Q.wharfies_strength_2 = Q.wharfies_strength.toFixed(1);
-}
-if (Q.miners_strength) {
     Q.miners_strength_2 = Q.miners_strength.toFixed(1);
-}
-if (Q.aru_strength) {
     Q.aru_strength_2 = Q.aru_strength.toFixed(1);
 }
 !}
@@ -128,7 +121,6 @@ Commonwealth Police: [+ police_strength +] members
 Police loyalty: [+ police_loyalty : loyalty +]
 
 ASIO strength: [+ asio_strength : security_apparatus +]
-
 
 @polls
 on-arrival: {!
