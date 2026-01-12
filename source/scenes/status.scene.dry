@@ -81,54 +81,6 @@ Sterling reserves: [+ sterling_reserves +] (balance of payments health)
 
 {!<span class="tooltip-text" title="The NSW Right includes both moderates and Lang Labor sympathizers">NSW Right</span>!} strength: [+ nsw_strength : strength +], dissent: [+ nsw_dissent : dissent +]
 
-@paramilitary
-on-arrival: {!
-if (Q.actu_strength) {
-    Q.actu_strength_2 = Q.actu_strength.toFixed(1);
-}
-if (Q.wharfies_strength) {
-    Q.wharfies_strength_2 = Q.wharfies_strength.toFixed(1);
-}
-if (Q.miners_strength) {
-    Q.miners_strength_2 = Q.miners_strength.toFixed(1);
-}
-if (Q.aru_strength) {
-    Q.aru_strength_2 = Q.aru_strength.toFixed(1);
-}
-!}
-
-= Union Movement
-
-{!<span class="tooltip-text" title="Australian Council of Trade Unions - umbrella organization">ACTU</span>!} Strength: [+ actu_strength_2 +] thousand members
-
-ACTU Militancy: [+ actu_militancy : militancy +]
-
-ACTU Communist influence: [+ actu_communist : influence +]
-
-{!<span class="tooltip-text" title="Waterside Workers Federation">WWF (Wharfies)</span>!} Strength: [+ wharfies_strength_2 +] thousand
-
-WWF Militancy: [+ wharfies_militancy : militancy +]
-
-{!<span class="tooltip-text" title="Miners Federation">Miners</span>!} Strength: [+ miners_strength_2 +] thousand
-
-Miners Militancy: [+ miners_militancy : militancy +]
-
-{!<span class="tooltip-text" title="Australian Railways Union">ARU</span>!} Strength: [+ aru_strength_2 +] thousand
-
-ARU Militancy: [+ aru_militancy : militancy +]
-
-= Security Forces
-
-Australian Defence Force: [+ adf_strength +] thousand personnel
-
-Military Loyalty: [+ military_loyalty : loyalty +]
-
-Commonwealth Police: [+ police_strength +] members
-
-Police loyalty: [+ police_loyalty : loyalty +]
-
-ASIO strength: [+ asio_strength : security_apparatus +]
-
 @polls
 on-arrival: {!
 Q.support_labor_disp = Math.round(Q.support_labor);
@@ -180,3 +132,51 @@ Anti-Communist sentiment: [+ anti_communist_disp +]%
 Support for British ties: [+ pro_british_disp +]%
 
 Support for immigration: [+ immigration_support_disp +]%
+
+@paramilitary
+on-arrival: {!
+if (Q.actu_strength) {
+    Q.actu_strength_2 = Q.actu_strength.toFixed(1);
+}
+if (Q.wharfies_strength) {
+    Q.wharfies_strength_2 = Q.wharfies_strength.toFixed(1);
+}
+if (Q.miners_strength) {
+    Q.miners_strength_2 = Q.miners_strength.toFixed(1);
+}
+if (Q.aru_strength) {
+    Q.aru_strength_2 = Q.aru_strength.toFixed(1);
+}
+!}
+
+= Union Movement
+
+{!<span class="tooltip-text" title="Australian Council of Trade Unions - umbrella organization">ACTU</span>!} Strength: [+ actu_strength_2 +] thousand members
+
+ACTU Militancy: [+ actu_militancy : militancy +]
+
+ACTU Communist influence: [+ actu_communist : influence +]
+
+{!<span class="tooltip-text" title="Waterside Workers Federation">WWF (Wharfies)</span>!} Strength: [+ wharfies_strength_2 +] thousand
+
+WWF Militancy: [+ wharfies_militancy : militancy +]
+
+{!<span class="tooltip-text" title="Miners Federation">Miners</span>!} Strength: [+ miners_strength_2 +] thousand
+
+Miners Militancy: [+ miners_militancy : militancy +]
+
+{!<span class="tooltip-text" title="Australian Railways Union">ARU</span>!} Strength: [+ aru_strength_2 +] thousand
+
+ARU Militancy: [+ aru_militancy : militancy +]
+
+= Security Forces
+
+Australian Defence Force: [+ adf_strength +] thousand personnel
+
+Military Loyalty: [+ military_loyalty : loyalty +]
+
+Commonwealth Police: [+ police_strength +] members
+
+Police loyalty: [+ police_loyalty : loyalty +]
+
+ASIO strength: [+ asio_strength : security_apparatus +]
