@@ -48,11 +48,9 @@ body.dark-mode .tools {
 /* FIXED LAYOUT ENGINE */
 #page {
   display: grid;
-  grid-template-columns: minmax(200px, 1fr) minmax(540px, 2fr) minmax(200px, 1fr);
+  grid-template-columns: auto minmax(540px, 2fr) auto;
   gap: 1rem;
   padding: 1rem;
-  max-width: 1400px;
-  margin: 0 auto;
 }
 
 .tools.left {
@@ -65,6 +63,7 @@ body.dark-mode .tools {
 
 #mid_panel {
   grid-column: 2;
+  max-width: 800px;
 }
 
 .tools.right {
