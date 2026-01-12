@@ -58,6 +58,16 @@ body.dark-mode .tools {
 #mid_panel {
   grid-column: 2;
   max-width: 800px;
+  margin: 0 auto;  /* Add this line */
+}
+
+/* FIXED LAYOUT ENGINE */
+#page {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  width: 100%;
+  gap: 1rem;
+  padding: 1rem;
 }
 
 .tools.right {
