@@ -422,9 +422,9 @@ Q.immigration_policy_timer = 0;
 Q.n_elections = 0;
 Q.hung_parliament_elections = 0;
 Q.in_election = 0;
-Q.next_election_year = 1951;
-Q.next_election_month = 4; // April 1951 (roughly)
-Q.next_election_time = 28; // ~28 months away
+Q.next_election_year = 1949;
+Q.next_election_month = 12; // 1949 December (roughly)
+Q.next_election_time = 12; // ~28 months away
 
 // government affairs timers
 Q.agricultural_policy_timer = 0;
@@ -497,11 +497,11 @@ For more information on the politics and government of post-war Australia, see t
 
 @1949_easy
 on-arrival: difficulty = -1; resources = 4; dues = 3; actu_strength = 1000; cpa_relation = 20; liberal_relation = 35; country_relation = 30; budget = 2;
-go-to: 1949_main
+go-to: intro
 
 @1949_hard
 on-arrival: difficulty = 1; resources = 0; dues = 1; actu_strength = 600; left_dissent = 25; centre_dissent = 20; nsw_right_dissent = 30; groupers_dissent = 25; liberal_relation = 25; cpa_relation = 10; country_relation = 20; budget = -2; actu_communist = 0.3;
-go-to: 1949_main
+go-to: intro
 
 @1949_historical
 subtitle: Saving, loading, and polls will be disabled. [? if not achievement_game_completed: Not recommended for a first playthrough. ?]
@@ -522,7 +522,35 @@ Q.budget = 0;
 Q.actu_communist = 0.2;
 this.state.disableSaves = true;
 !}
+go-to: intro
+
+@intro
+
+Do you wish to skip the intro?
+
+- @yes_intro_skip: Yes
+- @no_intro_skip: No
+
+@yes_intro_skip
 go-to: 1949_main
+
+@no_intro_skip
+
+'New Year. Somehow, I thought it would bring me my mood back. But how was I wrong when I thought about all this unfairness imposed by the Taft, this motherfuggin son. The only thing I would like to have in common with him is an alliance against Japanese.
+
+Workers taught to tighten up their wallets, with that Debt in effect. Debt. You want to know? Americans call it fair means of repaying for their own catastrophical acts. We call it injustice.
+
+Our Labor party. Surely it could solve it? Oh no, don't dream about that. We could easily split party if not Moderates within the party - and we can afford many more splits before our Labor will consist of only purists.
+
+'Old man' Chifley? He is trying something, but we know, he is failing horribly...
+
+And on trends are many more things - communists, rurals, americans, debt , big fellas, corporates, Papua, Philippinese, war, New Zealand, Tasmania, election... Speaking of that, just by December will be our elections, deciding if Labor or LNP guys gonna secure it once more... 
+
+All things considered, I would love to have some of wine...'
+
+Wine is poured. Manifest is on the deck. What are you waiting for, Eddie?
+
+- @1949_main: Let's start this.
 
 @1949_main
 audio: shuffle music/1949_aus/WaltzingMatilda.mp3 music/1949_aus/AdvanceAustraliaFair.mp3 music/1949_aus/SolidaryForever.mp3
