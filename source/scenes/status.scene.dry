@@ -81,7 +81,7 @@ Sterling reserves: [+ sterling_reserves +] (balance of payments health)
 
 {!<span class="tooltip-text" title="The NSW Right includes both moderates and Lang Labor sympathizers">NSW Right</span>!} strength: [+ nsw_strength : strength +], dissent: [+ nsw_dissent : dissent +]
 
-@union
+@Union
 on-arrival: {!
 if (Q.actu_strength) {
     Q.actu_strength_2 = Q.actu_strength.toFixed(1);
