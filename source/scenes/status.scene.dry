@@ -40,6 +40,7 @@ Prime Minister: [+ prime_minister +] ([+ prime_minister_party +])
 **House of Representatives**
 
 {!<span class="tooltip-text" title="Australian Labor Party">ALP</span>!}: [+ alp_seats +] seats ([+ alp_percent +]%)
+
 {!<span class="tooltip-text" title="Liberal Party of Australia">Liberal</span>!}: [+ liberal_seats +] seats ([+ liberal_percent +]%)
 {!<span class="tooltip-text" title="Australian Country Party">Country Party</span>!}: [+ country_seats +] seats ([+ country_percent +]%)
 {!<span class="tooltip-text" title="Communist Party of Australia">CPA</span>!}: [+ cpa_seats +] seats ([+ cpa_percent +]%)
