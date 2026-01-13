@@ -72,15 +72,19 @@ Sterling reserves: [+ sterling_reserves +] (balance of payments health)
 
 = Internal Factions of the ALP
 
-{!<span class="tooltip-text" title="The Left supports socialist policies, close union ties, and anti-imperialism">Left/Socialist</span>!} strength: [+ left_strength : strength +], dissent: [+ left_dissent : dissent +]
+{!<span class="tooltip-text" title="The Left supports socialist policies, close union ties, and anti-imperialism">Left ALP - United Opposition</span>!} strength: [+ left_strength : strength +], dissent: [+ left_dissent : dissent +]
 
 {!<span class="tooltip-text" title="The Centre-Left balances union support with pragmatic governance">Centre-Left</span>!} strength: [+ centre_strength : strength +], dissent: [+ centre_dissent : dissent +]
 
-{!<span class="tooltip-text" title="The Right/Industrial Group supports moderate policies and Catholic social teaching">Right/Groupers</span>!} strength: [+ groupers_strength : strength +], dissent: [+ groupers_dissent : dissent +]
+{!<span class="tooltip-text" title="The Right/Industrial Group supports moderate policies and Catholic social teaching">Right ALP - New South Wales Sector</span>!} strength: [+ right_alp_nsw_strength : strength +], dissent: [+ right_alp_nsw__dissent : dissent +]
 
-{!<span class="tooltip-text" title="The NSW Right includes both moderates and Lang Labor sympathizers">NSW Right</span>!} strength: [+ nsw_right_strength : strength +], dissent: [+ nsw_right_dissent : dissent +]
+{!<span class="tooltip-text" title="The Right/Industrial Group supports moderate policies and Catholic social teaching">Right ALP - Queensland Sector</span>!} strength: [+ right_alp_qld_strength : strength +], dissent: [+ right_alp_qld_dissent : dissent +]
 
-[? if labor_council_strength > 0: {!<span class="tooltip-text" title="Trade union officials">Labor Council</span>!} strength: [+ labor_council_strength : strength +], dissent: [+ labor_council_dissent : dissent +] ?]
+{!<span class="tooltip-text" title="The NSW Right includes both moderates and Lang Labor sympathizers">Right ALP - Unionist</span>!} strength: [+ right_alp_union_strength : strength +], dissent: [+ right_alp_union_dissent : dissent +]
+
+{!<span class="tooltip-text" title="The NSW Right includes both moderates and Lang Labor sympathizers">Right ALP - Industrial Groups</span>!} strength: [+ groupers_strength : strength +], dissent: [+ groupers_dissent : dissent +]
+
+{!<span class="tooltip-text" title="The NSW Right includes both moderates and Lang Labor sympathizers">Old Guard - Langist</span>!} strength: [+ langist_strength : strength +], dissent: [+ langist_dissent : dissent +]
 
 @polls
 on-arrival: {!
