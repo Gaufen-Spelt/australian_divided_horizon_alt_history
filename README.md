@@ -1,4 +1,4 @@
-# Social Democracy: An Alternate History
+# Divided Horizon: Australian Dawn
 
 ## Included Libraries
 
