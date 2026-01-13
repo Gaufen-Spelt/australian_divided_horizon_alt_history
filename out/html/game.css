@@ -212,6 +212,10 @@ blockquote + blockquote.attribution {
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
   position: sticky; /* This keeps stats on screen while you scroll text */
   top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 300px; /* Optional: ensures a minimum height for the sidebar */
 }
 
 
@@ -228,6 +232,7 @@ blockquote + blockquote.attribution {
 #qualities {
   text-indent: 0;
   line-height: 1.3em;
+  flex-grow: 1;
 }
 #qualities p {
   text-indent: 0;
@@ -289,17 +294,7 @@ blockquote + blockquote.attribution {
 }
 
 /* Ensure the sidebar itself is a flex container to push tabs to bottom if desired */
-.tools {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 300px; /* Optional: ensures a minimum height for the sidebar */
-}
-
-#qualities {
-    flex-grow: 1; /* Makes the stats area take up all available middle space */
-}
-
+    
 
 
 
