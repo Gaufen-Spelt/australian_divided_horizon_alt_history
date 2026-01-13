@@ -68,6 +68,30 @@ Q.langist_dissent = 8;
 
 
 
+// The array of forces - union strength and loyalty
+// Union membership in 1949 (in thousands)
+Q.actu_strength = 800; // ACTU umbrella
+Q.actu_militancy = 0.3;
+Q.actu_communist = 0.2; // Communist influence in unions
+Q.wharfies_strength = 25; // Waterside Workers Federation
+Q.wharfies_militancy = 0.7;
+Q.wharfies_communist = 0.8; // Very high communist influence
+Q.miners_strength = 50;
+Q.miners_militancy = 0.5;
+Q.miners_communist = 0.4;
+Q.aru_strength = 35; // Australian Railways Union
+Q.aru_militancy = 0.3;
+Q.aru_communist = 0.2;
+Q.ironworkers_strength = 50;
+Q.ironworkers_militancy = 0.15
+Q.ironworkers_communist = 0.2;
+Q.awu_strength = 150;
+Q.awu_militancy = 0.10;
+Q.awu_communist = 0.2;
+
+
+
+
 
 
 
@@ -274,20 +298,7 @@ Q.governor_general_relation = 40;
 // can the GG dismiss the government?
 Q.governor_general_enabled = 0;
 
-// The array of forces - union strength and loyalty
-// Union membership in 1949 (in thousands)
-Q.actu_strength = 800; // ACTU umbrella
-Q.actu_militancy = 0.3;
-Q.actu_communist = 0.2; // Communist influence in unions
-Q.wharfies_strength = 25; // Waterside Workers Federation
-Q.wharfies_militancy = 0.7;
-Q.wharfies_communist = 0.8; // Very high communist influence
-Q.miners_strength = 50;
-Q.miners_militancy = 0.5;
-Q.miners_communist = 0.4;
-Q.aru_strength = 35; // Australian Railways Union
-Q.aru_militancy = 0.3;
-Q.aru_communist = 0.2;
+
 
 // Security forces
 Q.adf_strength = 20; // Australian Defence Force (peacetime)
