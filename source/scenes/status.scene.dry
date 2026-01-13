@@ -37,8 +37,8 @@ House of Representatives composition:
 
 # 1949 actual: ALP 47, Liberal 55, CP 19, Others 3
 {!<span class="tooltip-text" title="Australian Labor Party">ALP</span>!}: [+ alp_seats +] seats ([+ alp_percent +]%)
-{!<span class="tooltip-text" title="Liberal Party of Australia">Liberal</span>!}: [+ lib_seats +] seats ([+ lib_percent +]%)
-{!<span class="tooltip-text" title="Australian Country Party">Country Party</span>!}: [+ cp_seats +] seats ([+ cp_percent +]%)
+{!<span class="tooltip-text" title="Liberal Party of Australia">Liberal</span>!}: [+ liberal_seats +] seats ([+ lib_percent +]%)
+{!<span class="tooltip-text" title="Australian Country Party">Country Party</span>!}: [+ country_seats +] seats ([+ cp_percent +]%)
 {!<span class="tooltip-text" title="Communist Party of Australia">CPA</span>!}: [+ cpa_seats +] seats ([+ cpa_percent +]%)
 {!<span class="tooltip-text" title="Lang Labor and other splinter groups">Lang Labor</span>!}: [+ lang_seats +] seats ([+ lang_percent +]%)
 {!<span class="tooltip-text" title="Independents and minor parties">Others</span>!}: [+ other_seats +] seats ([+ other_percent +]%)
@@ -98,9 +98,9 @@ Q.immigration_support_disp = Math.round(Q.immigration_support);
 
 ALP: [+ alp_votes +]%
 
-Liberal: [+ lib_votes +]%
+Liberal: [+ liberal_votes +]%
 
-Country Party: [+ cp_votes +]%
+Country Party: [+ country_votes +]%
 
 CPA: [+ cpa_votes +]%
 
