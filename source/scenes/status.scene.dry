@@ -94,11 +94,11 @@ Sterling reserves: [+ sterling_reserves_2 +] million
 
 **Economic Policies**
 
-[? if works_program > 0 : Public works programs: [+ works_program : level +] ?]
-[? if nationalization_progress > 0 : Nationalization progress: [+ nationalization_progress : level +] ?]
-[? if welfare > 0 : Welfare expansion: [+ welfare : level +] ?]
-[? if snowy_scheme : Snowy Mountains Scheme: Active ?]
-[? if tariffs != 0 : Tariff protection: [+ tariffs : level +] ?]
+[? if works_program > 0 : Public works programs: ?] [+ works_program +]
+[? if nationalization_progress > 0 : Nationalization progress: ?] [+ nationalization_progress +]
+[? if welfare > 0 : Welfare expansion: ?] [+ welfare +]
+[? if snowy_scheme : Snowy Mountains Scheme - Active ?]
+[? if tariffs != 0 : Tariff protection: ?] [+ tariffs +]
 
 @factions
 
