@@ -49,7 +49,7 @@ Q.dissent = 0.05;
 Q.dissent_percent = 5;
 
 // factions - ALP internal groups
-Q.factions = ['left', 'centre', 'right_alp_qld', 'groupers', 'right_alp_nsw', 'right_alp_union', "langist'];
+Q.factions = ['left', 'centre', 'right_alp_qld', 'groupers', 'right_alp_nsw', 'right_alp_union', 'langist'];
 // Labor factions in 1949
 Q.left_strength = 20; // Socialist Left
 Q.left_dissent = 15;
