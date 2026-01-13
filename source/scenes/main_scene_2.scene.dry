@@ -1,0 +1,8 @@
+title: Next month
+set-bg: img/map_2.jpg
+is-hand: true
+max-cards: 8
+
+- @events_life
+- @eddie_life
+- @stuff
