@@ -11,7 +11,7 @@ Resources available: [+ resources +]
 ALP position: [? if alp_opposition : opposition ?][? if alp_in_government : in government ?][? if alp_minority : minority government ?]
 [? if alp_coalition : Coalition government ?][? if alp_majority : majority government ?]
 
-[? if alp_in_government and not alp_majority : Coalition/crossbench dissent: [+ coalition_dissent : coalition_dissent +] ?]
+[? if alp_in_government and not alp_majority : Coalition/crossbench dissent: ?][+ coalition_dissent : coalition_dissent +]
 
 Internal dissent: [+ dissent_percent : dissent +]
 
@@ -43,22 +43,28 @@ Prime Minister: [+ prime_minister +] ([+ prime_minister_party +])
 {!<span class="tooltip-text" title="Liberal Party of Australia">Liberal</span>!}: [+ liberal_seats +] seats ([+ liberal_percent +]%)
 {!<span class="tooltip-text" title="Australian Country Party">Country Party</span>!}: [+ country_seats +] seats ([+ country_percent +]%)
 {!<span class="tooltip-text" title="Communist Party of Australia">CPA</span>!}: [+ cpa_seats +] seats ([+ cpa_percent +]%)
-[? if lang_seats > 0 : {!<span class="tooltip-text" title="Lang Labor">Lang Labor</span>!}: [+ lang_seats +] seats ([+ lang_percent +]%) ?]
-[? if dlp_formed : {!<span class="tooltip-text" title="Democratic Labor Party">DLP</span>!}: [+ dlp_seats +] seats ([+ dlp_percent +]%) ?]
+[? if lang_seats > 0 : {!<span class="tooltip-text" title="Lang Labor">Lang Labor</span>!}: ?][+ lang_seats +] seats ([+ lang_percent +]%)
+[? if dlp_formed : {!<span class="tooltip-text" title="Democratic Labor Party">DLP</span>!}: ?][+ dlp_seats +] seats ([+ dlp_percent +]%)
 Others: [+ other_seats +] seats ([+ other_percent +]%)
 
-[? if alp_in_government = 1 : Budget balance: £[+ budget +] million ?]
+[? if alp_in_government = 1 : Budget balance: £?][+ budget +] million
 
 **State Governments**
 
 ALP controls [+ alp_states +] of 6 state governments
 
-NSW: [+ premier_nsw +] [? if alp_nsw : (ALP) ?][? if not alp_nsw : (Coalition) ?]
-Victoria: [+ premier_victoria +] [? if alp_victoria : (ALP) ?][? if not alp_victoria : (Coalition) ?]
-Queensland: [+ premier_queensland +] [? if alp_queensland : (ALP) ?][? if not alp_queensland : (Coalition) ?]
-South Australia: [+ premier_sa +] [? if alp_sa : (ALP) ?][? if not alp_sa : (LCL) ?]
-Western Australia: [+ premier_wa +] [? if alp_wa : (ALP) ?][? if not alp_wa : (Coalition) ?]
-Tasmania: [+ premier_tasmania +] [? if alp_tasmania : (ALP) ?][? if not alp_tasmania : (Coalition) ?]
+[? if alp_nsw : NSW: ?][+ premier_nsw +] (ALP)
+[? if not alp_nsw : NSW: ?][+ premier_nsw +] (Coalition)
+[? if alp_victoria : Victoria: ?][+ premier_victoria +] (ALP)
+[? if not alp_victoria : Victoria: ?][+ premier_victoria +] (Coalition)
+[? if alp_queensland : Queensland: ?][+ premier_queensland +] (ALP)
+[? if not alp_queensland : Queensland: ?][+ premier_queensland +] (Coalition)
+[? if alp_sa : South Australia: ?][+ premier_sa +] (ALP)
+[? if not alp_sa : South Australia: ?][+ premier_sa +] (LCL)
+[? if alp_wa : Western Australia: ?][+ premier_wa +] (ALP)
+[? if not alp_wa : Western Australia: ?][+ premier_wa +] (Coalition)
+[? if alp_tasmania : Tasmania: ?][+ premier_tasmania +] (ALP)
+[? if not alp_tasmania : Tasmania: ?][+ premier_tasmania +] (Coalition)
 
 @economy
 on-arrival: {!
@@ -80,7 +86,9 @@ if (Q.income) {
 }
 !}
 
-= **Economic Indicators**
+= Economy
+
+**Economic Indicators**
 
 Inflation: [+ inflation_2 +]%
 
@@ -94,11 +102,11 @@ Sterling reserves: [+ sterling_reserves_2 +] million
 
 **Economic Policies**
 
-[? if works_program > 0 : Public works programs: ?] [+ works_program +]
-[? if nationalization_progress > 0 : Nationalization progress: ?] [+ nationalization_progress +]
-[? if welfare > 0 : Welfare expansion: ?] [+ welfare +]
+[? if works_program : Public works programs: ?][+ works_program +]
+[? if nationalization_progress : Nationalization progress: ?][+ nationalization_progress +]
+[? if welfare : Welfare expansion: ?][+ welfare +]
 [? if snowy_scheme : Snowy Mountains Scheme - Active ?]
-[? if tariffs != 0 : Tariff protection: ?] [+ tariffs +]
+[? if tariffs != 0 : Tariff protection: ?][+ tariffs +]
 
 @factions
 
@@ -113,11 +121,11 @@ Dissent: [+ left_vic_dissent : dissent +]
 Dissent: [+ left_nsw_dissent : dissent +]
 
 **Centre - Federal**
-{!<span class="tooltip-text" title="Pragmatic reformists, balanced approach">Strength</span>!}: [+ centre_unity_strength : strength +]
+{!<span class="tooltip-text" title="Pragmatic reformists, balanced approach">Strength</span>!}: [+ centre_federal_strength : strength +]
 Dissent: [+ centre_federal_dissent : dissent +]
 
 **Centre - Unity**
-{!<span class="tooltip-text" title="Pragmatic reformists, balanced approach">Strength</span>!}: [+ centre_federal_strength : strength +]
+{!<span class="tooltip-text" title="Pragmatic reformists, balanced approach">Strength</span>!}: [+ centre_unity_strength : strength +]
 Dissent: [+ centre_unity_dissent : dissent +]
 
 **Right - NSW Machine**
@@ -140,15 +148,15 @@ Dissent: [+ right_alp_union_dissent : dissent +]
 {!<span class="tooltip-text" title="Catholic anti-communists, future DLP">Strength</span>!}: [+ groupers_strength : strength +]
 Dissent: [+ groupers_dissent : dissent +]
 
-[? if langist_strength > 0 : **Old Guard - Langists**
-{!<span class="tooltip-text" title="NSW populists, Lang Labor sympathizers">Strength</span>!}: [+ langist_strength : strength +]
-Dissent: [+ langist_dissent : dissent +] ?]
+[? if langist_strength : **Old Guard - Langists**
+{!<span class="tooltip-text" title="NSW populists, Lang Labor sympathizers">Strength</span>!}: ?][+ langist_strength : strength +]
+Dissent: [+ langist_dissent : dissent +]
 
 @relations
 
 = Relations
 
-= **Inter-party Relations**
+**Inter-party Relations**
 
 Liberal Party: [+ liberal_relation : relationships +]
 
@@ -156,11 +164,11 @@ Country Party: [+ country_relation : relationships +]
 
 Communist Party: [+ cpa_relation : relationships +]
 
-[? if dlp_formed : Democratic Labor Party: [+ dlp_relation : relationships +] ?]
+[? if dlp_formed : Democratic Labor Party: ?][+ dlp_relation : relationships +]
 
-[? if lang_labor_active : Lang Labor: [+ lang_relation : relationships +] ?]
+[? if lang_labor_active : Lang Labor: ?][+ lang_relation : relationships +]
 
-= **International Relations**
+**International Relations**
 
 United Kingdom: [+ uk_relation : relationships +]
 
@@ -168,7 +176,7 @@ United States: [+ usa_relation : relationships +]
 
 Asia-Pacific: [+ asia_relation : relationships +]
 
-[? if anzus_progress > 0 : ANZUS Treaty progress: [+ anzus_progress : progress +] ?]
+[? if anzus_progress : ANZUS Treaty progress: ?][+ anzus_progress : progress +]
 
 [? if colombo_plan : Colombo Plan: Active ?]
 
@@ -222,13 +230,13 @@ Militancy: [+ awu_militancy : militancy +] | Communist influence: [+ awu_communi
 {!<span class="tooltip-text" title="Federated Ironworkers Association">Ironworkers</span>!}: [+ ironworkers_strength_2 +]k members
 Militancy: [+ ironworkers_militancy : militancy +] | Communist influence: [+ ironworkers_communist : influence +]
 
-= **Security Forces**
+**Security Forces**
 
 Australian Defence Force: [+ adf_strength +]k personnel | Loyalty: [+ adf_loyalty : loyalty +]
 
 Commonwealth Police: [+ police_strength +]k members | Loyalty: [+ police_loyalty : loyalty +]
 
-[? if asio_formed : ASIO: Active | Strength: [+ asio_strength : security_apparatus +] ?]
+[? if asio_formed : ASIO: Active | Strength: ?][+ asio_strength : security_apparatus +]
 
 [? if not asio_formed : ASIO: Not yet formed ?]
 
@@ -243,7 +251,7 @@ Q.white_australia_disp = Math.round(Q.white_australia_support);
 
 = Polling & Opinion
 
-Projected Election Results:
+**Projected Election Results**
 
 ALP: [+ alp_votes +]%
 
@@ -253,13 +261,13 @@ Country Party: [+ country_votes +]%
 
 CPA: [+ cpa_votes +]%
 
-[? if dlp_formed : DLP: [+ dlp_votes +]% ?]
+[? if dlp_formed : DLP: ?][+ dlp_votes +]%
 
-[? if lang_votes > 0 : Lang Labor: [+ lang_votes +]% ?]
+[? if lang_votes : Lang Labor: ?][+ lang_votes +]%
 
 Others: [+ other_votes +]%
 
-= **Support by Demographic**
+**Support by Demographic**
 
 *Industrial Workers*: ALP [+ workers_alp_display +]% | Lib [+ workers_lib_display +]% | CP [+ workers_cp_display +]% | CPA [+ workers_cpa_display +]%
 
@@ -275,7 +283,7 @@ Others: [+ other_votes +]%
 
 *New Australians*: ALP [+ migrants_alp_display +]% | Lib [+ migrants_lib_display +]% | CP [+ migrants_cp_display +]% | CPA [+ migrants_cpa_display +]%
 
-= **Public Opinion**
+**Public Opinion**
 
 Support for Labor: [+ support_labor_disp +]%
 
@@ -291,39 +299,39 @@ Support for White Australia: [+ white_australia_disp +]%
 
 = Policies & Achievements
 
-= **Social Policies**
+**Social Policies**
 
-[? if welfare > 0 : Welfare expansion: Level [+ welfare +] ?]
+[? if welfare : Welfare expansion: Level ?][+ welfare +]
 [? if health_reform : National health scheme implemented ?]
 [? if housing_program : Public housing program active ?]
-[? if womens_rights > 0 : Women's rights progress: [+ womens_rights : level +] ?]
-[? if indigenous_rights > 0 : Indigenous rights progress: [+ indigenous_rights : level +] ?]
+[? if womens_rights : Women's rights progress: ?][+ womens_rights +]
+[? if indigenous_rights : Indigenous rights progress: ?][+ indigenous_rights +]
 
-= **Economic Policies**
+**Economic Policies**
 
-[? if works_program > 0 : Public works: Level [+ works_program +] ?]
+[? if works_program : Public works: Level ?][+ works_program +]
 [? if snowy_scheme : Snowy Mountains Scheme: Active ?]
-[? if nationalization_progress > 0 : Nationalizations: [+ nationalization_progress : level +] ?]
+[? if nationalization_progress : Nationalizations: ?][+ nationalization_progress +]
 [? if bank_nationalization : Banks nationalized ?]
 
-= **Immigration & Social**
+**Immigration & Social**
 
-[? if immigration_program > 0 : Immigration program: Level [+ immigration_program +] ?]
-[? if white_australia_challenged > 0 : White Australia Policy challenged: [+ white_australia_challenged : level +] ?]
+[? if immigration_program : Immigration program: Level ?][+ immigration_program +]
+[? if white_australia_challenged : White Australia Policy challenged: ?][+ white_australia_challenged +]
 
-= **Foreign Policy**
+**Foreign Policy**
 
-[? if anzus_progress > 0 : ANZUS Treaty: [+ anzus_progress : progress +] ?]
+[? if anzus_progress : ANZUS Treaty: ?][+ anzus_progress +]
 [? if colombo_plan : Colombo Plan: Active ?]
 [? if uk_relation < 50 : Distance from Britain increasing ?]
 
-= **Security**
+**Security**
 
 [? if asio_formed : ASIO established ?]
 [? if cpa_banned : Communist Party banned ?]
 [? if ban_referendum_held : Ban referendum held ?]
 
-= **Education & Development**
+**Education & Development**
 
 [? if university_expansion : University expansion underway ?]
-[? if science > 0 : Science funding: Level [+ science +] ?]
+[? if science : Science funding: Level ?][+ science +]
