@@ -1,24 +1,6 @@
 title: Status
 new-page: true
 is-special: true
-on-arrival: {!
-if (Q.unemployed) {
-    Q.unemployed_2 = Q.unemployed.toFixed(1);
-}
-if (Q.inflation) {
-    Q.inflation_2 = Q.inflation.toFixed(1);
-}
-Q.economic_growth_2 = '0';
-if (Q.economic_growth) {
-    Q.economic_growth_2 = Q.economic_growth.toFixed(1);
-}
-if (Q.sterling_reserves) {
-    Q.sterling_reserves_2 = Q.sterling_reserves.toFixed(1);
-}
-if (Q.income) {
-    Q.income_2 = Q.income.toFixed(0);
-}
-!}
 
 = Status
 
@@ -79,10 +61,26 @@ Western Australia: [+ premier_wa +] [? if alp_wa : (ALP) ?][? if not alp_wa : (C
 Tasmania: [+ premier_tasmania +] [? if alp_tasmania : (ALP) ?][? if not alp_tasmania : (Coalition) ?]
 
 @economy
+on-arrival: {!
+if (Q.unemployed) {
+    Q.unemployed_2 = Q.unemployed.toFixed(1);
+}
+if (Q.inflation) {
+    Q.inflation_2 = Q.inflation.toFixed(1);
+}
+Q.economic_growth_2 = '0';
+if (Q.economic_growth) {
+    Q.economic_growth_2 = Q.economic_growth.toFixed(1);
+}
+if (Q.sterling_reserves) {
+    Q.sterling_reserves_2 = Q.sterling_reserves.toFixed(1);
+}
+if (Q.income) {
+    Q.income_2 = Q.income.toFixed(0);
+}
+!}
 
-= Economy
-
-**Economic Indicators**
+= **Economic Indicators**
 
 Inflation: [+ inflation_2 +]%
 
@@ -150,7 +148,7 @@ Dissent: [+ langist_dissent : dissent +] ?]
 
 = Relations
 
-**Inter-party Relations**
+= **Inter-party Relations**
 
 Liberal Party: [+ liberal_relation : relationships +]
 
@@ -162,7 +160,7 @@ Communist Party: [+ cpa_relation : relationships +]
 
 [? if lang_labor_active : Lang Labor: [+ lang_relation : relationships +] ?]
 
-**International Relations**
+= **International Relations**
 
 United Kingdom: [+ uk_relation : relationships +]
 
@@ -224,13 +222,14 @@ Militancy: [+ awu_militancy : militancy +] | Communist influence: [+ awu_communi
 {!<span class="tooltip-text" title="Federated Ironworkers Association">Ironworkers</span>!}: [+ ironworkers_strength_2 +]k members
 Militancy: [+ ironworkers_militancy : militancy +] | Communist influence: [+ ironworkers_communist : influence +]
 
-**Security Forces**
+= **Security Forces**
 
 Australian Defence Force: [+ adf_strength +]k personnel | Loyalty: [+ adf_loyalty : loyalty +]
 
 Commonwealth Police: [+ police_strength +]k members | Loyalty: [+ police_loyalty : loyalty +]
 
 [? if asio_formed : ASIO: Active | Strength: [+ asio_strength : security_apparatus +] ?]
+
 [? if not asio_formed : ASIO: Not yet formed ?]
 
 @polls
@@ -244,17 +243,23 @@ Q.white_australia_disp = Math.round(Q.white_australia_support);
 
 = Polling & Opinion
 
-**Projected Election Results**
+Projected Election Results:
 
 ALP: [+ alp_votes +]%
+
 Liberal: [+ liberal_votes +]%
+
 Country Party: [+ country_votes +]%
+
 CPA: [+ cpa_votes +]%
+
 [? if dlp_formed : DLP: [+ dlp_votes +]% ?]
+
 [? if lang_votes > 0 : Lang Labor: [+ lang_votes +]% ?]
+
 Others: [+ other_votes +]%
 
-**Support by Demographic**
+= **Support by Demographic**
 
 *Industrial Workers*: ALP [+ workers_alp_display +]% | Lib [+ workers_lib_display +]% | CP [+ workers_cp_display +]% | CPA [+ workers_cpa_display +]%
 
@@ -270,19 +275,23 @@ Others: [+ other_votes +]%
 
 *New Australians*: ALP [+ migrants_alp_display +]% | Lib [+ migrants_lib_display +]% | CP [+ migrants_cp_display +]% | CPA [+ migrants_cpa_display +]%
 
-**Public Opinion**
+= **Public Opinion**
 
 Support for Labor: [+ support_labor_disp +]%
+
 Anti-Communist sentiment: [+ anti_communist_disp +]%
+
 Support for British ties: [+ pro_british_disp +]%
+
 Support for immigration: [+ immigration_support_disp +]%
+
 Support for White Australia: [+ white_australia_disp +]%
 
 @policies
 
 = Policies & Achievements
 
-**Social Policies**
+= **Social Policies**
 
 [? if welfare > 0 : Welfare expansion: Level [+ welfare +] ?]
 [? if health_reform : National health scheme implemented ?]
@@ -290,31 +299,31 @@ Support for White Australia: [+ white_australia_disp +]%
 [? if womens_rights > 0 : Women's rights progress: [+ womens_rights : level +] ?]
 [? if indigenous_rights > 0 : Indigenous rights progress: [+ indigenous_rights : level +] ?]
 
-**Economic Policies**
+= **Economic Policies**
 
 [? if works_program > 0 : Public works: Level [+ works_program +] ?]
 [? if snowy_scheme : Snowy Mountains Scheme: Active ?]
 [? if nationalization_progress > 0 : Nationalizations: [+ nationalization_progress : level +] ?]
 [? if bank_nationalization : Banks nationalized ?]
 
-**Immigration & Social**
+= **Immigration & Social**
 
 [? if immigration_program > 0 : Immigration program: Level [+ immigration_program +] ?]
 [? if white_australia_challenged > 0 : White Australia Policy challenged: [+ white_australia_challenged : level +] ?]
 
-**Foreign Policy**
+= **Foreign Policy**
 
 [? if anzus_progress > 0 : ANZUS Treaty: [+ anzus_progress : progress +] ?]
 [? if colombo_plan : Colombo Plan: Active ?]
 [? if uk_relation < 50 : Distance from Britain increasing ?]
 
-**Security**
+= **Security**
 
 [? if asio_formed : ASIO established ?]
 [? if cpa_banned : Communist Party banned ?]
 [? if ban_referendum_held : Ban referendum held ?]
 
-**Education & Development**
+= **Education & Development**
 
 [? if university_expansion : University expansion underway ?]
 [? if science > 0 : Science funding: Level [+ science +] ?]
