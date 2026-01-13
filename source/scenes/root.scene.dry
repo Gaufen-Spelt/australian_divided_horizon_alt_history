@@ -66,11 +66,167 @@ Q.groupers_dissent = 5;
 Q.langist_strength = 5; // Trade union officials
 Q.langist_dissent = 8;
 
+
+
+
+
+
+
+
 // secret events...
 Q.unions_independent = 0;
 Q.centre_resign = 0;
 Q.left_split = 0;
 Q.groupers_split = 0; // Future DLP split potential
+
+
+
+// Does the ALP control state governments?
+Q.alp_nsw = 1; // McGirr
+Q.alp_victoria = 0; // Hollway (Liberal)
+Q.alp_queensland = 1; // Hanlon
+Q.alp_sa = 0; // Playford (LCL - basically Liberal-Country)
+Q.alp_wa = 0; // McLarty (Liberal-Country)
+Q.alp_tasmania = 1; // Cosgrove
+
+Q.premier_nsw = "McGirr";
+Q.premier_victoria = "Hollway";
+Q.premier_queensland = "Hanlon";
+Q.premier_sa = "Playford";
+Q.premier_wa = "McLarty";
+Q.premier_tasmania = "Cosgrove";
+
+
+Q.cpa_leader = "Sharkey";
+Q.liberal_leader = "Menzies";
+Q.country_leader = "Fadden";
+
+
+
+// Current House of Representatives composition (1949 election results)
+// ALP: 47 seats (37.8%), Liberal: 55 (39.4%), Country: 19 (10.7%), Others: 3
+Q.alp_seats = 47;
+Q.liberal_seats = 55;
+Q.country_seats = 19;
+Q.cpa_seats = 0;
+Q.lang_seats = 0;
+Q.other_seats = 3;
+
+// Percentages
+Q.alp_percent = 37.8;
+Q.liberal_percent = 39.4;
+Q.country_percent = 10.7;
+Q.cpa_percent = 0;
+Q.lang_percent = 0;
+Q.other_percent = 2.4;
+
+// diff from prev (1946 election)
+Q.old_alp_seats = 43;
+Q.old_liberal_seats = 55;
+Q.old_country_seats = 19;
+Q.old_cpa_seats = 0;
+Q.old_lang_seats = 0;
+Q.old_other_seats = 3;
+
+// election records
+Q.election_records = [];
+Q.party_support_records = [];
+Q.economic_records = [];
+
+// State of the government
+Q.governor_general = "McKell"; // William McKell
+// starting PM: Robert Menzies (Liberal)
+Q.prime_minister = "Menzies";
+Q.prime_minister_party = 'Liberal';
+Q.alp_in_government = 0;
+Q.liberal_in_government = 1;
+Q.country_in_government = 1;
+Q.cpa_in_government = 0;
+
+// Coalition types
+Q.in_liberal_coalition = 1; // Liberal-Country Coalition
+Q.alp_majority = 0;
+Q.alp_minority = 0;
+Q.labor_coalition = 0; // Potential ALP-minor party coalition
+
+// if in coalition/minority, dissent tracker
+Q.coalition_dissent = 0;
+
+// does the ALP support the government from opposition?
+Q.alp_cooperation = 0;
+
+// ministries - Liberal-Country Coalition cabinet
+Q.foreign_minister = 'Spender';
+Q.foreign_minister_party = 'Liberal';
+Q.treasury_minister = 'Fadden';
+Q.treasury_minister_party = 'Country';
+Q.defence_minister = 'Holt';
+Q.defence_minister_party = 'Liberal';
+Q.labor_minister = 'Holt'; // Also held Labour portfolio
+Q.labor_minister_party = 'Liberal';
+Q.immigration_minister = 'Calwell'; // Actually Labor's shadow - adjust
+Q.immigration_minister_party = 'Liberal';
+Q.trade_minister = 'McEwen';
+Q.trade_minister_party = 'Country';
+Q.attorney_general = 'Spicer';
+Q.attorney_general_party = 'Liberal';
+
+
+
+// ALP Leadership - starting with post-1949 leadership
+Q.chifley_leader = 1; // Ben Chifley - leader (Centre-Left)
+Q.evatt_deputy = 1; // H.V. Evatt - deputy (Centre-Left, intellectual)
+Q.chifley_dead = 0; // Dies 1951
+
+// ALP Left advisors (Socialist/anti-imperialist wing)
+Q.ward_advisor = 0; // Eddie Ward - firebrand left, anti-British
+Q.cairns_advisor = 0; // Jim Cairns (enters parliament 1955)
+Q.kennelly_advisor = 0; // Pat Kennelly - Victorian Left
+Q.fitzgerald_advisor = 0; // Tom Fitzgerald - journalist, left intellectual
+
+// ALP Centre advisors (Pragmatic reformists)
+Q.calwell_advisor = 1; // Arthur Calwell - immigration minister, centrist
+Q.dedman_advisor = 0; // John Dedman - economic planning
+Q.makin_advisor = 0; // Norman Makin - foreign affairs
+Q.beazley_advisor = 0; // Kim Beazley Sr. - education reformer
+
+// ALP Right Political advisors (Conservative parliamentary wing - NSW machine)
+Q.cahill_advisor = 0; // J.J. Cahill - NSW Right boss, future premier
+Q.daly_advisor = 0; // Fred Daly - NSW Right, pragmatic operator
+Q.riordan_advisor = 0; // Bill Riordan - NSW Right organizer
+Q.mulcahy_advisor = 0; // Jack Mulcahy - NSW Right power broker
+Q.lazzarini_advisor = 0; // Hubert Lazzarini - can bridge to Langists
+Q.falstein_advisor = 0; // Sydney Falstein - NSW Jewish community link
+
+// Langists advisors (NSW populist faction)
+Q.lang_advisor = 0; // Jack Lang - outside party, NSW strongman
+Q.lazzarini_advisor = 0; // Hubert Lazzarini - Lang loyalist
+Q.minogue_advisor = 0; // Jack Minogue - NSW Left Langist
+
+// ALP Right Union advisors (Moderate union officials)
+Q.monk_advisor = 0; // Albert Monk - ACTU President
+Q.wright_advisor = 0; // Charlie Wright - carpenters union
+Q.souter_advisor = 0; // Garnet Souter - railway unions
+
+// ALP Industrial Groups advisors (Catholic anti-communist faction)
+Q.santamaria_advisor = 0; // B.A. Santamaria - "The Movement" leader (outside party)
+Q.keon_advisor = 0; // Stan Keon - Victorian Grouper MP
+Q.joshua_advisor = 0; // Bob Joshua - Victorian Grouper organizer
+Q.mannix_influence = 0; // Archbishop Mannix influence (not advisor, but tracker)
+
+// Communist-aligned union advisors (potential enemies or uneasy allies)
+Q.healey_advisor = 0; // Jim Healey - Waterside Workers, CPA member
+Q.thornton_advisor = 0; // Edgar Ross - Miners Federation communist
+
+// Other advisors
+Q.menzies_knowledge = 0; // Understanding opponent
+Q.whitlam_advisor = 0; // Gough Whitlam (very young in 1949, enters 1952)
+Q.haylen_advisor = 0; // Les Haylen - journalist and MP
+
+
+
+
+
 
 // crisis_urgency indicates how seriously the ALP is taking economic challenges - scale from 0 to 10.
 Q.crisis_urgency = 0;
@@ -111,22 +267,12 @@ Q.coalition_relation = 20;
 Q.dlp_formed = 0; // Democratic Labor Party doesn't exist yet
 Q.dlp_relation = 50;
 
-Q.cpa_leader = "Sharkey";
-Q.liberal_leader = "Menzies";
-Q.country_leader = "Fadden";
+
 
 // relationship with Governor-General
 Q.governor_general_relation = 40;
 // can the GG dismiss the government?
 Q.governor_general_enabled = 0;
-
-// Does the ALP control state governments?
-Q.alp_nsw = 1;
-Q.alp_victoria = 0;
-Q.alp_queensland = 1;
-Q.alp_sa = 1;
-Q.alp_wa = 0;
-Q.alp_tasmania = 1;
 
 // The array of forces - union strength and loyalty
 // Union membership in 1949 (in thousands)
@@ -274,73 +420,6 @@ Q.migrants_cpa = 10;
 Q.migrants_lang = 0;
 Q.migrants_other = 10;
 
-// Current House of Representatives composition (1949 election results)
-// ALP: 47 seats (37.8%), Liberal: 55 (39.4%), Country: 19 (10.7%), Others: 3
-Q.alp_seats = 47;
-Q.liberal_seats = 55;
-Q.country_seats = 19;
-Q.cpa_seats = 0;
-Q.lang_seats = 0;
-Q.other_seats = 3;
-
-// Percentages
-Q.alp_percent = 37.8;
-Q.liberal_percent = 39.4;
-Q.country_percent = 10.7;
-Q.cpa_percent = 0;
-Q.lang_percent = 0;
-Q.other_percent = 2.4;
-
-// diff from prev (1946 election)
-Q.old_alp_seats = 43;
-Q.old_liberal_seats = 55;
-Q.old_country_seats = 19;
-Q.old_cpa_seats = 0;
-Q.old_lang_seats = 0;
-Q.old_other_seats = 3;
-
-// election records
-Q.election_records = [];
-Q.party_support_records = [];
-Q.economic_records = [];
-
-// State of the government
-Q.governor_general = "McKell"; // William McKell
-// starting PM: Robert Menzies (Liberal)
-Q.prime_minister = "Menzies";
-Q.prime_minister_party = 'Liberal';
-Q.alp_in_government = 0;
-Q.liberal_in_government = 1;
-Q.country_in_government = 1;
-Q.cpa_in_government = 0;
-
-// Coalition types
-Q.in_liberal_coalition = 1; // Liberal-Country Coalition
-Q.alp_majority = 0;
-Q.alp_minority = 0;
-Q.labor_coalition = 0; // Potential ALP-minor party coalition
-
-// if in coalition/minority, dissent tracker
-Q.coalition_dissent = 0;
-
-// does the ALP support the government from opposition?
-Q.alp_cooperation = 0;
-
-// ministries - Liberal-Country Coalition cabinet
-Q.foreign_minister = 'Spender';
-Q.foreign_minister_party = 'Liberal';
-Q.treasury_minister = 'Fadden';
-Q.treasury_minister_party = 'Country';
-Q.defence_minister = 'Holt';
-Q.defence_minister_party = 'Liberal';
-Q.labor_minister = 'Holt'; // Also held Labour portfolio
-Q.labor_minister_party = 'Liberal';
-Q.immigration_minister = 'Calwell'; // Actually Labor's shadow - adjust
-Q.immigration_minister_party = 'Liberal';
-Q.trade_minister = 'McEwen';
-Q.trade_minister_party = 'Country';
-Q.attorney_general = 'Spicer';
-Q.attorney_general_party = 'Liberal';
 
 // Events: what has occurred?
 Q.chifley_death = 0; // Ben Chifley dies in 1951
@@ -455,35 +534,6 @@ Q.bank_nationalization_timer = 0;
 Q.communist_ban_timer = 0;
 Q.korean_war_timer = 0;
 
-// ALP Leadership - starting with post-1949 leadership
-Q.chifley_leader = 1; // Ben Chifley - leader
-Q.evatt_deputy = 1; // H.V. Evatt - deputy
-Q.calwell_advisor = 1; // Arthur Calwell
-
-// Left advisors
-Q.ward_advisor = 0; // Eddie Ward - firebrand left
-Q.cairns_advisor = 0; // Jim Cairns (later)
-Q.kenny_advisor = 0; // Tom Kenny
-
-// Centre advisors
-Q.dedman_advisor = 0; // John Dedman
-Q.makin_advisor = 0; // Norman Makin
-
-// Right/Grouper advisors
-Q.santamaria_advisor = 0; // B.A. Santamaria - outside party but influential
-Q.mannix_advisor = 0; // Archbishop Mannix influence
-
-// NSW Right advisors
-Q.lang_advisor = 0; // Jack Lang (outside party)
-Q.cahill_advisor = 0; // J.J. Cahill (NSW)
-
-// Labor Council advisors
-Q.monk_advisor = 0; // Albert Monk - ACTU
-Q.healey_advisor = 0; // Jim Healey - Waterside Workers
-
-// Other advisors
-Q.menzies_knowledge = 0; // Understanding opponent
-Q.whitlam_advisor = 0; // Gough Whitlam (very young in 1949)
 !}
 set-bg: img/australia_1949.jpg
 new-page: true
