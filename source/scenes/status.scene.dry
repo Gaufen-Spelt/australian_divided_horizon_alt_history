@@ -12,6 +12,12 @@ Q.economic_growth_2 = '0';
 if (Q.economic_growth) {
     Q.economic_growth_2 = Q.economic_growth.toFixed(1);
 }
+if (Q.sterling_reserves) {
+    Q.sterling_reserves_2 = Q.sterling_reserves.toFixed(1);
+}
+if (Q.income) {
+    Q.income_2 = Q.income.toFixed(0);
+}
 !}
 
 = Status
@@ -73,14 +79,6 @@ Western Australia: [+ premier_wa +] [? if alp_wa : (ALP) ?][? if not alp_wa : (C
 Tasmania: [+ premier_tasmania +] [? if alp_tasmania : (ALP) ?][? if not alp_tasmania : (Coalition) ?]
 
 @economy
-on-arrival: {!
-if (Q.sterling_reserves) {
-    Q.sterling_reserves_2 = Q.sterling_reserves.toFixed(1);
-}
-if (Q.income) {
-    Q.income_2 = Q.income.toFixed(0);
-}
-!}
 
 = Economy
 
