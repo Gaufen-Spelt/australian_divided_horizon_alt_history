@@ -49,18 +49,22 @@ Q.dissent = 0.05;
 Q.dissent_percent = 5;
 
 // factions - ALP internal groups
-Q.factions = ['left', 'centre', 'nsw_right', 'groupers', 'labor_council'];
+Q.factions = ['left', 'centre', 'right_alp_qld', 'groupers', 'right_alp_nsw', 'right_alp_union', "langist'];
 // Labor factions in 1949
 Q.left_strength = 20; // Socialist Left
 Q.left_dissent = 15;
 Q.centre_strength = 30; // Pragmatic centre
 Q.centre_dissent = 5;
-Q.nsw_right_strength = 25; // NSW machine politics
-Q.nsw_right_dissent = 10;
+Q.alp_right_nsw_strength = 10; // NSW machine politics
+Q.alp_right_nsw_dissent = 10;
+Q.alp_right_qld_strength = 10; // NSW machine politics
+Q.alp_right_qld_dissent = 10;
+Q.alp_right_union_dissent = 10; // NSW machine politics
+Q.alp_right_union_strength = 10;
 Q.groupers_strength = 20; // Catholic anti-communist Industrial Groups
 Q.groupers_dissent = 5;
-Q.labor_council_strength = 5; // Trade union officials
-Q.labor_council_dissent = 8;
+Q.langist_strength = 5; // Trade union officials
+Q.langist_dissent = 8;
 
 // secret events...
 Q.unions_independent = 0;
