@@ -170,15 +170,15 @@ Communist Party: [+ cpa_relation : relationships +]
 
 **International Relations**
 
-United Kingdom: [+ uk_relation : relationships +]
+United Kingdom: [+ uk_relation +]
 
-United States: [+ usa_relation : relationships +]
+United States: [+ usa_relation +]
 
-Asia-Pacific: [+ asia_relation : relationships +]
+Asia-Pacific: [+ asia_relation +]
 
-[? if anzus_progress : ANZUS Treaty progress: [+ anzus_progress : progress +] ?]
+[? if anzus_progress : ANZUS Treaty progress: [+ anzus_progress +] ?]
 
-[? if colombo_plan : Colombo Plan: Active ?]
+[? if colombo_plan : Colombo Plan is Active ?]
 
 **Governor-General**
 
