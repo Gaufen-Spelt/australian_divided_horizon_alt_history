@@ -270,19 +270,36 @@ blockquote + blockquote.attribution {
 }
 
 /* Specific styling for the bottom tab container */
-.tab_container.bottom_tabs {
-    margin-top: 1em;       /* Creates space from the stats above */
-    margin-bottom: -0.6em; /* Hugs the bottom of the sidebar */
-    margin-left: -0.6em;
+/* Container for the bottom tabs */
+.tab_container_bottom {
+    background-color: var(--tab-bg-color);
+    margin-bottom: -0.6em; /* Pulls it to the very bottom of the sidebar */
+    margin-left: -0.6em;   /* Aligns with sidebar edges */
     margin-right: -0.6em;
-    border-top: 1px solid var(--card-border-color); /* Optional: visual separator */
-    display: flex;         /* Optional: ensures buttons fill the width evenly */
+    margin-top: 1em;       /* Adds space between stats and buttons */
+    display: flex;         /* Forces buttons into a single row */
+    flex-wrap: wrap;       /* Allows wrapping if screen is tiny */
 }
 
-.tab_container.bottom_tabs .tab_button {
-    flex: 1;               /* Makes buttons equal width */
-    border-top: none;      
+/* Ensure buttons inside the bottom container fill the width evenly */
+.tab_container_bottom .tab_button {
+    flex: 1; 
+    padding: 10px 5px;     /* Slightly less horizontal padding to fit better */
+    border-top: 1px solid var(--card-border-color); /* Optional separator */
 }
+
+/* Ensure the sidebar itself is a flex container to push tabs to bottom if desired */
+.tools {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 300px; /* Optional: ensures a minimum height for the sidebar */
+}
+
+#qualities {
+    flex-grow: 1; /* Makes the stats area take up all available middle space */
+}
+
 
 
 
