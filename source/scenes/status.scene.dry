@@ -265,8 +265,6 @@ CPA: [+ cpa_votes +]%
 
 [? if lang_votes : Lang Labor: [+ lang_votes +]% ?]
 
-Others: [+ other_votes +]%
-
 **Support by Demographic**
 
 *Industrial Workers*: ALP [+ workers_alp_display +]% | Lib [+ workers_lib_display +]% | CP [+ workers_cp_display +]% | CPA [+ workers_cpa_display +]%
