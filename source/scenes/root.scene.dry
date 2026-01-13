@@ -358,6 +358,7 @@ Q.migrants = 2; // New Australians (growing)
 
 // income for workers in pounds/year - 1949 baseline
 Q.income = 520; // Annual income in pounds
+Q.sterling_reserves = 0;
 
 // inflation (in %; 1949: ~10% post-war inflation; should decline)
 Q.inflation = 10;
