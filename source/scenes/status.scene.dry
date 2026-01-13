@@ -236,7 +236,7 @@ Australian Defence Force: [+ adf_strength +]k personnel | Loyalty: [+ adf_loyalt
 
 Commonwealth Police: [+ police_strength +]k members | Loyalty: [+ police_loyalty : loyalty +]
 
-[? if asio_formed : ASIO: Active | Strength: [+ asio_strength : security_apparatus +] ?]
+[? if asio_formed : ASIO: Active | Strength: [+ asio_strength +] ?]
 
 [? if not asio_formed : ASIO: Not yet formed ?]
 
