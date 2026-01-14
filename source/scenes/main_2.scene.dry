@@ -2,6 +2,7 @@ title: Next month
 set-bg: img/map_2.jpg
 is-hand: true
 max-cards: 9
+on-arrival: use_main_2 = 1;
 
 Eddie's personal life. Micro scene.
 
