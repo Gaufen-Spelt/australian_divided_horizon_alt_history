@@ -1,6 +1,9 @@
 title: Skip the Time
 is-pinned-card: true
+new-page: true
 card-image: img/vorwarts_2.jpg
-on-arrival: actions += 1
+on-arrival: {! 
+Q.actions += 1;
+!}
 
 = Time skipped...
