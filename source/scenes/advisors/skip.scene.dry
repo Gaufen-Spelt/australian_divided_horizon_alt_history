@@ -2,4 +2,7 @@ title: Skip the Time
 is-pinned-card: true
 card-image: img/vorwarts_2.jpg
 on-arrival: actions += 1
-go-to: main_2
+
+= Time skipped...
+
+- @root: Okay.
