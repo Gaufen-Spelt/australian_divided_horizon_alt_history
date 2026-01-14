@@ -9,4 +9,4 @@ Skip???
 - @root: Nah
 
 @yeah
-on-arrival: day_actions += 1
+on-arrival: actions += 1; day_actions += 1
