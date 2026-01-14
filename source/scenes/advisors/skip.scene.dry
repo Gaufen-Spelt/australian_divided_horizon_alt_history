@@ -1,6 +1,12 @@
 title: Skip the Time
-tags: event
 is-pinned-card: true
 new-page: true
 card-image: img/vorwarts_2.jpg
-go-to: skiptime
+
+Skip???
+
+- @yeah: Yeah
+- @root: Nah
+
+@yeah
+on-arrival: actions += 1
