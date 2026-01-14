@@ -2,6 +2,11 @@ title: Post Event
 new-page: true
 on-arrival: {!
 
+
+console.log('=== POST EVENT START ===');
+console.log('Actions at entry:', Q.actions);
+console.log('Day:', Q.day, 'Week:', Q.week, 'Month:', Q.month);
+
 // ============================================
 // INITIALIZE AND INCREMENT ACTIONS
 // ============================================
@@ -269,6 +274,8 @@ if (Q.actions >= 1) {
     
     // Reset actions
     Q.actions = 0;
+} else {
+    console.log('TIME PROGRESSION SKIPPED - actions:', Q.actions);
 }
 
 // ============================================
