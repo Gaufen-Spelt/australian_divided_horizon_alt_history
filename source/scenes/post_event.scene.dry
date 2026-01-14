@@ -170,7 +170,6 @@ if (Q.dissent < 0) {
 // ============================================
 
 if (Q.actions >= 1) {
-    Q.actions = 0;
     Q.day += 1;
     
     // Decrement daily timers
@@ -221,6 +220,7 @@ if (Q.actions >= 1) {
         // Fractional time increase for days (approximately 0.036 per day)
         Q.time += 0.036;
     }
+    
     // append to historical party support records
     var party_support_results = {'date': new Date(Q.year, Q.month - 1)};
     for (var party of Q.parties) {
@@ -230,6 +230,9 @@ if (Q.actions >= 1) {
     Q.economic_records.push({'date': new Date(Q.year, Q.month - 1),
                              'inflation': Q.inflation,
                              'unemployment': Q.unemployed});
+    
+    // RESET ACTIONS AT THE END
+    Q.actions = 0;
 }
 
 
