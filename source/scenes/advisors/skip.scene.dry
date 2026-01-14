@@ -6,7 +6,7 @@ card-image: img/vorwarts_2.jpg
 Skip???
 
 - @yeah: Yeah
-- @root: Nah
+- @easy_discard: Nah
 
 @yeah
 on-arrival: actions += 1; day_actions += 1
