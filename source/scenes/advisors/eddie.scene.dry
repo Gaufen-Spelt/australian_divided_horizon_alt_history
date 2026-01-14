@@ -3,4 +3,5 @@ is-pinned-card: true
 new-page: true
 tags: party_affairs
 card-image: img/vorwarts_2.jpg
+on-arrival: Q.use_main_2 = 1
 go-to: main_2
