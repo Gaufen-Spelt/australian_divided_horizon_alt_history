@@ -1,0 +1,137 @@
+title: Eddie's World
+new-page: true
+is-special: true
+
+**= Local Situations**
+
+**New South Wales**
+
+*Sydney Waterfront*
+- Current disputes: [+ sydney_waterfront_disputes +]
+- Communist influence: [+ sydney_wharfie_cpa : influence +]
+- Days lost to strikes: [+ sydney_strike_days +]
+- Police presence: [+ sydney_dock_police : presence +]
+
+*Western Sydney Industrial Belt*
+- Factory employment: [+ western_sydney_employment +]%
+- Union militancy: [+ western_sydney_militancy : militancy +]
+- Housing crisis severity: [+ western_sydney_housing : crisis +]
+- Migrant worker concentration: [+ western_sydney_migrants +]%
+
+*Newcastle & Hunter Valley*
+- Coal production: [+ newcastle_coal_output +] tons/month
+- Miner strikes: [+ newcastle_strikes +] active
+- Communist miners: [+ newcastle_cpa_miners +]%
+- BHP relations: [+ bhp_labor_relations : relations +]
+
+*Rural NSW*
+- Farmer sentiment toward Labor: [+ rural_nsw_alp_sentiment +]%
+- Drought conditions: [+ nsw_drought : severity +]
+- Wheat/wool prices: [+ nsw_commodity_prices : trend +]
+- Country Party dominance: [+ nsw_country_strength +]%
+
+**Victoria**
+
+*Port Melbourne & Docks*
+- Waterfront activity: [+ melbourne_dock_activity : activity +]
+- WWF strength: [+ melbourne_wharfie_strength : strength +]
+- Current disputes: [+ melbourne_waterfront_disputes +]
+
+*Fitzroy & Carlton (Working Class Inner City)*
+- Communist Party presence: [+ fitzroy_cpa : presence +]
+- Catholic Action activity: [+ fitzroy_groupers : activity +]
+- Housing conditions: [+ fitzroy_housing : conditions +]
+- Ethnic tensions: [+ fitzroy_ethnic_tension : tension +]
+
+*Latrobe Valley (Brown Coal)*
+- Power generation: [+ latrobe_power : status +]
+- SEC workers' militancy: [+ latrobe_militancy : militancy +]
+- ALP dominance: [+ latrobe_alp_strength +]%
+
+*Rural Victoria*
+- Dairy farmer sentiment: [+ vic_rural_sentiment +]%
+- Country Party vs ALP: [+ vic_rural_competition +]
+
+**Queensland**
+
+*Brisbane River & Port*
+- Waterfront control: [+ brisbane_waterfront_control : "AWU vs Communist unions" +]
+- Strike activity: [+ brisbane_strike_activity : activity +]
+
+*North Queensland (Sugar & Mining)*
+- AWU dominance: [+ nq_awu_dominance : dominance +]
+- Sugar industry conditions: [+ nq_sugar : conditions +]
+- Mining disputes: [+ nq_mining_disputes +]
+
+*The Bush (Outback Queensland)*
+- Shearers' sentiment: [+ qld_shearers_sentiment +]%
+- AWU vs Communist influence: [+ qld_union_battle +]
+- Country Party strength: [+ qld_country_strength +]%
+
+**South Australia**
+
+*Port Adelaide & Whyalla*
+- BHP Whyalla operations: [+ whyalla_bhp : status +]
+- Steel workers' militancy: [+ whyalla_militancy : militancy +]
+- Port Adelaide wharfies: [+ port_adelaide_wharfies : strength +]
+
+*Adelaide Hills & Barossa*
+- Wine industry: [+ barossa_wine : status +]
+- German Australian sentiment: [+ barossa_politics +]%
+- LCL (Liberal Country League) grip: [+ sa_lcl_dominance +]%
+
+**Western Australia**
+
+*Fremantle Docks*
+- Communist wharfie control: [+ fremantle_cpa_control : control +]
+- Port disruptions: [+ fremantle_disruptions +] days/year
+- Government pressure: [+ wa_govt_pressure : pressure +]
+
+*Kalgoorlie & Goldfields*
+- Gold mining employment: [+ kalgoorlie_employment +]
+- Miners' Federation strength: [+ kalgoorlie_union : strength +]
+- Communist influence: [+ kalgoorlie_cpa : influence +]
+
+*Perth & Swan*
+- Manufacturing growth: [+ perth_manufacturing : growth +]
+- Liberal Party dominance: [+ perth_liberal_dominance +]%
+
+**Tasmania**
+
+*Hobart Docks & Industry*
+- Waterfront situation: [+ hobart_waterfront : status +]
+- Hydro-electric works: [+ tas_hydro : progress +]
+- ALP state govt popularity: [+ tas_alp_popularity +]%
+
+*Rural Tasmania*
+- Apple industry crisis: [+ tas_apple_crisis : severity +]
+- UK market access: [+ tas_uk_market : status +]
+
+---
+
+**= Current Local Crises**
+
+[? if sydney_rent_strike : Sydney: Rent strike in Redfern & Paddington ?]
+[? if newcastle_coal_strike : Newcastle: Major coal strike disrupting exports ?]
+[? if melbourne_sectarian_riot : Melbourne: Sectarian violence in Collingwood ?]
+[? if brisbane_police_raid : Brisbane: Police raid on Trades Hall ?]
+[? if fremantle_port_closure : Fremantle: Port shut down by wharfie strike ?]
+[? if kalgoorlie_mine_disaster : Kalgoorlie: Mining accident, deaths ?]
+
+---
+
+**= Regional Party Strength**
+
+*State-by-State ALP Branches*
+
+NSW ALP: [+ nsw_alp_members +]k members | Factional control: [+ nsw_alp_faction_control : "Right Machine" +]
+
+Victorian ALP: [+ vic_alp_members +]k members | Factional control: [+ vic_alp_faction_control : "Groupers vs Left" +]
+
+Queensland ALP: [+ qld_alp_members +]k members | Factional control: [+ qld_alp_faction_control : "Right (AWU)" +]
+
+SA ALP: [+ sa_alp_members +]k members | Status: [+ sa_alp_status : "Weak, out of power" +]
+
+WA ALP: [+ wa_alp_members +]k members | Status: [+ wa_alp_status : "Opposition" +]
+
+Tasmanian ALP: [+ tas_alp_members +]k members | Status: [+ tas_alp_status : "In government" +]
