@@ -289,52 +289,38 @@ blockquote + blockquote.attribution {
     margin-right: -0.6em;
     margin-top: 1em;       /* Adds space between stats and buttons */
     display: flex;         /* Forces buttons into a single row */
-    flex-wrap: wrap;       /* Allows wrapping if screen is tiny */
+    flex-wrap: wrap;    
+    margin: 0.5em -0.6em -0.6em -0.6em; /* Bottom tabs *//* Allows wrapping if screen is tiny */
 }
 
 /* Ensure buttons inside the bottom container fill the width evenly */
 .tab_container_bottom .tab_button {
     flex: 1; 
     padding: 10px 5px;     /* Slightly less horizontal padding to fit better */
-    border-top: 1px solid var(--card-border-color); /* Optional separator */
+    border-top: 1px solid var(--card-border-color);
+    display: flex;
+    margin: -0.6em -0.6em 0.5em -0.6em;/* Optional separator */
 }
 
-/* Ensure the sidebar itself is a flex container to push tabs to bottom if desired */
-    
-
-
-/* Remove the background/shadow from the main container so boxes look separate */
+/* Container adjustments */
 #stats_sidebar {
-    background: none !important;
-    box-shadow: none !important;
-    border: none !important;
     display: flex;
     flex-direction: column;
-    gap: 20px; /* This creates the physical gap between the two boxes */
+    gap: 25px;       /* This creates the physical gap between the two boxes */
+    background: none !important; 
+    box-shadow: none !important;
+    border: none !important;
 }
 
-/* Apply the "Paper" look to each individual box */
+/* Individual box styling */
 .stats-box {
     background-color: var(--content-bg-color);
-    color: var(--text-color);
     padding: 0.6em;
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
     border: 1px solid var(--border-color);
-}
-
-/* Ensure the tabs hug the edges of their specific box */
-.stats-box .tab_container, 
-.stats-box .tab_container_bottom {
-    margin: -0.6em -0.6em 1em -0.6em;
     display: flex;
+    flex-direction: column;
 }
-
-.stats-box .tab_container_bottom {
-    margin: 1em -0.6em -0.6em -0.6em; /* Bottom tabs hug the bottom edge */
-}
-
-/* Fix for the button stacking issue shown in your previous images */
-
 
 
 
