@@ -257,6 +257,9 @@ blockquote + blockquote.attribution {
     margin-top: -0.6em;
     margin-left: -0.6em;
     margin-right: -0.6em;
+    display: flex; 
+    flex-direction: row;
+    margin: -0.6em -0.6em 1em -0.6em; 
 }
 .tab_button {
     font-family: "Minion Pro", Georgia, serif;
@@ -265,7 +268,10 @@ blockquote + blockquote.attribution {
     /*float: left;*/
     border: none;
     outline: none;
-    padding: 10px;
+    flex: 1; /* Makes buttons share width equally */
+    padding: 10px 2px; /* Reduces horizontal padding to prevent overflow */
+    font-size: 0.85em; /* Slightly smaller text helps mobile fit */
+    white-space: nowrap; /* Prevents text from wrapping inside buttons */
 }
 .tab_button.active {
     background-color: var(--content-bg-color);
@@ -296,6 +302,23 @@ blockquote + blockquote.attribution {
 /* Ensure the sidebar itself is a flex container to push tabs to bottom if desired */
     
 
+
+/* Ensure the sidebar stacks boxes vertically */
+#stats_sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between the two boxes */
+    background: none; /* Removes background from the container if needed */
+    box-shadow: none;
+}
+
+/* Give each box the 'paper' look separately */
+.stats_box_wrapper {
+    background-color: var(--content-bg-color);
+    padding: 0.6em;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+}
 
 
 
