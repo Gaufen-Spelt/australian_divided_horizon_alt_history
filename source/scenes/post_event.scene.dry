@@ -198,86 +198,119 @@ Q.unemployed = Math.max(1, Q.unemployed || 1);
 Q.inflation = Q.inflation || 0;
 
 // ============================================
-// UNIFIED TIME PROGRESSION - DAILY TO MONTHLY
+// MULTI-SCALE TIME QUEUE SYSTEM
 // ============================================
-if (Q.actions >= 1) {
-    Q.day = (Q.day || 0) + 1;
-    Q.week = Q.week || 1;
-    Q.month = Q.month || 1;
-    Q.year = Q.year || 1949;
-    Q.time = Q.time || 0;
-    
+
+// Initialize time queues
+Q.day_actions   = Q.day_actions   || 0;
+Q.week_actions  = Q.week_actions  || 0;
+Q.month_actions = Q.month_actions || 0;
+
+// Initialize calendar
+Q.day   = Q.day   || 1;
+Q.week  = Q.week  || 1;
+Q.month = Q.month || 1;
+Q.year  = Q.year  || 1949;
+Q.time  = Q.time  || 0;
+
+// ============================================
+// ADVANCE DAY
+// ============================================
+function advance_day() {
+
+    Q.day += 1;
+    Q.time += 0.036;   // ≈ 1 / 28
+
     // Decrement daily timers
-    for (let timer of Q.daily_timers || []) {
-        if (Q[timer + '_timer'] > 0) {
-            Q[timer + '_timer'] -= 1;
-        }
+    for (let t of Q.daily_timers || []) {
+        if (Q[t + '_timer'] > 0) Q[t + '_timer'] -= 1;
     }
-    
-    // Check if week advances (every 7 days)
+
+    // Weekly rollover
     if (Q.day >= 8) {
         Q.day = 1;
-        Q.week += 1;
-        
-        // Decrement weekly timers
-        for (let timer of Q.weekly_timers || []) {
-            if (Q[timer + '_timer'] > 0) {
-                Q[timer + '_timer'] -= 1;
-            }
-        }
-        
-        // Check if month advances (every 4 weeks = 28 days)
-        if (Q.week >= 5) {
-            Q.week = 1;
-            Q.month += 1;
-            Q.time += 1;
-            
-            // Year transition
-            if (Q.month >= 13) {
-                Q.month = 1;
-                Q.year += 1;
-                if (Q.historical_mode) {
-                    Q.resources += 2;
-                }
-            }
-            
-            // Decrement monthly timers
-            for (let timer of Q.timers || []) {
-                if (Q[timer + '_timer'] > 0) {
-                    Q[timer + '_timer'] -= 1;
-                }
-            }
-            
-            // Record party support and economics monthly
-            Q.party_support_records = Q.party_support_records || [];
-            Q.economic_records = Q.economic_records || [];
-            
-            let party_support_results = {'date': new Date(Q.year, Q.month - 1)};
-            for (let party of Q.parties) {
-                party_support_results[party] = Q[party + '_normalized'] * 100;
-            }
-            Q.party_support_records.push(party_support_results);
-            
-            Q.economic_records.push({
-                'date': new Date(Q.year, Q.month - 1),
-                'inflation': Q.inflation,
-                'unemployment': Q.unemployed
-            });
-        } else {
-            // Fractional time increase for weeks (0.25 per week)
-            Q.time += 0.25;
-        }
-    } else {
-        // Fractional time increase for days (approximately 0.036 per day)
-        Q.time += 0.036;
+        Q.week_actions += 1;   // queue a week tick
     }
-    
-    // Reset actions
-    Q.actions = 0;
-} else {
-    console.log('TIME PROGRESSION SKIPPED - actions:', Q.actions);
 }
 
+// ============================================
+// ADVANCE WEEK
+// ============================================
+function advance_week() {
+
+    Q.week += 1;
+    Q.time += 0.25;
+
+    // Decrement weekly timers
+    for (let t of Q.weekly_timers || []) {
+        if (Q[t + '_timer'] > 0) Q[t + '_timer'] -= 1;
+    }
+
+    // Monthly rollover
+    if (Q.week >= 5) {
+        Q.week = 1;
+        Q.month_actions += 1;   // queue a month tick
+    }
+}
+
+// ============================================
+// ADVANCE MONTH
+// ============================================
+function advance_month() {
+
+    Q.month += 1;
+    Q.time += 1;
+
+    // Year rollover
+    if (Q.month >= 13) {
+        Q.month = 1;
+        Q.year += 1;
+
+        if (Q.historical_mode) Q.resources += 2;
+    }
+
+    // Decrement monthly timers
+    for (let t of Q.timers || []) {
+        if (Q[t + '_timer'] > 0) Q[t + '_timer'] -= 1;
+    }
+
+    // Record statistics
+    Q.party_support_records = Q.party_support_records || [];
+    Q.economic_records = Q.economic_records || [];
+
+    let date = new Date(Q.year, Q.month - 1);
+
+    let party_row = { date };
+    for (let p of Q.parties) {
+        party_row[p] = Q[p + '_normalized'] * 100;
+    }
+    Q.party_support_records.push(party_row);
+
+    Q.economic_records.push({
+        date,
+        inflation: Q.inflation,
+        unemployment: Q.unemployed
+    });
+}
+
+// ============================================
+// PROCESS TIME QUEUES
+// ============================================
+
+while (Q.day_actions >= 1) {
+    Q.day_actions -= 1;
+    advance_day();
+}
+
+while (Q.week_actions >= 1) {
+    Q.week_actions -= 1;
+    advance_week();
+}
+
+while (Q.month_actions >= 1) {
+    Q.month_actions -= 1;
+    advance_month();
+}
 // ============================================
 // CHECK FOR EVENTS
 // ============================================
