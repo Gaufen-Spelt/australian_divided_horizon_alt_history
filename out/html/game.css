@@ -298,8 +298,6 @@ blockquote + blockquote.attribution {
     flex: 1; 
     padding: 10px 5px;     /* Slightly less horizontal padding to fit better */
     border-top: 1px solid var(--card-border-color);
-    display: flex;
-    margin: -0.6em -0.6em 0.5em -0.6em;/* Optional separator */
 }
 
 /* Container adjustments */
