@@ -10,7 +10,7 @@ console.log('Day:', Q.day, 'Week:', Q.week, 'Month:', Q.month);
 // ============================================
 // INITIALIZE AND INCREMENT ACTIONS
 // ============================================
-Q.actions = (Q.actions || 0) + 1;
+Q.actions = (Q.actions || 0);
 Q.last_advisor_action = 0;
 Q.last_cabinet_action = 0;
 
