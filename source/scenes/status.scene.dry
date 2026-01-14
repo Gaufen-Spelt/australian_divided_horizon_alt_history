@@ -153,6 +153,10 @@ Dissent: [+ groupers_dissent : dissent +]
 {!<span class="tooltip-text" title="NSW populists, Lang Labor sympathizers">Strength</span>!}: [+ langist_strength : strength +]
 Dissent: [+ langist_dissent : dissent +] ?]
 
+= Party Affairs
+
+Party resources: [+ party_resources +]
+
 @relations
 
 = Relations
