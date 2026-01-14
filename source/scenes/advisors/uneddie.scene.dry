@@ -3,4 +3,4 @@ is-pinned-card: true
 new-page: true
 tags: party_affairs
 card-image: img/vorwarts_2.jpg
-go-to: main
+go-to: main if difficulty >= 0; main.main_easy if difficulty < 0; Q.use_main_2 = 0
