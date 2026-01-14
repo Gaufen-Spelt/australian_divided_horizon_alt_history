@@ -171,6 +171,8 @@ if (Q.dissent < 0) {
 
 if (Q.actions >= 1) {
     Q.day += 1;
+    Q.timer += 1;
+    Q.actions = 0;
     
     // Decrement daily timers
     for (timer of Q.daily_timers || []) {
@@ -230,9 +232,6 @@ if (Q.actions >= 1) {
     Q.economic_records.push({'date': new Date(Q.year, Q.month - 1),
                              'inflation': Q.inflation,
                              'unemployment': Q.unemployed});
-    
-    // RESET ACTIONS AT THE END
-    Q.actions = 0;
 }
 
 
