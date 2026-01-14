@@ -4,23 +4,13 @@ is-hand: true
 max-cards: 9
 on-arrival: use_main_2 = 1;
 
-Eddie's personal life. Micro scene.
-
----
-
-brodimba, here are variables
+Eddie's personal life. Micro scene. brodimba, here are variables
 
 Actions: [+ actions +]
 Time: [+ time +]
 Day: [+ day +]
 
+---
+
 - @skip
 - @uneddie
-- @party
-
-@party
-title: Party Affairs
-card-image: img/Vorwaerts_nr_1.png
-is-deck: true
-
-- #party_affairs
