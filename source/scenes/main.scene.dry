@@ -9,6 +9,7 @@ if (Q.advisor_action_timer <= 0) {
 } else {
     Q.pinnedCardsDescription = 'Advisors - next action available in ' + Q.advisor_action_timer + ' months.';
 }
+Q.use_main_2 = 0;
 !}
 max-cards: 3
 
@@ -33,6 +34,7 @@ if (Q.advisor_action_timer <= 0) {
 } else {
     Q.pinnedCardsDescription = 'Advisors - next action available in ' + Q.advisor_action_timer + ' months.';
 }
+Q.use_main_2 = 0;
 !}
 max-cards: 4
 
