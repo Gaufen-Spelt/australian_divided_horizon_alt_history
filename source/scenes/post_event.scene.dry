@@ -160,8 +160,6 @@ if (class_sum > 0) {
 // ============================================
 // RECALCULATE NORMALIZED CLASS VOTES (with dynamic parties)
 // ============================================
-let parties = ['alp', 'lib', 'cp', 'cpa'];
-
 if (Q.dlp_formed) {
     parties.push('dlp');
 }
