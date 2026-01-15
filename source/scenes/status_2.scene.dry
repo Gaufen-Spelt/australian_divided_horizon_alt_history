@@ -55,7 +55,7 @@ is-special: true
 **Queensland**
 
 *Brisbane River & Port*
-- Waterfront control: [+ brisbane_waterfront_control : "AWU vs Communist unions" +]
+- Waterfront control: [+ brisbane_waterfront_control +]
 - Strike activity: [+ brisbane_strike_activity : activity +]
 
 *North Queensland (Sugar & Mining)*
@@ -124,14 +124,14 @@ is-special: true
 
 *State-by-State ALP Branches*
 
-NSW ALP: [+ nsw_alp_members +]k members | Factional control: [+ nsw_alp_faction_control : "Right Machine" +]
+NSW ALP: [+ nsw_alp_members +]k members | Factional control: [+ nsw_alp_faction_control +]
 
-Victorian ALP: [+ vic_alp_members +]k members | Factional control: [+ vic_alp_faction_control : "Groupers vs Left" +]
+Victorian ALP: [+ vic_alp_members +]k members | Factional control: [+ vic_alp_faction_control +]
 
-Queensland ALP: [+ qld_alp_members +]k members | Factional control: [+ qld_alp_faction_control : "Right (AWU)" +]
+Queensland ALP: [+ qld_alp_members +]k members | Factional control: [+ qld_alp_faction_control +]
 
-SA ALP: [+ sa_alp_members +]k members | Status: [+ sa_alp_status : "Weak, out of power" +]
+SA ALP: [+ sa_alp_members +]k members | Status: [+ sa_alp_status +]
 
-WA ALP: [+ wa_alp_members +]k members | Status: [+ wa_alp_status : "Opposition" +]
+WA ALP: [+ wa_alp_members +]k members | Status: [+ wa_alp_status +]
 
-Tasmanian ALP: [+ tas_alp_members +]k members | Status: [+ tas_alp_status : "In government" +]
+Tasmanian ALP: [+ tas_alp_members +]k members | Status: [+ tas_alp_status +]
