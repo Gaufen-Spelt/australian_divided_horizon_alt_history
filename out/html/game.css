@@ -73,7 +73,8 @@ header {
 #header-links {
   text-align: left;
   display: flex;
-  flex-direction: column; /* Stacks links vertically like your image */
+  flex-direction: row; /* Stacks links vertically like your image */
+  justify-content: space-around;
   padding: 0.5em 1em;
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
   background-color: var(--bg-color);
