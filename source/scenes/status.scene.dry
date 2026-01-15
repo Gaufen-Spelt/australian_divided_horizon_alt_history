@@ -2,20 +2,35 @@ title: Status
 new-page: true
 is-special: true
 
-= Status
+= [+ month : month +] [+ year +]
 
-[+ day +] [+ week +] [+ month : month +] [+ year +] 
+**Leadership**
 
-Resources available: [+ resources +]
+ALP Leader: [+ alp_leader +] ([+ alp_leader_faction +])
+Deputy Leader: [+ alp_deputy +] ([+ alp_deputy_faction +])
 
-ALP position: [? if alp_opposition : opposition ?][? if alp_in_government : in government ?][? if alp_minority : minority government ?]
-[? if alp_coalition : Coalition government ?][? if alp_majority : majority government ?]
+**Position**
 
-[? if alp_in_government and not alp_majority : Coalition/crossbench dissent: [+ coalition_dissent : coalition_dissent +] ?]
+[? if alp_in_government : In Government ?][? if alp_opposition : In Opposition ?]
+[? if alp_majority : (Majority) ?][? if alp_minority : (Minority) ?][? if alp_coalition : (Coalition) ?]
 
+Prime Minister: [+ prime_minister +] ([+ prime_minister_party +])
+Next election: [+ next_election_month : month +] [+ next_election_year +]
+
+**Resources**
+
+Party funds: [+ resources +]
+[? if alp_in_government : Government budget: £[+ budget +]m ?]
 Internal dissent: [+ dissent_percent : dissent +]
 
-Next election: [+ next_election_month : month +] [+ next_election_year +]
+**Seats**
+
+ALP: [+ alp_seats +] | Liberal: [+ liberal_seats +] | Country: [+ country_seats +] | Others: [+ other_seats +]
+
+**Polls**
+
+ALP: [+ alp_votes +]% | Liberal: [+ liberal_votes +]% | Country: [+ country_votes +]% | CPA: [+ cpa_votes +]%
+
 
 @government
 on-arrival: {!
