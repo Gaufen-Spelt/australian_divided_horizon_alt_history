@@ -124,34 +124,44 @@ Sterling reserves: [+ sterling_reserves_2 +] million
 = Internal Factions
 
 **Left - Victorians / Intellectual**
-Strength: [+ left_vic_strength : strength +] | Dissent: [+ left_vic_dissent : dissent +]
+Strength: [+ left_vic_strength : strength +] [+ left_vic_strength +] | Dissent: [+ left_vic_dissent : dissent +] [+ left_vic_dissent +] |
+Ideological direction: [+ left_vic_direction +]
 
 **Left - NSW / Streets / Labor**
-Strength: [+ left_nsw_strength : strength +] | Dissent: [+ left_nsw_dissent : dissent +]
+Strength: [+ left_nsw_strength : strength +] [+ left_nsw_strength +] | Dissent: [+ left_nsw_dissent : dissent +] [+ left_nsw_dissent +] |
+Ideological direction: [+ left_nsw_direction +]
 
 **Centre - Federal**
-Strength: [+ centre_federal_strength : strength +] | Dissent: [+ centre_federal_dissent : dissent +]
+Strength: [+ centre_federal_strength : strength +] [+ centre_federal_strength +] | Dissent: [+ centre_federal_dissent : dissent +] [+ centre_federal_dissent +] |
+Ideological direction: [+ centre_federal_direction +]
 
 **Centre - Unity**
-Strength: [+ centre_unity_strength : strength +] | Dissent: [+ centre_unity_dissent : dissent +]
+Strength: [+ centre_unity_strength : strength +] [+ centre_unity_strength +] | Dissent: [+ centre_unity_dissent : dissent +] [+ centre_unity_dissent +] |
+Ideological direction: [+ centre_unity_direction +]
 
-**Right - NSW Machine**
-Strength: [+ right_alp_nsw_strength : strength +] | Dissent: [+ right_alp_nsw_dissent : dissent +]
+**Right - NSW Group**
+Strength: [+ right_alp_nsw_strength : strength +] [+ right_alp_nsw_strength +] | Dissent: [+ right_alp_nsw_dissent : dissent +] [+ right_alp_nsw_dissent +] |
+Ideological direction: [+ right_alp_nsw_direction +]
 
 **Right - Queensland Sector**
-Strength: [+ right_alp_qld_strength : strength +] | Dissent: [+ right_alp_qld_dissent : dissent +]
+Strength: [+ right_alp_qld_strength : strength +] [+ right_alp_qld_strength +] | Dissent: [+ right_alp_qld_dissent : dissent +] [+ right_alp_qld_dissent +] |
+Ideological direction: [+ right_alp_qld_direction +]
 
 **Right - Southern Sector**
-Strength: [+ right_alp_south_strength : strength +] | Dissent: [+ right_alp_south_dissent : dissent +]
+Strength: [+ right_alp_south_strength : strength +] [+ right_alp_south_strength +] | Dissent: [+ right_alp_south_dissent : dissent +] [+ right_alp_south_dissent +] |
+Ideological direction: [+ right_alp_south_direction +]
 
 **Right - Unions**
-Strength: [+ right_alp_union_strength : strength +] | Dissent: [+ right_alp_union_dissent : dissent +]
+Strength: [+ right_alp_union_strength : strength +] [+ right_alp_union_strength +] | Dissent: [+ right_alp_union_dissent : dissent +] [+ right_alp_union_dissent +] |
+Ideological direction: [+ right_alp_union_direction +]
 
 **Industrial Groups**
-Strength: [+ groupers_strength : strength +] | Dissent: [+ groupers_dissent : dissent +]
+Strength: [+ groupers_strength : strength +] [+ groupers_strength +] | Dissent: [+ groupers_dissent : dissent +] [+ groupers_dissent +] |
+Ideological direction: [+ groupers_direction +]
 
 [? if langist_strength > 0 : **Old Guard - Langists**
-Strength: [+ langist_strength : strength +] | Dissent: [+ langist_dissent : dissent +] ?]
+Strength: [+ langist_strength : strength +] [+ langist_strength +] | Dissent: [+ langist_dissent : dissent +] [+ langist_dissent +] |
+Ideological direction: [+ langist_direction +] ?]
 
 @relations
 
