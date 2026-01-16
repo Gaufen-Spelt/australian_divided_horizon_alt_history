@@ -78,11 +78,11 @@ for (let party of Q.parties) {
     if (total_support > 0) {
         Q[party + '_normalized'] = Q[party + '_support'] / total_support;
         Q[party + '_votes'] = Math.round(Q[party + '_normalized'] * 100);
-        Q[party + '_votes_display'] = Math.round(Q[party + '_normalized'] * 100);
+        Q[party + '_votes_display'] = Math.round(Q[party + '_normalized'] * 100).toFixed(2);
     } else {
         Q[party + '_normalized'] = 0;
         Q[party + '_votes'] = 0;
-        Q[party + '_votes_display'] = 0;
+        Q[party + '_votes_display'] = 0.0;
     }
 }
 
@@ -181,7 +181,7 @@ for (let c of classes) {
     for (let party of parties) {
         if (class_votes > 0) {
             Q[c + '_' + party + '_normalized'] = Q[c + '_' + party] / class_votes;
-            Q[c + '_' + party + '_display'] = (Q[c + '_' + party + '_normalized'] * 100).toFixed(1);
+            Q[c + '_' + party + '_display'] = (Q[c + '_' + party + '_normalized'] * 100).toFixed(2);
         } else {
             Q[c + '_' + party + '_normalized'] = 0;
             Q[c + '_' + party + '_display'] = '0.0';
