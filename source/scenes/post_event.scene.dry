@@ -161,7 +161,7 @@ if (class_sum > 0) {
 // RECALCULATE NORMALIZED CLASS VOTES (with dynamic parties)
 // ============================================
 let parties = [
-'alp', 'liberal', 'country, 'cpa', 'other'
+'alp', 'liberal', 'country', 'cpa', 'other'
 ];
 
 if (Q.dlp_formed) {
@@ -170,7 +170,6 @@ if (Q.dlp_formed) {
 if (Q.lang_labor_active) {
     parties.push('lang');
 }
-parties.push('other');
 
 for (let c of classes) {
     let class_votes = 0;
@@ -185,10 +184,10 @@ for (let c of classes) {
     for (let party of parties) {
         if (class_votes > 0) {
             Q[c + '_' + party + '_normalized'] = Q[c + '_' + party] / class_votes;
-            Q[c + '_' + party + '_display'] = (Q[c + '_' + party + '_normalized'] * 1000).toFixed(1);
+            Q[c + '_' + party + '_display'] = (Q[c + '_' + party + '_normalized'] * 100).toFixed(1);
         } else {
             Q[c + '_' + party + '_normalized'] = 0;
-            Q[c + '_' + party + '_display'] = '0';
+            Q[c + '_' + party + '_display'] = '0.0';
         }
     }
 }
