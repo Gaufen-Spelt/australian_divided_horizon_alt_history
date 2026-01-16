@@ -48,8 +48,16 @@ Q.dues = 2;
 Q.dissent = 0.05;
 Q.dissent_percent = 5;
 
+//LEADERSHIP
+
+Q.alp_leader = "Ben Chifley"
+Q.alp_leader_faction = "Centre - Federal"
+Q.alp_deputy = "H.V. Evatt"
+Q.alp_deputy_faction = "Left - Victorian"
+
+
 // factions - ALP internal groups
-Q.factions = ['left', 'centre', 'right_alp_qld', 'groupers', 'right_alp_nsw', 'right_alp_union', 'langist'];
+Q.factions = ['left_vic', 'left_nsw', 'centre_federal' ,'centre_unity', 'right_alp_qld', 'groupers', 'right_alp_nsw', 'right_alp_union', 'langist'];
 // Labor factions in 1949
 Q.left_strength = 20; // Socialist Left
 Q.left_dissent = 15;
