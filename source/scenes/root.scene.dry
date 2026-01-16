@@ -355,7 +355,7 @@ Q.budget = 0; // Budget balance (surplus/deficit in millions)
 // Proportion of different social groups (1949 Australia)
 Q.workers = 45; // Industrial workers
 Q.white_collar = 18; // New middle class
-Q.small_business = 12; // Old middle class
+Q.business = 12; // Old middle class
 Q.rural = 15; // Farmers and rural workers
 Q.unemployed = 2.5; // Low post-war unemployment
 Q.catholics = 20; // Significant Catholic population
