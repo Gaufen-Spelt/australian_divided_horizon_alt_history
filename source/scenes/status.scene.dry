@@ -233,19 +233,19 @@ ALP: [+ alp_votes +]% | Liberal: [+ liberal_votes +]% | Country: [+ country_vote
 
 **Support by Demographic**
 
-*Industrial Workers*: ALP [+ workers_alp_display +]% | Lib [+ workers_lib_display +]% | CP [+ workers_cp_display +]% | CPA [+ workers_cpa_display +]%[? if dlp_formed :  | DLP [+ workers_dlp_display +]% ?][? if lang_votes > 0 :  | Lang [+ workers_lang_display +]% ?]
+*Industrial Workers*: ALP [+ workers_alp_display +]% | Liberal [+ workers_liberal_display +]% | Country [+ workers_country_display +]% | CPA [+ workers_cpa_display +]%[? if dlp_formed :  | DLP [+ workers_dlp_display +]% ?][? if lang_votes > 0 :  | Lang [+ workers_lang_display +]% ?]
 
-*White Collar*: ALP [+ white_collar_alp_display +]% | Lib [+ white_collar_lib_display +]% | CP [+ white_collar_cp_display +]% | CPA [+ white_collar_cpa_display +]%[? if dlp_formed :  | DLP [+ white_collar_dlp_display +]% ?][? if lang_votes > 0 :  | Lang [+ white_collar_lang_display +]% ?]
+*White Collar*: ALP [+ white_collar_alp_display +]% | Liberal [+ white_collar_liberal_display +]% | Country [+ white_collar_country_display +]% | CPA [+ white_collar_cpa_display +]%[? if dlp_formed :  | DLP [+ white_collar_dlp_display +]% ?][? if lang_votes > 0 :  | Lang [+ white_collar_lang_display +]% ?]
 
-*Small Business*: ALP [+ business_alp_display +]% | Lib [+ business_lib_display +]% | CP [+ business_cp_display +]% | CPA [+ business_cpa_display +]%[? if dlp_formed :  | DLP [+ business_dlp_display +]% ?][? if lang_votes > 0 :  | Lang [+ business_lang_display +]% ?]
+*Small Business*: ALP [+ business_alp_display +]% | Liberal [+ business_liberal_display +]% | Country [+ business_country_display +]% | CPA [+ business_cpa_display +]%[? if dlp_formed :  | DLP [+ business_dlp_display +]% ?][? if lang_votes > 0 :  | Lang [+ business_lang_display +]% ?]
 
-*Rural/Farmers*: ALP [+ rural_alp_display +]% | Lib [+ rural_lib_display +]% | CP [+ rural_cp_display +]% | CPA [+ rural_cpa_display +]%[? if dlp_formed :  | DLP [+ rural_dlp_display +]% ?][? if lang_votes > 0 :  | Lang [+ rural_lang_display +]% ?]
+*Rural/Farmers*: ALP [+ rural_alp_display +]% | Liberal [+ rural_liberal_display +]% | Country [+ rural_country_display +]% | CPA [+ rural_cpa_display +]%[? if dlp_formed :  | DLP [+ rural_dlp_display +]% ?][? if lang_votes > 0 :  | Lang [+ rural_lang_display +]% ?]
 
-*Unemployed*: ALP [+ unemployed_alp_display +]% | Lib [+ unemployed_lib_display +]% | CP [+ unemployed_cp_display +]% | CPA [+ unemployed_cpa_display +]%[? if dlp_formed :  | DLP [+ unemployed_dlp_display +]% ?][? if lang_votes > 0 :  | Lang [+ unemployed_lang_display +]% ?]
+*Unemployed*: ALP [+ unemployed_alp_display +]% | Liberal [+ unemployed_liberal_display +]% | Country [+ unemployed_country_display +]% | CPA [+ unemployed_cpa_display +]%[? if dlp_formed :  | DLP [+ unemployed_dlp_display +]% ?][? if lang_votes > 0 :  | Lang [+ unemployed_lang_display +]% ?]
 
-*Catholics*: ALP [+ catholics_alp_display +]% | Lib [+ catholics_lib_display +]% | CP [+ catholics_cp_display +]% | CPA [+ catholics_cpa_display +]%[? if dlp_formed :  | DLP [+ catholics_dlp_display +]% ?][? if lang_votes > 0 :  | Lang [+ catholics_lang_display +]% ?]
+*Catholics*: ALP [+ catholics_alp_display +]% | Liberal [+ catholics_liberal_display +]% | Country [+ catholics_country_display +]% | CPA [+ catholics_cpa_display +]%[? if dlp_formed :  | DLP [+ catholics_dlp_display +]% ?][? if lang_votes > 0 :  | Lang [+ catholics_lang_display +]% ?]
 
-*New Australians*: ALP [+ migrants_alp_display +]% | Lib [+ migrants_lib_display +]% | CP [+ migrants_cp_display +]% | CPA [+ migrants_cpa_display +]%[? if dlp_formed :  | DLP [+ migrants_dlp_display +]% ?][? if lang_votes > 0 :  | Lang [+ migrants_lang_display +]% ?]
+*New Australians*: ALP [+ migrants_alp_display +]% | Liberal [+ migrants_liberal_display +]% | Country [+ migrants_country_display +]% | CPA [+ migrants_cpa_display +]%[? if dlp_formed :  | DLP [+ migrants_dlp_display +]% ?][? if lang_votes > 0 :  | Lang [+ migrants_lang_display+]% ?]
 
 **Public Opinion**
 
