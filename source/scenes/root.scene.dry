@@ -405,12 +405,12 @@ Q.white_collar_cpa = 5;
 Q.white_collar_lang = 0;
 Q.white_collar_other = 15;
 
-Q.small_business_alp = 15;
-Q.small_business_liberal = 50;
-Q.small_business_country = 20;
-Q.small_business_cpa = 0;
-Q.small_business_lang = 0;
-Q.small_business_other = 15;
+Q.business_alp = 15;
+Q.business_liberal = 50;
+Q.business_country = 20;
+Q.business_cpa = 0;
+Q.business_lang = 0;
+Q.business_other = 15;
 
 Q.rural_alp = 20;
 Q.rural_liberal = 20;
