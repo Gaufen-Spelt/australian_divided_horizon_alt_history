@@ -23,14 +23,6 @@ Party funds: [+ resources +]
 [? if alp_in_government : Government budget: £[+ budget +]m ?]
 Internal dissent: [+ dissent_percent : dissent +]
 
-**Seats**
-
-ALP: [+ alp_seats +] | Liberal: [+ liberal_seats +] | Country: [+ country_seats +] | CPA: [+ cpa_seats +][? if lang_seats > 0 :  | Lang: [+ lang_seats +] ?][? if dlp_formed :  | DLP: [+ dlp_seats +] ?] | Others: [+ other_seats +]
-
-**Polls**
-
-ALP: [+ alp_votes +]% | Liberal: [+ liberal_votes +]% | Country: [+ country_votes +]% | CPA: [+ cpa_votes +]%[? if dlp_formed :  | DLP: [+ dlp_votes +]% ?][? if lang_votes > 0 :  | Lang: [+ lang_votes +]% ?]
-
 @government
 on-arrival: {!
 // Calculate state control
@@ -50,6 +42,16 @@ if (Q.alp_tasmania) Q.alp_states += 1;
 Governor-General: [+ governor_general +]
 
 Prime Minister: [+ prime_minister +] ([+ prime_minister_party +])
+
+**Senate**
+
+{!<span class="tooltip-text" title="Australian Labor Party">ALP</span>!}: [+ alp_seats_s +] seats ([+ alp_percent_s +]%)
+{!<span class="tooltip-text" title="Liberal Party of Australia">Liberal</span>!}: [+ liberal_seats_s +] seats ([+ liberal_percent_s +]%)
+{!<span class="tooltip-text" title="Australian Country Party">Country Party</span>!}: [+ country_seats_s +] seats ([+ country_percent_s +]%)
+{!<span class="tooltip-text" title="Communist Party of Australia">CPA</span>!}: [+ cpa_seats_s +] seats ([+ cpa_percent_s +]%)
+[? if lang_seats > 0 : {!<span class="tooltip-text" title="Lang Labor">Lang Labor</span>!}: [+ lang_seats_s +] seats ([+ lang_percent_s +]%) ?]
+[? if dlp_formed : {!<span class="tooltip-text" title="Democratic Labor Party">DLP</span>!}: [+ dlp_seats_s +] seats ([+ dlp_percent_s +]%) ?]
+Others: [+ other_seats +] seats ([+ other_percent +]%)
 
 **House of Representatives**
 
