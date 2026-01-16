@@ -384,7 +384,7 @@ Q.unemployed_qol = 100;
 Q.small_business_qol = 100;
 Q.white_collar_qol = 100;
 
-Q.classes = ['workers', 'white_collar', 'small_business', 'rural', 'unemployed', 'catholics', 'migrants'];
+Q.classes = ['workers', 'white_collar', 'business', 'rural', 'unemployed', 'catholics', 'migrants'];
 Q.parties = ['alp', 'liberal', 'country', 'cpa', 'lang', 'other'];
 
 Q.lang_formed = 1; // Lang Labor exists
