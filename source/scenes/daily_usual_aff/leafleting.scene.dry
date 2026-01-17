@@ -1,0 +1,20 @@
+title: Leafleting
+new-page: true
+is-card: true
+tags: day_affairs
+view-if: leafleting_daily_timer = 0
+on-arrival: day_actions += 1
+
+Distribute leafleats across the streets!
+
+-@leaf: Okay
+-@no_leaf: We won't do it.
+
+@leaf
+on-arrival: nsw_workers_alp * 1.01
+
+We did leafletting smh
+
+@no_leaf
+
+No lead then.
