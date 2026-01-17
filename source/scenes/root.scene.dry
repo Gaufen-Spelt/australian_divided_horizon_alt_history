@@ -352,15 +352,6 @@ Q.sterling_pressure = 5; // Pressure from sterling area obligations
 
 Q.budget = 0; // Budget balance (surplus/deficit in millions)
 
-// Proportion of different social groups (1949 Australia)
-Q.workers = 45; // Industrial workers
-Q.white_collar = 18; // New middle class
-Q.business = 12; // Old middle class
-Q.rural = 15; // Farmers and rural workers
-Q.unemployed = 2.5; // Low post-war unemployment
-Q.catholics = 20; // Significant Catholic population
-Q.migrants = 2; // New Australians (growing)
-
 // unemployment: 1949 ~2.5%, rises in early 1950s
 // Post-war migration program beginning
 
@@ -384,61 +375,435 @@ Q.unemployed_qol = 100;
 Q.small_business_qol = 100;
 Q.white_collar_qol = 100;
 
+
+
+
+
+
+
+
+
+// ============================================
+// CORE LISTS (Define these FIRST)
+// ============================================
 Q.classes = ['workers', 'white_collar', 'business', 'rural', 'unemployed', 'catholics', 'migrants'];
 Q.parties = ['alp', 'liberal', 'country', 'cpa', 'lang', 'other'];
+Q.states = ['nsw', 'vic', 'qld', 'sa', 'wa', 'tas'];
+
+// State weights for national calculation
+Q.state_weights = {
+    nsw: 0.38,
+    vic: 0.28,
+    qld: 0.16,
+    sa: 0.10,
+    wa: 0.06,
+    tas: 0.02
+};
 
 Q.lang_formed = 1; // Lang Labor exists
 Q.dlp_formed = 0; // DLP doesn't form until 1955
 
-// Support for party by social group
-Q.workers_alp = 65;
-Q.workers_liberal = 10;
-Q.workers_country = 0;
-Q.workers_cpa = 15;
-Q.workers_lang = 5;
-Q.workers_other = 5;
+// ============================================
+// DEMOGRAPHIC PROPORTIONS BY STATE
+// ============================================
 
-Q.white_collar_alp = 30;
-Q.white_collar_liberal = 45;
-Q.white_collar_country = 5;
-Q.white_collar_cpa = 5;
-Q.white_collar_lang = 0;
-Q.white_collar_other = 15;
+// NEW SOUTH WALES (Urban, industrial Sydney)
+Q.nsw_workers = 48;
+Q.nsw_white_collar = 20;
+Q.nsw_business = 12;
+Q.nsw_rural = 12;
+Q.nsw_unemployed = 2.5;
+Q.nsw_catholics = 22;
+Q.nsw_migrants = 3;
 
-Q.business_alp = 15;
-Q.business_liberal = 50;
-Q.business_country = 20;
-Q.business_cpa = 0;
-Q.business_lang = 0;
-Q.business_other = 15;
+// VICTORIA (Melbourne urban center)
+Q.vic_workers = 46;
+Q.vic_white_collar = 19;
+Q.vic_business = 13;
+Q.vic_rural = 14;
+Q.vic_unemployed = 2.3;
+Q.vic_catholics = 23;
+Q.vic_migrants = 2.5;
 
-Q.rural_alp = 20;
-Q.rural_liberal = 20;
-Q.rural_country = 50;
-Q.rural_cpa = 0;
-Q.rural_lang = 0;
-Q.rural_other = 10;
+// QUEENSLAND (More rural, mining)
+Q.qld_workers = 42;
+Q.qld_white_collar = 15;
+Q.qld_business = 11;
+Q.qld_rural = 24;
+Q.qld_unemployed = 2.8;
+Q.qld_catholics = 18;
+Q.qld_migrants = 1.5;
 
-Q.unemployed_alp = 45;
-Q.unemployed_liberal = 10;
-Q.unemployed_country = 0;
-Q.unemployed_cpa = 35;
-Q.unemployed_lang = 5;
-Q.unemployed_other = 5;
+// SOUTH AUSTRALIA (Mixed economy)
+Q.sa_workers = 44;
+Q.sa_white_collar = 17;
+Q.sa_business = 12;
+Q.sa_rural = 18;
+Q.sa_unemployed = 2.6;
+Q.sa_catholics = 19;
+Q.sa_migrants = 2;
 
-Q.catholics_alp = 55;
-Q.catholics_liberal = 25;
-Q.catholics_country = 10;
-Q.catholics_cpa = 5;
-Q.catholics_lang = 0;
-Q.catholics_other = 5;
+// WESTERN AUSTRALIA (Mining, Perth)
+Q.wa_workers = 43;
+Q.wa_white_collar = 16;
+Q.wa_business = 11;
+Q.wa_rural = 20;
+Q.wa_unemployed = 3.0;
+Q.wa_catholics = 17;
+Q.wa_migrants = 1.8;
 
-Q.migrants_alp = 60; // New Australians favor Labor initially
-Q.migrants_liberal = 20;
-Q.migrants_country = 0;
-Q.migrants_cpa = 10;
-Q.migrants_lang = 0;
-Q.migrants_other = 10;
+// TASMANIA (Small, industrial)
+Q.tas_workers = 41;
+Q.tas_white_collar = 16;
+Q.tas_business = 13;
+Q.tas_rural = 22;
+Q.tas_unemployed = 2.4;
+Q.tas_catholics = 21;
+Q.tas_migrants = 1.0;
+
+// ============================================
+// STATE PARTY SUPPORT BY DEMOGRAPHIC
+// ============================================
+
+// NEW SOUTH WALES
+Q.nsw_workers_alp = 70;
+Q.nsw_workers_liberal = 8;
+Q.nsw_workers_country = 0;
+Q.nsw_workers_cpa = 12;
+Q.nsw_workers_lang = 8;
+Q.nsw_workers_other = 2;
+
+Q.nsw_white_collar_alp = 35;
+Q.nsw_white_collar_liberal = 45;
+Q.nsw_white_collar_country = 3;
+Q.nsw_white_collar_cpa = 3;
+Q.nsw_white_collar_lang = 2;
+Q.nsw_white_collar_other = 12;
+
+Q.nsw_business_alp = 12;
+Q.nsw_business_liberal = 55;
+Q.nsw_business_country = 15;
+Q.nsw_business_cpa = 0;
+Q.nsw_business_lang = 3;
+Q.nsw_business_other = 15;
+
+Q.nsw_rural_alp = 25;
+Q.nsw_rural_liberal = 15;
+Q.nsw_rural_country = 50;
+Q.nsw_rural_cpa = 0;
+Q.nsw_rural_lang = 5;
+Q.nsw_rural_other = 5;
+
+Q.nsw_unemployed_alp = 50;
+Q.nsw_unemployed_liberal = 8;
+Q.nsw_unemployed_country = 0;
+Q.nsw_unemployed_cpa = 30;
+Q.nsw_unemployed_lang = 10;
+Q.nsw_unemployed_other = 2;
+
+Q.nsw_catholics_alp = 60;
+Q.nsw_catholics_liberal = 22;
+Q.nsw_catholics_country = 8;
+Q.nsw_catholics_cpa = 5;
+Q.nsw_catholics_lang = 3;
+Q.nsw_catholics_other = 2;
+
+Q.nsw_migrants_alp = 65;
+Q.nsw_migrants_liberal = 18;
+Q.nsw_migrants_country = 0;
+Q.nsw_migrants_cpa = 12;
+Q.nsw_migrants_lang = 3;
+Q.nsw_migrants_other = 2;
+
+// VICTORIA
+Q.vic_workers_alp = 62;
+Q.vic_workers_liberal = 15;
+Q.vic_workers_country = 0;
+Q.vic_workers_cpa = 18;
+Q.vic_workers_lang = 0;
+Q.vic_workers_other = 5;
+
+Q.vic_white_collar_alp = 28;
+Q.vic_white_collar_liberal = 50;
+Q.vic_white_collar_country = 5;
+Q.vic_white_collar_cpa = 5;
+Q.vic_white_collar_lang = 0;
+Q.vic_white_collar_other = 12;
+
+Q.vic_business_alp = 10;
+Q.vic_business_liberal = 60;
+Q.vic_business_country = 18;
+Q.vic_business_cpa = 0;
+Q.vic_business_lang = 0;
+Q.vic_business_other = 12;
+
+Q.vic_rural_alp = 15;
+Q.vic_rural_liberal = 25;
+Q.vic_rural_country = 55;
+Q.vic_rural_cpa = 0;
+Q.vic_rural_lang = 0;
+Q.vic_rural_other = 5;
+
+Q.vic_unemployed_alp = 42;
+Q.vic_unemployed_liberal = 12;
+Q.vic_unemployed_country = 0;
+Q.vic_unemployed_cpa = 40;
+Q.vic_unemployed_lang = 0;
+Q.vic_unemployed_other = 6;
+
+Q.vic_catholics_alp = 52;
+Q.vic_catholics_liberal = 30;
+Q.vic_catholics_country = 10;
+Q.vic_catholics_cpa = 3;
+Q.vic_catholics_lang = 0;
+Q.vic_catholics_other = 5;
+
+Q.vic_migrants_alp = 55;
+Q.vic_migrants_liberal = 25;
+Q.vic_migrants_country = 0;
+Q.vic_migrants_cpa = 15;
+Q.vic_migrants_lang = 0;
+Q.vic_migrants_other = 5;
+
+// QUEENSLAND
+Q.qld_workers_alp = 75;
+Q.qld_workers_liberal = 5;
+Q.qld_workers_country = 0;
+Q.qld_workers_cpa = 15;
+Q.qld_workers_lang = 0;
+Q.qld_workers_other = 5;
+
+Q.qld_white_collar_alp = 40;
+Q.qld_white_collar_liberal = 35;
+Q.qld_white_collar_country = 8;
+Q.qld_white_collar_cpa = 5;
+Q.qld_white_collar_lang = 0;
+Q.qld_white_collar_other = 12;
+
+Q.qld_business_alp = 20;
+Q.qld_business_liberal = 40;
+Q.qld_business_country = 25;
+Q.qld_business_cpa = 0;
+Q.qld_business_lang = 0;
+Q.qld_business_other = 15;
+
+Q.qld_rural_alp = 25;
+Q.qld_rural_liberal = 10;
+Q.qld_rural_country = 60;
+Q.qld_rural_cpa = 0;
+Q.qld_rural_lang = 0;
+Q.qld_rural_other = 5;
+
+Q.qld_unemployed_alp = 55;
+Q.qld_unemployed_liberal = 5;
+Q.qld_unemployed_country = 0;
+Q.qld_unemployed_cpa = 35;
+Q.qld_unemployed_lang = 0;
+Q.qld_unemployed_other = 5;
+
+Q.qld_catholics_alp = 65;
+Q.qld_catholics_liberal = 20;
+Q.qld_catholics_country = 10;
+Q.qld_catholics_cpa = 3;
+Q.qld_catholics_lang = 0;
+Q.qld_catholics_other = 2;
+
+Q.qld_migrants_alp = 70;
+Q.qld_migrants_liberal = 15;
+Q.qld_migrants_country = 0;
+Q.qld_migrants_cpa = 10;
+Q.qld_migrants_lang = 0;
+Q.qld_migrants_other = 5;
+
+// SOUTH AUSTRALIA
+Q.sa_workers_alp = 60;
+Q.sa_workers_liberal = 12;
+Q.sa_workers_country = 0;
+Q.sa_workers_cpa = 20;
+Q.sa_workers_lang = 0;
+Q.sa_workers_other = 8;
+
+Q.sa_white_collar_alp = 25;
+Q.sa_white_collar_liberal = 55;
+Q.sa_white_collar_country = 5;
+Q.sa_white_collar_cpa = 3;
+Q.sa_white_collar_lang = 0;
+Q.sa_white_collar_other = 12;
+
+Q.sa_business_alp = 15;
+Q.sa_business_liberal = 55;
+Q.sa_business_country = 20;
+Q.sa_business_cpa = 0;
+Q.sa_business_lang = 0;
+Q.sa_business_other = 10;
+
+Q.sa_rural_alp = 18;
+Q.sa_rural_liberal = 30;
+Q.sa_rural_country = 45;
+Q.sa_rural_cpa = 0;
+Q.sa_rural_lang = 0;
+Q.sa_rural_other = 7;
+
+Q.sa_unemployed_alp = 45;
+Q.sa_unemployed_liberal = 10;
+Q.sa_unemployed_country = 0;
+Q.sa_unemployed_cpa = 40;
+Q.sa_unemployed_lang = 0;
+Q.sa_unemployed_other = 5;
+
+Q.sa_catholics_alp = 50;
+Q.sa_catholics_liberal = 30;
+Q.sa_catholics_country = 12;
+Q.sa_catholics_cpa = 5;
+Q.sa_catholics_lang = 0;
+Q.sa_catholics_other = 3;
+
+Q.sa_migrants_alp = 58;
+Q.sa_migrants_liberal = 25;
+Q.sa_migrants_country = 0;
+Q.sa_migrants_cpa = 12;
+Q.sa_migrants_lang = 0;
+Q.sa_migrants_other = 5;
+
+// WESTERN AUSTRALIA
+Q.wa_workers_alp = 68;
+Q.wa_workers_liberal = 10;
+Q.wa_workers_country = 0;
+Q.wa_workers_cpa = 15;
+Q.wa_workers_lang = 0;
+Q.wa_workers_other = 7;
+
+Q.wa_white_collar_alp = 30;
+Q.wa_white_collar_liberal = 48;
+Q.wa_white_collar_country = 5;
+Q.wa_white_collar_cpa = 4;
+Q.wa_white_collar_lang = 0;
+Q.wa_white_collar_other = 13;
+
+Q.wa_business_alp = 18;
+Q.wa_business_liberal = 50;
+Q.wa_business_country = 22;
+Q.wa_business_cpa = 0;
+Q.wa_business_lang = 0;
+Q.wa_business_other = 10;
+
+Q.wa_rural_alp = 22;
+Q.wa_rural_liberal = 20;
+Q.wa_rural_country = 52;
+Q.wa_rural_cpa = 0;
+Q.wa_rural_lang = 0;
+Q.wa_rural_other = 6;
+
+Q.wa_unemployed_alp = 48;
+Q.wa_unemployed_liberal = 10;
+Q.wa_unemployed_country = 0;
+Q.wa_unemployed_cpa = 38;
+Q.wa_unemployed_lang = 0;
+Q.wa_unemployed_other = 4;
+
+Q.wa_catholics_alp = 55;
+Q.wa_catholics_liberal = 28;
+Q.wa_catholics_country = 10;
+Q.wa_catholics_cpa = 4;
+Q.wa_catholics_lang = 0;
+Q.wa_catholics_other = 3;
+
+Q.wa_migrants_alp = 62;
+Q.wa_migrants_liberal = 22;
+Q.wa_migrants_country = 0;
+Q.wa_migrants_cpa = 10;
+Q.wa_migrants_lang = 0;
+Q.wa_migrants_other = 6;
+
+// TASMANIA
+Q.tas_workers_alp = 72;
+Q.tas_workers_liberal = 10;
+Q.tas_workers_country = 0;
+Q.tas_workers_cpa = 12;
+Q.tas_workers_lang = 0;
+Q.tas_workers_other = 6;
+
+Q.tas_white_collar_alp = 38;
+Q.tas_white_collar_liberal = 42;
+Q.tas_white_collar_country = 5;
+Q.tas_white_collar_cpa = 4;
+Q.tas_white_collar_lang = 0;
+Q.tas_white_collar_other = 11;
+
+Q.tas_business_alp = 20;
+Q.tas_business_liberal = 48;
+Q.tas_business_country = 20;
+Q.tas_business_cpa = 0;
+Q.tas_business_lang = 0;
+Q.tas_business_other = 12;
+
+Q.tas_rural_alp = 28;
+Q.tas_rural_liberal = 22;
+Q.tas_rural_country = 45;
+Q.tas_rural_cpa = 0;
+Q.tas_rural_lang = 0;
+Q.tas_rural_other = 5;
+
+Q.tas_unemployed_alp = 50;
+Q.tas_unemployed_liberal = 12;
+Q.tas_unemployed_country = 0;
+Q.tas_unemployed_cpa = 33;
+Q.tas_unemployed_lang = 0;
+Q.tas_unemployed_other = 5;
+
+Q.tas_catholics_alp = 62;
+Q.tas_catholics_liberal = 25;
+Q.tas_catholics_country = 8;
+Q.tas_catholics_cpa = 3;
+Q.tas_catholics_lang = 0;
+Q.tas_catholics_other = 2;
+
+Q.tas_migrants_alp = 65;
+Q.tas_migrants_liberal = 20;
+Q.tas_migrants_country = 0;
+Q.tas_migrants_cpa = 10;
+Q.tas_migrants_lang = 0;
+Q.tas_migrants_other = 5;
+
+// ============================================
+// CALCULATE NATIONAL DEMOGRAPHICS
+// ============================================
+Q.workers = 0;
+Q.white_collar = 0;
+Q.business = 0;
+Q.rural = 0;
+Q.unemployed = 0;
+Q.catholics = 0;
+Q.migrants = 0;
+
+for (var demo_class of Q.classes) {
+    Q[demo_class] = 0;
+    for (var state of Q.states) {
+        Q[demo_class] += Q[state + '_' + demo_class] * Q.state_weights[state];
+    }
+}
+
+// ============================================
+// CALCULATE NATIONAL PARTY SUPPORT
+// ============================================
+for (var demo_class of Q.classes) {
+    for (var party of Q.parties) {
+        Q[demo_class + '_' + party] = 0;
+        for (var state of Q.states) {
+            Q[demo_class + '_' + party] += Q[state + '_' + demo_class + '_' + party] * Q.state_weights[state];
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
 
 
 // Events: what has occurred?
