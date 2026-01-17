@@ -53,26 +53,33 @@ Q.dissent_percent = 5;
 Q.alp_leader = "Ben Chifley"
 Q.alp_leader_faction = "Centre - Federal"
 Q.alp_deputy = "H.V. Evatt"
-Q.alp_deputy_faction = "Left - Victorian"
+Q.alp_deputy_faction = "Left - Victorian / Intellectual"
 
 
 // factions - ALP internal groups
-Q.factions = ['left_vic', 'left_nsw', 'centre_federal' ,'centre_unity', 'right_alp_qld', 'groupers', 'right_alp_nsw', 'right_alp_union', 'langist'];
+Q.factions = ['left_vic', 'left_nsw', 'centre_federal' ,'centre_unity', 'right_alp_qld', 'groupers', 'right_alp_nsw', 'right_alp_union', 'right_alp_south' ,'langist'];
 // Labor factions in 1949
-Q.left_strength = 20; // Socialist Left
-Q.left_dissent = 15;
-Q.centre_strength = 30; // Pragmatic centre
+Q.left_vic_strength = 20; // Socialist Left
+Q.left_vic_dissent = 15;
+Q.left_nsw_strength = 10; // Socialist Left
+Q.left_nsw_dissent = 15;
+Q.centre_federal_strength = 30; // Pragmatic centre
 Q.centre_dissent = 5;
-Q.alp_right_nsw_strength = 10; // NSW machine politics
-Q.alp_right_nsw_dissent = 10;
-Q.alp_right_qld_strength = 10; // NSW machine politics
-Q.alp_right_qld_dissent = 10;
-Q.alp_right_union_dissent = 10; // NSW machine politics
-Q.alp_right_union_strength = 10;
-Q.groupers_strength = 20; // Catholic anti-communist Industrial Groups
+Q.centre_unity_strength = 30; // Pragmatic centre
+Q.centre_dissent = 5;
+Q.right_alp_nsw_strength = 19; // 
+Q.right_alp_nsw_dissent = 10;
+Q.right_alp_qld_strength = 12; //
+Q.right_alp_qld_dissent = 14;
+Q.right_alp_union_dissent = 18; //
+Q.right_alp_union_strength = 10;
+Q.groupers_strength = 9; // Catholic anti-communist Industrial Groups
 Q.groupers_dissent = 5;
 Q.langist_strength = 5; // Trade union officials
 Q.langist_dissent = 8;
+Q.right_alp_south_dissent = 10;
+Q.right_alp_south_strength = 7;
+
 
 
 
@@ -367,14 +374,6 @@ Q.economic_growth = 5.0; // Post-war boom
 
 // economic expansion/contraction tracker
 Q.economic_expansion = 0;
-
-// quality of life (as % of 1949)
-Q.workers_qol = 100;
-Q.rural_qol = 100;
-Q.unemployed_qol = 100;
-Q.small_business_qol = 100;
-Q.white_collar_qol = 100;
-
 
 
 
