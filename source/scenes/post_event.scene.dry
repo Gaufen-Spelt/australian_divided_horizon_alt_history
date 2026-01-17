@@ -219,6 +219,7 @@ Q.year  = Q.year  || 1949;
 Q.time  = Q.time  || 0;
 
 // ============================================
+// ============================================
 // ADVANCE DAY
 // ============================================
 function advance_day() {
@@ -233,7 +234,7 @@ function advance_day() {
     // Weekly rollover
     if (Q.day >= 8) {
         Q.day = 1;
-        Q.week_actions += 1;
+        Q.week_actions += 1;   // queue a week tick
     }
 }
 
@@ -252,7 +253,7 @@ function advance_week() {
     // Monthly rollover
     if (Q.week >= 5) {
         Q.week = 1;
-        Q.month_actions += 1;
+        Q.month_actions += 1;   // queue a month tick
     }
 }
 
@@ -283,7 +284,7 @@ function advance_month() {
     let date = new Date(Q.year, Q.month - 1);
 
     let party_row = { date };
-    for (let p of parties) {
+    for (let p of Q.parties) {
         party_row[p] = Q[p + '_normalized'] * 100;
     }
     Q.party_support_records.push(party_row);
@@ -296,8 +297,11 @@ function advance_month() {
 }
 
 // ============================================
-// PROCESS TIME QUEUES
+// PROCESS TIME QUEUES - WITH PROPER CASCADING
 // ============================================
+
+// Process in order: days → weeks → months
+// This ensures proper cascading of time advancement
 
 while (Q.day_actions >= 1) {
     Q.day_actions -= 1;
