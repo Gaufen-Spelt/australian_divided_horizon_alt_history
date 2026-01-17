@@ -2,7 +2,6 @@ title: Post Event
 new-page: true
 on-arrival: {!
 
-
 console.log('=== POST EVENT START ===');
 console.log('Actions at entry:', Q.actions);
 console.log('Day:', Q.day, 'Week:', Q.week, 'Month:', Q.month);
@@ -15,10 +14,22 @@ Q.last_advisor_action = 0;
 Q.last_cabinet_action = 0;
 
 // ============================================
+// DEFINE DYNAMIC PARTY LIST
+// ============================================
+let parties = ['alp', 'liberal', 'country', 'cpa', 'lang', 'other'];
+
+if (Q.dlp_formed) {
+    parties.push('dlp');
+}
+
+// For backwards compatibility
+Q.parties = parties;
+
+// ============================================
 // SANITIZE CLASS-PARTY SUPPORT (no negatives)
 // ============================================
 for (let c of Q.classes) {
-    for (let party of Q.parties) {
+    for (let party of parties) {
         Q[c + '_' + party] = Math.max(0, Q[c + '_' + party] || 0);
     }
 }
@@ -26,9 +37,34 @@ for (let c of Q.classes) {
 // ============================================
 // SANITIZE OPINION VARIABLES
 // ============================================
-Q.pro_republic = Math.max(0, Math.min(99, Math.round(Q.pro_republic || 0)));
-Q.nationalism = Math.max(0, Math.min(100, Math.round(Q.nationalism || 0)));
-Q.socialism = Math.max(0, Math.min(100, Math.round(Q.socialism || 0)));
+Q.support_labor = Math.max(0, Math.min(99, Math.round(Q.support_labor || 48)));
+Q.anti_communist = Math.max(0, Math.min(100, Math.round(Q.anti_communist || 60)));
+Q.pro_british = Math.max(0, Math.min(100, Math.round(Q.pro_british || 70)));
+Q.immigration_support = Math.max(0, Math.min(100, Math.round(Q.immigration_support || 50)));
+Q.white_australia_support = Math.max(0, Math.min(100, Math.round(Q.white_australia_support || 80)));
+
+// ============================================
+// RECALCULATE NATIONAL FROM STATE DATA
+// ============================================
+
+// Recalculate national demographics
+for (let demo_class of Q.classes) {
+    Q[demo_class] = 0;
+    for (let state of Q.states) {
+        Q[demo_class] += (Q[state + '_' + demo_class] || 0) * Q.state_weights[state];
+    }
+}
+
+// Recalculate national party support from state data
+for (let demo_class of Q.classes) {
+    for (let party of parties) {
+        Q[demo_class + '_' + party] = 0;
+        for (let state of Q.states) {
+            let state_var = state + '_' + demo_class + '_' + party;
+            Q[demo_class + '_' + party] += (Q[state_var] || 0) * Q.state_weights[state];
+        }
+    }
+}
 
 // ============================================
 // CALCULATE NORMALIZED CLASS VOTING
@@ -37,12 +73,12 @@ for (let c of Q.classes) {
     let class_votes = 0;
     
     // Sum total votes for this class
-    for (let party of Q.parties) {
+    for (let party of parties) {
         class_votes += Q[c + '_' + party];
     }
     
     // Normalize to percentages
-    for (let party of Q.parties) {
+    for (let party of parties) {
         if (class_votes > 0) {
             Q[c + '_' + party + '_normalized'] = 100 * Q[c + '_' + party] / class_votes;
             Q[c + '_' + party + '_display'] = Math.round(100 * Q[c + '_' + party] / class_votes);
@@ -58,7 +94,7 @@ for (let c of Q.classes) {
 // ============================================
 let total_support = 0;
 
-for (let party of Q.parties) {
+for (let party of parties) {
     let party_support = 0;
     
     for (let c of Q.classes) {
@@ -74,15 +110,15 @@ for (let party of Q.parties) {
 }
 
 // Normalize party support to percentages
-for (let party of Q.parties) {
+for (let party of parties) {
     if (total_support > 0) {
         Q[party + '_normalized'] = Q[party + '_support'] / total_support;
         Q[party + '_votes'] = Math.round(Q[party + '_normalized'] * 100);
-        Q[party + '_votes_display'] = Math.round(Q[party + '_normalized'] * 100).toFixed(2);
+        Q[party + '_votes_display'] = (Q[party + '_normalized'] * 100).toFixed(2);
     } else {
         Q[party + '_normalized'] = 0;
         Q[party + '_votes'] = 0;
-        Q[party + '_votes_display'] = 0.0;
+        Q[party + '_votes_display'] = '0.00';
     }
 }
 
@@ -139,64 +175,32 @@ Q.dissent_percent = Q.dissent * 100;
 // ============================================
 // NORMALIZE CLASSES (sum to 100)
 // ============================================
-let classes = [
-    'workers', 'white_collar', 'business', 'rural', 'unemployed',
-    'catholics', 'migrants'
-];
+// Note: catholics and migrants are cross-cutting demographics
+// They overlap with other classes and shouldn't be normalized together
+let primary_classes = ['workers', 'white_collar', 'business', 'rural', 'unemployed'];
 
 let class_sum = 0;
-for (let c of classes) {
+for (let c of primary_classes) {
     Q[c] = Math.max(0, Q[c] || 0);
     class_sum += Q[c];
 }
 
 if (class_sum > 0) {
     let class_factor = 100 / class_sum;
-    for (let c of classes) {
+    for (let c of primary_classes) {
         Q[c] = +((Q[c] * class_factor).toFixed(2));
     }
 }
 
-// ============================================
-// RECALCULATE NORMALIZED CLASS VOTES (with dynamic parties)
-// ============================================
-let parties = [
-'alp', 'liberal', 'country', 'cpa', 'other'
-];
-
-if (Q.dlp_formed) {
-    parties.push('dlp');
-}
-if (Q.lang_labor_active) {
-    parties.push('lang');
-}
-
-for (let c of classes) {
-    let class_votes = 0;
-
-    // Sum all party support for this class
-    for (let party of parties) {
-        Q[c + '_' + party] = Math.max(0, Q[c + '_' + party] || 0);
-        class_votes += Q[c + '_' + party];
-    }
-
-    // Normalize and create display values
-    for (let party of parties) {
-        if (class_votes > 0) {
-            Q[c + '_' + party + '_normalized'] = Q[c + '_' + party] / class_votes;
-            Q[c + '_' + party + '_display'] = (Q[c + '_' + party + '_normalized'] * 100).toFixed(1);
-        } else {
-            Q[c + '_' + party + '_normalized'] = 0;
-            Q[c + '_' + party + '_display'] = '0.0';
-        }
-    }
-}
+// Catholics and migrants are separate (can be any class)
+Q.catholics = Math.max(0, Math.min(100, Q.catholics || 20));
+Q.migrants = Math.max(0, Math.min(100, Q.migrants || 2));
 
 // ============================================
 // SANITIZE ECONOMIC VARIABLES
 // ============================================
-Q.unemployed = Math.max(1, Q.unemployed || 1);
-Q.inflation = Q.inflation || 0;
+Q.unemployed = Math.max(1, Q.unemployed || 2.5);
+Q.inflation = Q.inflation || 10;
 
 // ============================================
 // MULTI-SCALE TIME QUEUE SYSTEM
@@ -218,7 +222,6 @@ Q.time  = Q.time  || 0;
 // ADVANCE DAY
 // ============================================
 function advance_day() {
-
     Q.day += 1;
     Q.time += 0.036;   // ≈ 1 / 28
 
@@ -230,7 +233,7 @@ function advance_day() {
     // Weekly rollover
     if (Q.day >= 8) {
         Q.day = 1;
-        Q.week_actions += 1;   // queue a week tick
+        Q.week_actions += 1;
     }
 }
 
@@ -238,7 +241,6 @@ function advance_day() {
 // ADVANCE WEEK
 // ============================================
 function advance_week() {
-
     Q.week += 1;
     Q.time += 0.25;
 
@@ -250,7 +252,7 @@ function advance_week() {
     // Monthly rollover
     if (Q.week >= 5) {
         Q.week = 1;
-        Q.month_actions += 1;   // queue a month tick
+        Q.month_actions += 1;
     }
 }
 
@@ -258,7 +260,6 @@ function advance_week() {
 // ADVANCE MONTH
 // ============================================
 function advance_month() {
-
     Q.month += 1;
     Q.time += 1;
 
@@ -282,7 +283,7 @@ function advance_month() {
     let date = new Date(Q.year, Q.month - 1);
 
     let party_row = { date };
-    for (let p of Q.parties) {
+    for (let p of parties) {
         party_row[p] = Q[p + '_normalized'] * 100;
     }
     Q.party_support_records.push(party_row);
@@ -312,6 +313,7 @@ while (Q.month_actions >= 1) {
     Q.month_actions -= 1;
     advance_month();
 }
+
 // ============================================
 // CHECK FOR EVENTS
 // ============================================
