@@ -187,30 +187,59 @@
         window.justLoaded = false;
     }
   };
+// Modified to accept a target container ID (defaults to #qualities if not provided)
+    window.updateSidebar = function(targetId) {
+        targetId = targetId || '#qualities'; // Default to first box
+        var container = $(targetId);
+        container.empty();
+        
+        // Use the tab specifically saved for this container
+        var tabToLoad = (targetId === '#qualities_2') ? window.statusTab2 : window.statusTab;
+        
+        var scene = dendryUI.game.scenes[tabToLoad];
+        dendryUI.dendryEngine._runActions(scene.onArrival);
+        var displayContent = dendryUI.dendryEngine._makeDisplayContent(scene.content, true);
+        container.append(dendryUI.contentToHTML.convert(displayContent));
+    };
 
-  // TODO: have some code for tabbed sidebar browsing.
-  window.updateSidebar = function() {
-      $('#qualities').empty();
-      var scene = dendryUI.game.scenes[window.statusTab];
-      dendryUI.dendryEngine._runActions(scene.onArrival);
-      var displayContent = dendryUI.dendryEngine._makeDisplayContent(scene.content, true);
-      $('#qualities').append(dendryUI.contentToHTML.convert(displayContent));
-  };
+    // Modified to accept a third argument: the target content ID
+    window.changeTab = function(newTab, tabId, targetQualitiesId) {
+        targetQualitiesId = targetQualitiesId || '#qualities';
+        
+        if (tabId.includes('poll') && dendryUI.dendryEngine.state.qualities.historical_mode) {
+            window.alert('Polls are not available in historical mode.');
+            return;
+        }
 
-  window.changeTab = function(newTab, tabId) {
-      if (tabId == 'poll_tab' && dendryUI.dendryEngine.state.qualities.historical_mode) {
-          window.alert('Polls are not available in historical mode.');
-          return;
-      }
-      var tabButton = document.getElementById(tabId);
-      var tabButtons = document.getElementsByClassName('tab_button');
-      for (i = 0; i < tabButtons.length; i++) {
-        tabButtons[i].className = tabButtons[i].className.replace(' active', '');
-      }
-      tabButton.className += ' active';
-      window.statusTab = newTab;
-      window.updateSidebar();
-  };
+        // Update active class only for buttons within the same parent box
+        var tabButton = document.getElementById(tabId);
+        var parentBox = tabButton.closest('.stats-box');
+        var siblingButtons = parentBox.getElementsByClassName('tab_button');
+
+        for (var i = 0; i < siblingButtons.length; i++) {
+            siblingButtons[i].classList.remove('active');
+        }
+
+        tabButton.classList.add('active');
+
+        // Save the tab state for the correct box
+        if (targetQualitiesId === '#qualities_2') {
+            window.statusTab2 = newTab;
+        } else {
+            window.statusTab = newTab;
+        }
+        
+        window.updateSidebar(targetQualitiesId);
+    };
+
+    // Ensure both sidebars update when the game displays new content
+    window.onDisplayContent = function() {
+        window.updateSidebar('#qualities');
+        window.updateSidebar('#qualities_2');
+    };
+
+    // Initialize the second tab variable at the bottom of the script
+    window.statusTab2 = "status.factions"; // Set a default for the 2nd box
 
   window.onDisplayContent = function() {
       window.updateSidebar();
