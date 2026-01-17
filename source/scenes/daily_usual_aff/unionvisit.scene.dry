@@ -3,7 +3,7 @@ new-page: true
 is-card: true
 tags: day_affairs
 view-if: union_visit_daily_timer = 0
-on-arrival: day_actions += 1; union_visit_daily_timer = 1
+on-arrival: day_actions += 1; union_visit_timer = 1
 
 Visit a local union branch to strengthen ties with organized labor and show the ALP flag. Our presence can help counter communist organizing efforts.
 
