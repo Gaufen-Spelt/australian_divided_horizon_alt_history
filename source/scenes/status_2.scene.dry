@@ -1,137 +1,309 @@
-title: Eddie's World
+title: STATUS 2
 new-page: true
 is-special: true
 
-**= Local Situations**
+=NEW SOUTH WALES
 
-**New South Wales**
+ALP Workers NSW : [+ Q.nsw_workers_alp +] |
+Liberal Workers NSW : [+ Q.nsw_workers_liberal +] | 
+Country Workers NSW : [+ Q.nsw_workers_country +] |
+CPA Workers NSW : [+ Q.nsw_workers_cpa +] |
+Lang Workers NSW : [+ Q.nsw_workers_lang +] |
+Other Workers NSW : [+ Q.nsw_workers_other +] |
 
-*Sydney Waterfront*
-- Current disputes: [+ sydney_waterfront_disputes +]
-- Communist influence: [+ sydney_wharfie_cpa : influence +]
-- Days lost to strikes: [+ sydney_strike_days +]
-- Police presence: [+ sydney_dock_police : presence +]
+ALP White Collar NSW : [+ Q.nsw_white_collar_alp +]
+Liberal White Collar NSW : [+ Q.nsw_white_collar_liberal +]
+Country White Collar NSW : [+ Q.nsw_white_collar_country +]
+CPA White Collar NSW : [+ Q.nsw_white_collar_cpa +]
+Lang White Collar NSW : [+ Q.nsw_white_collar_lang +]
+Other White Collar NSW : [+ Q.nsw_white_collar_other +]
 
-*Western Sydney Industrial Belt*
-- Factory employment: [+ western_sydney_employment +]%
-- Union militancy: [+ western_sydney_militancy : militancy +]
-- Housing crisis severity: [+ western_sydney_housing : crisis +]
-- Migrant worker concentration: [+ western_sydney_migrants +]%
+ALP Business NSW : [+ Q.nsw_business_alp +]
+Liberal Business NSW : [+ Q.nsw_business_liberal +]
+Country Business NSW : [+ Q.nsw_business_country +]
+CPA Business NSW : [+ Q.nsw_business_cpa +]
+Lang Business NSW : [+ Q.nsw_business_lang +]
+Other Business NSW : [+ Q.nsw_business_other +]
 
-*Newcastle & Hunter Valley*
-- Coal production: [+ newcastle_coal_output +] tons/month
-- Miner strikes: [+ newcastle_strikes +] active
-- Communist miners: [+ newcastle_cpa_miners +]%
-- BHP relations: [+ bhp_labor_relations : relations +]
+ALP Rural NSW : [+ Q.nsw_rural_alp +]
+Liberal Rural NSW : [+ Q.nsw_rural_liberal +]
+Country Rural NSW : [+ Q.nsw_rural_country +]
+CPA Rural NSW : [+ Q.nsw_rural_cpa +]
+Lang Rural NSW : [+ Q.nsw_rural_lang +]
+Other Rural NSW : [+ Q.nsw_rural_other +]
 
-*Rural NSW*
-- Farmer sentiment toward Labor: [+ rural_nsw_alp_sentiment +]%
-- Drought conditions: [+ nsw_drought : severity +]
-- Wheat/wool prices: [+ nsw_commodity_prices : trend +]
-- Country Party dominance: [+ nsw_country_strength +]%
+ALP Unemployed NSW : [+ Q.nsw_unemployed_alp +]
+Liberal Unemployed NSW : [+ Q.nsw_unemployed_liberal +]
+Country Unemployed NSW : [+ Q.nsw_unemployed_country +]
+CPA Unemployed NSW : [+ Q.nsw_unemployed_cpa +]
+Lang Unemployed NSW : [+ Q.nsw_unemployed_lang +]
+Other Unemployed NSW : [+ Q.nsw_unemployed_other +]
 
-**Victoria**
+ALP Catholics NSW : [+ Q.nsw_catholics_alp +]
+Liberal Catholics NSW : [+ Q.nsw_catholics_liberal +]
+Country Catholics NSW : [+ Q.nsw_catholics_country +]
+CPA Catholics NSW : [+ Q.nsw_catholics_cpa +]
+Lang Catholics NSW : [+ Q.nsw_catholics_lang +]
+Other Catholics NSW : [+ Q.nsw_catholics_other +]
 
-*Port Melbourne & Docks*
-- Waterfront activity: [+ melbourne_dock_activity : activity +]
-- WWF strength: [+ melbourne_wharfie_strength : strength +]
-- Current disputes: [+ melbourne_waterfront_disputes +]
+ALP Migrants NSW : [+ Q.nsw_migrants_alp +]
+Liberal Migrants NSW : [+ Q.nsw_migrants_liberal +]
+Country Migrants NSW : [+ Q.nsw_migrants_country +]
+CPA Migrants NSW : [+ Q.nsw_migrants_cpa +]
+Lang Migrants NSW : [+ Q.nsw_migrants_lang +]
+Other Migrants NSW : [+ Q.nsw_migrants_other +]
 
-*Fitzroy & Carlton (Working Class Inner City)*
-- Communist Party presence: [+ fitzroy_cpa : presence +]
-- Catholic Action activity: [+ fitzroy_groupers : activity +]
-- Housing conditions: [+ fitzroy_housing : conditions +]
-- Ethnic tensions: [+ fitzroy_ethnic_tension : tension +]
+= VICTORIA
 
-*Latrobe Valley (Brown Coal)*
-- Power generation: [+ latrobe_power : status +]
-- SEC workers' militancy: [+ latrobe_militancy : militancy +]
-- ALP dominance: [+ latrobe_alp_strength +]%
+ALP Workers Victoria : [+ Q.vic_workers_alp +]
+Liberal Workers Victoria : [+ Q.vic_workers_liberal +]
+Country Workers Victoria : [+ Q.vic_workers_country +]
+CPA Workers Victoria : [+ Q.vic_workers_cpa +]
+Lang Workers Victoria : [+ Q.vic_workers_lang +]
+Other Workers Victoria : [+ Q.vic_workers_other +]
 
-*Rural Victoria*
-- Dairy farmer sentiment: [+ vic_rural_sentiment +]%
-- Country Party vs ALP: [+ vic_rural_competition +]
+ALP White Collar Victoria : [+ Q.vic_white_collar_alp +]
+Liberal White Collar Victoria : [+ Q.vic_white_collar_liberal +]
+Country White Collar Victoria : [+ Q.vic_white_collar_country +]
+CPA White Collar Victoria : [+ Q.vic_white_collar_cpa +]
+Lang White Collar Victoria : [+ Q.vic_white_collar_lang +]
+Other White Collar Victoria : [+ Q.vic_white_collar_other +]
 
-**Queensland**
+ALP Business Victoria : [+ Q.vic_business_alp +]
+Liberal Business Victoria : [+ Q.vic_business_liberal +]
+Country Business Victoria : [+ Q.vic_business_country +]
+CPA Business Victoria : [+ Q.vic_business_cpa +]
+Lang Business Victoria : [+ Q.vic_business_lang +]
+Other Business Victoria : [+ Q.vic_business_other +]
 
-*Brisbane River & Port*
-- Waterfront control: [+ brisbane_waterfront_control +]
-- Strike activity: [+ brisbane_strike_activity : activity +]
+ALP Rural Victoria : [+ Q.vic_rural_alp +]
+Liberal Rural Victoria : [+ Q.vic_rural_liberal +]
+Country Rural Victoria : [+ Q.vic_rural_country +]
+CPA Rural Victoria : [+ Q.vic_rural_cpa +]
+Lang Rural Victoria : [+ Q.vic_rural_lang +]
+Other Rural Victoria : [+ Q.vic_rural_other +]
 
-*North Queensland (Sugar & Mining)*
-- AWU dominance: [+ nq_awu_dominance : dominance +]
-- Sugar industry conditions: [+ nq_sugar : conditions +]
-- Mining disputes: [+ nq_mining_disputes +]
+ALP Unemployed Victoria : [+ Q.vic_unemployed_alp +]
+Liberal Unemployed Victoria : [+ Q.vic_unemployed_liberal +]
+Country Unemployed Victoria : [+ Q.vic_unemployed_country +]
+CPA Unemployed Victoria : [+ Q.vic_unemployed_cpa +]
+Lang Unemployed Victoria : [+ Q.vic_unemployed_lang +]
+Other Unemployed Victoria : [+ Q.vic_unemployed_other +]
 
-*The Bush (Outback Queensland)*
-- Shearers' sentiment: [+ qld_shearers_sentiment +]%
-- AWU vs Communist influence: [+ qld_union_battle +]
-- Country Party strength: [+ qld_country_strength +]%
+ALP Catholics Victoria : [+ Q.vic_catholics_alp +]
+Liberal Catholics Victoria : [+ Q.vic_catholics_liberal +]
+Country Catholics Victoria : [+ Q.vic_catholics_country +]
+CPA Catholics Victoria : [+ Q.vic_catholics_cpa +]
+Lang Catholics Victoria : [+ Q.vic_catholics_lang +]
+Other Catholics Victoria : [+ Q.vic_catholics_other +]
 
-**South Australia**
+ALP Migrants Victoria : [+ Q.vic_migrants_alp +]
+Liberal Migrants Victoria : [+ Q.vic_migrants_liberal +]
+Country Migrants Victoria : [+ Q.vic_migrants_country +]
+CPA Migrants Victoria : [+ Q.vic_migrants_cpa +]
+Lang Migrants Victoria : [+ Q.vic_migrants_lang +]
+Other Migrants Victoria : [+ Q.vic_migrants_other +]
 
-*Port Adelaide & Whyalla*
-- BHP Whyalla operations: [+ whyalla_bhp : status +]
-- Steel workers' militancy: [+ whyalla_militancy : militancy +]
-- Port Adelaide wharfies: [+ port_adelaide_wharfies : strength +]
+= QUEENSLAND
 
-*Adelaide Hills & Barossa*
-- Wine industry: [+ barossa_wine : status +]
-- German Australian sentiment: [+ barossa_politics +]%
-- LCL (Liberal Country League) grip: [+ sa_lcl_dominance +]%
+ALP Workers Queensland : [+ Q.qld_workers_alp +]
+Liberal Workers Queensland : [+ Q.qld_workers_liberal +]
+Country Workers Queensland : [+ Q.qld_workers_country +]
+CPA Workers Queensland : [+ Q.qld_workers_cpa +]
+Lang Workers Queensland : [+ Q.qld_workers_lang +]
+Other Workers Queensland : [+ Q.qld_workers_other +]
 
-**Western Australia**
+ALP White Collar Queensland : [+ Q.qld_white_collar_alp +]
+Liberal White Collar Queensland : [+ Q.qld_white_collar_liberal +]
+Country White Collar Queensland : [+ Q.qld_white_collar_country +]
+CPA White Collar Queensland : [+ Q.qld_white_collar_cpa +]
+Lang White Collar Queensland : [+ Q.qld_white_collar_lang +]
+Other White Collar Queensland : [+ Q.qld_white_collar_other +]
 
-*Fremantle Docks*
-- Communist wharfie control: [+ fremantle_cpa_control : control +]
-- Port disruptions: [+ fremantle_disruptions +] days/year
-- Government pressure: [+ wa_govt_pressure : pressure +]
+ALP Business Queensland : [+ Q.qld_business_alp +]
+Liberal Business Queensland : [+ Q.qld_business_liberal +]
+Country Business Queensland : [+ Q.qld_business_country +]
+CPA Business Queensland : [+ Q.qld_business_cpa +]
+Lang Business Queensland : [+ Q.qld_business_lang +]
+Other Business Queensland : [+ Q.qld_business_other +]
 
-*Kalgoorlie & Goldfields*
-- Gold mining employment: [+ kalgoorlie_employment +]
-- Miners' Federation strength: [+ kalgoorlie_union : strength +]
-- Communist influence: [+ kalgoorlie_cpa : influence +]
+ALP Rural Queensland : [+ Q.qld_rural_alp +]
+Liberal Rural Queensland : [+ Q.qld_rural_liberal +]
+Country Rural Queensland : [+ Q.qld_rural_country +]
+CPA Rural Queensland : [+ Q.qld_rural_cpa +]
+Lang Rural Queensland : [+ Q.qld_rural_lang +]
+Other Rural Queensland : [+ Q.qld_rural_other +]
 
-*Perth & Swan*
-- Manufacturing growth: [+ perth_manufacturing : growth +]
-- Liberal Party dominance: [+ perth_liberal_dominance +]%
+ALP Unemployed Queensland : [+ Q.qld_unemployed_alp +]
+Liberal Unemployed Queensland : [+ Q.qld_unemployed_liberal +]
+Country Unemployed Queensland : [+ Q.qld_unemployed_country +]
+CPA Unemployed Queensland : [+ Q.qld_unemployed_cpa +]
+Lang Unemployed Queensland : [+ Q.qld_unemployed_lang +]
+Other Unemployed Queensland : [+ Q.qld_unemployed_other +]
 
-**Tasmania**
+ALP Catholics Queensland : [+ Q.qld_catholics_alp +]
+Liberal Catholics Queensland : [+ Q.qld_catholics_liberal +]
+Country Catholics Queensland : [+ Q.qld_catholics_country +]
+CPA Catholics Queensland : [+ Q.qld_catholics_cpa +]
+Lang Catholics Queensland : [+ Q.qld_catholics_lang +]
+Other Catholics Queensland : [+ Q.qld_catholics_other +]
 
-*Hobart Docks & Industry*
-- Waterfront situation: [+ hobart_waterfront : status +]
-- Hydro-electric works: [+ tas_hydro : progress +]
-- ALP state govt popularity: [+ tas_alp_popularity +]%
+ALP Migrants Queensland : [+ Q.qld_migrants_alp +]
+Liberal Migrants Queensland : [+ Q.qld_migrants_liberal +]
+Country Migrants Queensland : [+ Q.qld_migrants_country +]
+CPA Migrants Queensland : [+ Q.qld_migrants_cpa +]
+Lang Migrants Queensland : [+ Q.qld_migrants_lang +]
+Other Migrants Queensland : [+ Q.qld_migrants_other +]
 
-*Rural Tasmania*
-- Apple industry crisis: [+ tas_apple_crisis : severity +]
-- UK market access: [+ tas_uk_market : status +]
+= SOUTH AUSTRALIA
 
----
+ALP Workers South Australia : [+ Q.sa_workers_alp +]
+Liberal Workers South Australia : [+ Q.sa_workers_liberal +]
+Country Workers South Australia : [+ Q.sa_workers_country +]
+CPA Workers South Australia : [+ Q.sa_workers_cpa +]
+Lang Workers South Australia : [+ Q.sa_workers_lang +]
+Other Workers South Australia : [+ Q.sa_workers_other +]
 
-**= Current Local Crises**
+ALP White Collar South Australia : [+ Q.sa_white_collar_alp +]
+Liberal White Collar South Australia : [+ Q.sa_white_collar_liberal +]
+Country White Collar South Australia : [+ Q.sa_white_collar_country +]
+CPA White Collar South Australia : [+ Q.sa_white_collar_cpa +]
+Lang White Collar South Australia : [+ Q.sa_white_collar_lang +]
+Other White Collar South Australia : [+ Q.sa_white_collar_other +]
 
-[? if sydney_rent_strike : Sydney: Rent strike in Redfern & Paddington ?]
-[? if newcastle_coal_strike : Newcastle: Major coal strike disrupting exports ?]
-[? if melbourne_sectarian_riot : Melbourne: Sectarian violence in Collingwood ?]
-[? if brisbane_police_raid : Brisbane: Police raid on Trades Hall ?]
-[? if fremantle_port_closure : Fremantle: Port shut down by wharfie strike ?]
-[? if kalgoorlie_mine_disaster : Kalgoorlie: Mining accident, deaths ?]
+ALP Business South Australia : [+ Q.sa_business_alp +]
+Liberal Business South Australia : [+ Q.sa_business_liberal +]
+Country Business South Australia : [+ Q.sa_business_country +]
+CPA Business South Australia : [+ Q.sa_business_cpa +]
+Lang Business South Australia : [+ Q.sa_business_lang +]
+Other Business South Australia : [+ Q.sa_business_other +]
 
----
+ALP Rural South Australia : [+ Q.sa_rural_alp +]
+Liberal Rural South Australia : [+ Q.sa_rural_liberal +]
+Country Rural South Australia : [+ Q.sa_rural_country +]
+CPA Rural South Australia : [+ Q.sa_rural_cpa +]
+Lang Rural South Australia : [+ Q.sa_rural_lang +]
+Other Rural South Australia : [+ Q.sa_rural_other +]
 
-**= Regional Party Strength**
+ALP Unemployed South Australia : [+ Q.sa_unemployed_alp +]
+Liberal Unemployed South Australia : [+ Q.sa_unemployed_liberal +]
+Country Unemployed South Australia : [+ Q.sa_unemployed_country +]
+CPA Unemployed South Australia : [+ Q.sa_unemployed_cpa +]
+Lang Unemployed South Australia : [+ Q.sa_unemployed_lang +]
+Other Unemployed South Australia : [+ Q.sa_unemployed_other +]
 
-*State-by-State ALP Branches*
+ALP Catholics South Australia : [+ Q.sa_catholics_alp +]
+Liberal Catholics South Australia : [+ Q.sa_catholics_liberal +]
+Country Catholics South Australia : [+ Q.sa_catholics_country +]
+CPA Catholics South Australia : [+ Q.sa_catholics_cpa +]
+Lang Catholics South Australia : [+ Q.sa_catholics_lang +]
+Other Catholics South Australia : [+ Q.sa_catholics_other +]
 
-NSW ALP: [+ nsw_alp_members +]k members | Factional control: [+ nsw_alp_faction_control +]
+ALP Migrants South Australia : [+ Q.sa_migrants_alp +]
+Liberal Migrants South Australia : [+ Q.sa_migrants_liberal +]
+Country Migrants South Australia : [+ Q.sa_migrants_country +]
+CPA Migrants South Australia : [+ Q.sa_migrants_cpa +]
+Lang Migrants South Australia : [+ Q.sa_migrants_lang +]
+Other Migrants South Australia : [+ Q.sa_migrants_other +]
 
-Victorian ALP: [+ vic_alp_members +]k members | Factional control: [+ vic_alp_faction_control +]
+= WESTERN AUSTRALIA
 
-Queensland ALP: [+ qld_alp_members +]k members | Factional control: [+ qld_alp_faction_control +]
+ALP Workers Western Australia : [+ Q.wa_workers_alp +]
+Liberal Workers Western Australia : [+ Q.wa_workers_liberal +]
+Country Workers Western Australia : [+ Q.wa_workers_country +]
+CPA Workers Western Australia : [+ Q.wa_workers_cpa +]
+Lang Workers Western Australia : [+ Q.wa_workers_lang +]
+Other Workers Western Australia : [+ Q.wa_workers_other +]
 
-SA ALP: [+ sa_alp_members +]k members | Status: [+ sa_alp_status +]
+ALP White Collar Western Australia : [+ Q.wa_white_collar_alp +]
+Liberal White Collar Western Australia : [+ Q.wa_white_collar_liberal +]
+Country White Collar Western Australia : [+ Q.wa_white_collar_country +]
+CPA White Collar Western Australia : [+ Q.wa_white_collar_cpa +]
+Lang White Collar Western Australia : [+ Q.wa_white_collar_lang +]
+Other White Collar Western Australia : [+ Q.wa_white_collar_other +]
 
-WA ALP: [+ wa_alp_members +]k members | Status: [+ wa_alp_status +]
+ALP Business Western Australia : [+ Q.wa_business_alp +]
+Liberal Business Western Australia : [+ Q.wa_business_liberal +]
+Country Business Western Australia : [+ Q.wa_business_country +]
+CPA Business Western Australia : [+ Q.wa_business_cpa +]
+Lang Business Western Australia : [+ Q.wa_business_lang +]
+Other Business Western Australia : [+ Q.wa_business_other +]
 
-Tasmanian ALP: [+ tas_alp_members +]k members | Status: [+ tas_alp_status +]
+ALP Rural Western Australia : [+ Q.wa_rural_alp +]
+Liberal Rural Western Australia : [+ Q.wa_rural_liberal +]
+Country Rural Western Australia : [+ Q.wa_rural_country +]
+CPA Rural Western Australia : [+ Q.wa_rural_cpa +]
+Lang Rural Western Australia : [+ Q.wa_rural_lang +]
+Other Rural Western Australia : [+ Q.wa_rural_other +]
+
+ALP Unemployed Western Australia : [+ Q.wa_unemployed_alp +]
+Liberal Unemployed Western Australia : [+ Q.wa_unemployed_liberal +]
+Country Unemployed Western Australia : [+ Q.wa_unemployed_country +]
+CPA Unemployed Western Australia : [+ Q.wa_unemployed_cpa +]
+Lang Unemployed Western Australia : [+ Q.wa_unemployed_lang +]
+Other Unemployed Western Australia : [+ Q.wa_unemployed_other +]
+
+ALP Catholics Western Australia : [+ Q.wa_catholics_alp +]
+Liberal Catholics Western Australia : [+ Q.wa_catholics_liberal +]
+Country Catholics Western Australia : [+ Q.wa_catholics_country +]
+CPA Catholics Western Australia : [+ Q.wa_catholics_cpa +]
+Lang Catholics Western Australia : [+ Q.wa_catholics_lang +]
+Other Catholics Western Australia : [+ Q.wa_catholics_other +]
+
+ALP Migrants Western Australia : [+ Q.wa_migrants_alp +]
+Liberal Migrants Western Australia : [+ Q.wa_migrants_liberal +]
+Country Migrants Western Australia : [+ Q.wa_migrants_country +]
+CPA Migrants Western Australia : [+ Q.wa_migrants_cpa +]
+Lang Migrants Western Australia : [+ Q.wa_migrants_lang +]
+Other Migrants Western Australia : [+ Q.wa_migrants_other +]
+
+= TASMANIA 
+
+ALP Workers Tasmania : [+ Q.tas_workers_alp +]
+Liberal Workers Tasmania : [+ Q.tas_workers_liberal +]
+Country Workers Tasmania : [+ Q.tas_workers_country +]
+CPA Workers Tasmania : [+ Q.tas_workers_cpa +]
+Lang Workers Tasmania : [+ Q.tas_workers_lang +]
+Other Workers Tasmania : [+ Q.tas_workers_other +]
+
+ALP White Collar Tasmania : [+ Q.tas_white_collar_alp +]
+Liberal White Collar Tasmania : [+ Q.tas_white_collar_liberal +]
+Country White Collar Tasmania : [+ Q.tas_white_collar_country +]
+CPA White Collar Tasmania : [+ Q.tas_white_collar_cpa +]
+Lang White Collar Tasmania : [+ Q.tas_white_collar_lang +]
+Other White Collar Tasmania : [+ Q.tas_white_collar_other +]
+
+ALP Business Tasmania : [+ Q.tas_business_alp +]
+Liberal Business Tasmania : [+ Q.tas_business_liberal +]
+Country Business Tasmania : [+ Q.tas_business_country +]
+CPA Business Tasmania : [+ Q.tas_business_cpa +]
+Lang Business Tasmania : [+ Q.tas_business_lang +]
+Other Business Tasmania : [+ Q.tas_business_other +]
+
+ALP Rural Tasmania : [+ Q.tas_rural_alp +]
+Liberal Rural Tasmania : [+ Q.tas_rural_liberal +]
+Country Rural Tasmania : [+ Q.tas_rural_country +]
+CPA Rural Tasmania : [+ Q.tas_rural_cpa +]
+Lang Rural Tasmania : [+ Q.tas_rural_lang +]
+Other Rural Tasmania : [+ Q.tas_rural_other +]
+
+ALP Unemployed Tasmania : [+ Q.tas_unemployed_alp +]
+Liberal Unemployed Tasmania : [+ Q.tas_unemployed_liberal +]
+Country Unemployed Tasmania : [+ Q.tas_unemployed_country +]
+CPA Unemployed Tasmania : [+ Q.tas_unemployed_cpa +]
+Lang Unemployed Tasmania : [+ Q.tas_unemployed_lang +]
+Other Unemployed Tasmania : [+ Q.tas_unemployed_other +]
+
+ALP Catholics Tasmania : [+ Q.tas_catholics_alp +]
+Liberal Catholics Tasmania : [+ Q.tas_catholics_liberal +]
+Country Catholics Tasmania : [+ Q.tas_catholics_country +]
+CPA Catholics Tasmania : [+ Q.tas_catholics_cpa +]
+Lang Catholics Tasmania : [+ Q.tas_catholics_lang +]
+Other Catholics Tasmania : [+ Q.tas_catholics_other +]
+
+ALP Migrants Tasmania : [+ Q.tas_migrants_alp +]
+Liberal Migrants Tasmania : [+ Q.tas_migrants_liberal +]
+Country Migrants Tasmania : [+ Q.tas_migrants_country +]
+CPA Migrants Tasmania : [+ Q.tas_migrants_cpa +]
+Lang Migrants Tasmania : [+ Q.tas_migrants_lang +]
+Other Migrants Tasmania : [+ Q.tas_migrants_other +]
