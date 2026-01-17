@@ -11,7 +11,7 @@ Distribute leafleats across the streets!
 -@no_leaf: We won't do it.
 
 @leaf
-on-arrival: nsw_workers_alp * 1.01
+on-arrival: nsw_workers_alp *= 1.01
 
 We did leafletting smh
 
