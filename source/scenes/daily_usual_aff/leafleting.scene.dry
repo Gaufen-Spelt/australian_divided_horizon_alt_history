@@ -3,7 +3,7 @@ new-page: true
 is-card: true
 tags: day_affairs
 view-if: leafleting_daily_timer = 0
-on-arrival: day_actions += 1; leafleting_daily_timer = 1
+on-arrival: day_actions += 1; leafleting_timer = 1
 
 Distribute leaflets across the streets to build support among workers and boost our local organization!
 
