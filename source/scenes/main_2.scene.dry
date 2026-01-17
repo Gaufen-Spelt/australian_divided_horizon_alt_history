@@ -12,5 +12,13 @@ Day: [+ day +]
 
 ---
 
+- @day_actionz
 - @skip
 - @uneddie
+
+@day_actionz
+title: Daily Affairs
+card-image: img/Vorwaerts_nr_1.png
+is-deck: true
+
+- #day_affairs
