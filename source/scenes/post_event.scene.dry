@@ -44,6 +44,31 @@ Q.immigration_support = Math.max(0, Math.min(100, Math.round(Q.immigration_suppo
 Q.white_australia_support = Math.max(0, Math.min(100, Math.round(Q.white_australia_support || 80)));
 
 // ============================================
+// NORMALIZE STATE-LEVEL DEMOGRAPHICS
+// ============================================
+for (let state of Q.states) {
+    for (let demo_class of Q.classes) {
+        let total = 0;
+        
+        // Sum up all party support for this state-demographic combo
+        for (let party of parties) {
+            let state_var = state + '_' + demo_class + '_' + party;
+            total += Q[state_var] || 0;
+        }
+        
+        // Normalize if total isn't 100
+        if (total > 0 && Math.abs(total - 100) > 0.01) {
+            for (let party of parties) {
+                let state_var = state + '_' + demo_class + '_' + party;
+                if (Q[state_var]) {
+                    Q[state_var] = (Q[state_var] / total) * 100;
+                }
+            }
+        }
+    }
+}
+
+// ============================================
 // RECALCULATE NATIONAL FROM STATE DATA
 // ============================================
 
@@ -62,6 +87,28 @@ for (let demo_class of Q.classes) {
         for (let state of Q.states) {
             let state_var = state + '_' + demo_class + '_' + party;
             Q[demo_class + '_' + party] += (Q[state_var] || 0) * Q.state_weights[state];
+        }
+    }
+}
+
+// ============================================
+// NORMALIZE NATIONAL DEMOGRAPHICS (safety check)
+// ============================================
+for (let demo_class of Q.classes) {
+    let total = 0;
+    
+    // Sum up all party support for this demographic
+    for (let party of parties) {
+        total += Q[demo_class + '_' + party] || 0;
+    }
+    
+    // Normalize if total isn't 100
+    if (total > 0 && Math.abs(total - 100) > 0.01) {
+        for (let party of parties) {
+            let key = demo_class + '_' + party;
+            if (Q[key]) {
+                Q[key] = (Q[key] / total) * 100;
+            }
         }
     }
 }
