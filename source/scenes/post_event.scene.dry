@@ -266,22 +266,54 @@ Q.year  = Q.year  || 1949;
 Q.time  = Q.time  || 0;
 
 // ============================================
-// ============================================
 // ADVANCE DAY
 // ============================================
 function advance_day() {
     Q.day += 1;
-    Q.time += 0.036;   // ≈ 1 / 28
+    Q.time += 0.036;
 
     // Decrement daily timers
     for (let t of Q.daily_timers || []) {
         if (Q[t + '_timer'] > 0) Q[t + '_timer'] -= 1;
     }
 
+    // ============================================
+    // DAILY DRIFT - PUT HERE
+    // ============================================
+    Q.drift_base_daily = 0.01;
+    
+    for (let c of Q.classes) {
+        for (let party of parties) {
+            let base = Q[c + '_' + party] || 0;
+            let ideology_factor = 1.0;
+            
+            // Daily factors (local, immediate)
+            if (party === 'alp') {
+                if (Q.eddie_scandal_today) ideology_factor *= 0.95;
+                if (Q.leafleting_today) ideology_factor *= 1.02;
+                if (Q.union_meeting_today && c === 'workers') ideology_factor *= 1.03;
+            } else if (party === 'liberal') {
+                if (Q.police_raid_today) ideology_factor *= 1.02;
+            } else if (party === 'cpa') {
+                if (Q.strike_today && c === 'workers') ideology_factor *= 1.04;
+            }
+            
+            let delta_daily = Q.drift_base_daily * ideology_factor;
+            Q[c + '_' + party] = Math.max(0, base + delta_daily);
+        }
+    }
+    
+    // Reset daily flags
+    Q.eddie_scandal_today = 0;
+    Q.leafleting_today = 0;
+    Q.union_meeting_today = 0;
+    Q.police_raid_today = 0;
+    Q.strike_today = 0;
+
     // Weekly rollover
     if (Q.day >= 8) {
         Q.day = 1;
-        Q.week_actions += 1;   // queue a week tick
+        Q.week_actions += 1;
     }
 }
 
@@ -297,10 +329,45 @@ function advance_week() {
         if (Q[t + '_timer'] > 0) Q[t + '_timer'] -= 1;
     }
 
+    // ============================================
+    // WEEKLY DRIFT - PUT HERE
+    // ============================================
+    Q.drift_base_weekly = 0.05;
+    
+    for (let c of Q.classes) {
+        for (let party of parties) {
+            let base = Q[c + '_' + party] || 0;
+            let ideology_factor = 1.0;
+            
+            // Weekly factors (regional, organized)
+            if (party === 'alp') {
+                if (Q.nsw_alp_crisis) ideology_factor *= 0.90;
+                if (Q.left_right_clash_this_week) ideology_factor *= 0.95;
+                if (Q.strike_victory_this_week && c === 'workers') ideology_factor *= 1.08;
+            } else if (party === 'dlp' && Q.dlp_formed) {
+                if (Q.grouper_campaign_this_week && c === 'catholics') ideology_factor *= 1.10;
+            } else if (party === 'cpa') {
+                if (Q.communist_union_activity && c === 'workers') ideology_factor *= 1.05;
+                if (Q.ban_referendum_this_week) ideology_factor *= 0.85;
+            }
+            
+            let delta_weekly = Q.drift_base_weekly * ideology_factor;
+            Q[c + '_' + party] = Math.max(0, base + delta_weekly);
+        }
+    }
+    
+    // Reset weekly flags
+    Q.nsw_alp_crisis = 0;
+    Q.left_right_clash_this_week = 0;
+    Q.strike_victory_this_week = 0;
+    Q.grouper_campaign_this_week = 0;
+    Q.communist_union_activity = 0;
+    Q.ban_referendum_this_week = 0;
+
     // Monthly rollover
     if (Q.week >= 5) {
         Q.week = 1;
-        Q.month_actions += 1;   // queue a month tick
+        Q.month_actions += 1;
     }
 }
 
@@ -324,7 +391,64 @@ function advance_month() {
         if (Q[t + '_timer'] > 0) Q[t + '_timer'] -= 1;
     }
 
-    // Record statistics
+    // ============================================
+    // MONTHLY DRIFT - PUT HERE
+    // ============================================
+    Q.drift_base_monthly = 0.15;
+    
+    // National ideology factors
+    Q.support_labor_factor = (Q.support_labor || 35) / 50;
+    Q.anti_communist_factor = (Q.anti_communist || 60) / 50;
+    Q.pro_british_factor = (Q.pro_british || 70) / 50;
+    
+    // Economic crisis multiplier
+    Q.economic_crisis = 1.0;
+    if (Q.unemployed > 5) Q.economic_crisis += (Q.unemployed - 5) * 0.05;
+    if (Q.inflation > 10) Q.economic_crisis += (Q.inflation - 10) * 0.03;
+    
+    for (let c of Q.classes) {
+        for (let party of parties) {
+            let base = Q[c + '_' + party] || 0;
+            let ideology_factor = 1.0;
+            
+            // Monthly factors (national, structural)
+            if (party === 'alp') {
+                ideology_factor = Q.support_labor_factor * (Q.alp_in_government ? 1.1 : 0.95);
+                
+                if (Q.alp_in_government) {
+                    if (Q.unemployed < 3) ideology_factor *= 1.10;
+                    if (Q.unemployed > 8) ideology_factor *= 0.85;
+                }
+                
+                if (c === 'workers') ideology_factor *= 1.10;
+                if (c === 'business') ideology_factor *= 0.85;
+            } else if (party === 'liberal') {
+                ideology_factor = Q.anti_communist_factor * Q.pro_british_factor;
+                
+                if (c === 'business') ideology_factor *= 1.20;
+                if (c === 'white_collar') ideology_factor *= 1.15;
+            } else if (party === 'country') {
+                ideology_factor = Q.pro_british_factor * 0.8;
+                
+                if (c === 'rural') ideology_factor *= 1.40;
+            } else if (party === 'cpa') {
+                ideology_factor = Q.support_labor_factor * Q.economic_crisis;
+                
+                if (Q.cpa_banned) ideology_factor *= 0.60;
+                if (c === 'workers') ideology_factor *= 1.20;
+                if (c === 'unemployed') ideology_factor *= 1.40;
+            } else if (party === 'dlp' && Q.dlp_formed) {
+                ideology_factor = Q.anti_communist_factor * 0.8;
+                
+                if (c === 'catholics') ideology_factor *= 1.30;
+            }
+            
+            let delta_monthly = Q.drift_base_monthly * ideology_factor;
+            Q[c + '_' + party] = Math.max(0, base + delta_monthly);
+        }
+    }
+
+    // Record statistics (existing code)
     Q.party_support_records = Q.party_support_records || [];
     Q.economic_records = Q.economic_records || [];
 
