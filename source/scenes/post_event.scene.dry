@@ -278,37 +278,45 @@ function advance_day() {
     }
 
     // ============================================
-    // DAILY DRIFT - PUT HERE
+    // DAILY DRIFT (STATE-LEVEL)
     // ============================================
+
     Q.drift_base_daily = 0.01;
-    
-    for (let c of Q.classes) {
-        for (let party of parties) {
-            let base = Q[c + '_' + party] || 0;
-            let ideology_factor = 1.0;
-            
-            // Daily factors (local, immediate)
-            if (party === 'alp') {
-                if (Q.eddie_scandal_today) ideology_factor *= 0.95;
-                if (Q.leafleting_today) ideology_factor *= 1.02;
-                if (Q.union_meeting_today && c === 'workers') ideology_factor *= 1.03;
-            } else if (party === 'liberal') {
-                if (Q.police_raid_today) ideology_factor *= 1.02;
-            } else if (party === 'cpa') {
-                if (Q.strike_today && c === 'workers') ideology_factor *= 1.04;
+
+    for (let state of Q.states) {
+        let state_weight = Q.state_weights[state] || 1;
+
+        for (let c of Q.classes) {
+            for (let party of parties) {
+
+                let key = state + '_' + c + '_' + party;
+                let base = Q[key] || 0;
+                let ideology_factor = 1.0;
+
+                // Immediate, local effects
+                if (party === 'alp') {
+                    if (Q.eddie_scandal_today) ideology_factor *= 0.95;
+                    if (Q.leafleting_today) ideology_factor *= 1.02;
+                    if (Q.union_meeting_today && c === 'workers') ideology_factor *= 1.03;
+                }
+
+                if (party === 'liberal') {
+                    if (Q.police_raid_today) ideology_factor *= 1.02;
+                }
+
+                if (party === 'cpa') {
+                    if (Q.strike_today && c === 'workers') ideology_factor *= 1.04;
+                }
+
+                let delta =
+                    Q.drift_base_daily *
+                    ideology_factor *
+                    state_weight;
+
+                Q[key] = Math.max(0, base + delta);
             }
-            
-            let delta_daily = Q.drift_base_daily * ideology_factor;
-            Q[c + '_' + party] = Math.max(0, base + delta_daily);
         }
     }
-    
-    // Reset daily flags
-    Q.eddie_scandal_today = 0;
-    Q.leafleting_today = 0;
-    Q.union_meeting_today = 0;
-    Q.police_raid_today = 0;
-    Q.strike_today = 0;
 
     // Weekly rollover
     if (Q.day >= 8) {
