@@ -1,0 +1,453 @@
+title: The Party Responds - Cahill's Move
+subtitle: Automatic Event Chain
+new-page: true
+view-if: taft_strike_seen = 1 and cahill_response_seen = 0 and day >= 6 and year >= 1949
+on-arrival: cahill_response_seen = 1
+go-to: cahill_furious if ward_taft_position == "full_support"; cahill_annoyed if ward_taft_position == "nuanced_support"; cahill_satisfied if ward_taft_position == "condemn"; cahill_neutral if ward_taft_position == "deflect"
+
+@cahill_furious
+
+= NSW Labor HQ - Cahill's Office
+
+**J.J. Cahill's Perspective**
+
+You slam the newspaper down on your desk. The *Herald* headline screams: "LABOR MP BACKS US STRIKE AGAINST AUSTRALIAN EXPORTS."
+
+Ward. That bloody fool Ward.
+
+Your phone hasn't stopped ringing. Business donors furious. Catholic trade unionists asking if Labor has gone communist. Menzies already preparing a parliamentary ambush. And worst of all - the federal leadership calling for an explanation.
+
+You pick up the phone and dial Ward's office.
+
+"WARD! WHAT THE BLOODY HELL DO YOU THINK YOU'RE DOING?!"
+
+Ward's voice comes back defensive. "I'm standing with the workers, Jack. Someone has to—"
+
+"STANDING WITH THE WORKERS?! You've just handed Menzies a bloody gift! 'Labor supports foreign strikes against Australian exports!' He'll dine out on this for months!"
+
+"The debt arrangement—"
+
+"I don't care about your anti-imperialist nonsense! The Right controls the numbers in NSW. You don't speak for Labor. You speak for yourself. And if you can't understand party discipline, maybe you need to find another party!"
+
+You hang up. Your secretary peers in nervously.
+
+"Sir, the Groupers are calling. They want an emergency meeting. They're demanding Ward be censured."
+
+Of course they are. This is exactly the kind of thing Santamaria lives for.
+
+**Cahill will now coordinate with the Groupers to contain the damage...**
+
+on-arrival: {!
+Q.right_alp_nsw_strength += 0.8;
+Q.groupers_strength += 0.6;
+Q.left_nsw_dissent += 5;
+Q.ward_censure_building = 1;
+Q.anti_communist += 3;
+!}
+
+go-to: bridges_response
+
+@cahill_annoyed
+
+= NSW Labor HQ - Cahill's Office
+
+**J.J. Cahill's Perspective**
+
+You read Ward's statement in the *Herald*. It's not as bad as it could have been - at least he didn't call for open revolution - but it's still a headache.
+
+"Labor supports workers' fundamental right to protest exploitative economic arrangements."
+
+It's carefully worded, but it's still signaling sympathy for a strike against Australian exports. Menzies will run with this. The Groupers will be upset. The business wing will ask questions.
+
+You pick up the phone and call Ward.
+
+"Eddie. Your statement."
+
+"Yeah, Jack. I thought it was—"
+
+"It was stupid, but not catastrophic. You've given the Right ammunition, but you haven't blown up the party. Yet."
+
+"The wharfies—"
+
+"The wharfies aren't your only constituency. You represent Labor. That means all workers - including the ones who depend on export income. Next time, run it by me first."
+
+You hang up. This is manageable, but Ward needs to be reined in before he does real damage.
+
+**Cahill will quietly work to limit the fallout...**
+
+on-arrival: {!
+Q.right_alp_nsw_strength += 0.4;
+Q.groupers_dissent += 3;
+Q.left_nsw_dissent += 2;
+Q.ward_on_notice = 1;
+Q.anti_communist += 1;
+!}
+
+go-to: bridges_response
+
+@cahill_satisfied
+
+= NSW Labor HQ - Cahill's Office
+
+**J.J. Cahill's Perspective**
+
+You read Ward's statement condemning the strike and allow yourself a rare smile.
+
+Eddie Ward - the firebrand Left-winger - just backed away from supporting a waterfront strike. Either he's learning political sense, or he's more worried about party discipline than he lets on.
+
+Your phone rings. It's one of the Groupers.
+
+"Cahill, did you see Ward's statement? He actually condemned the strike!"
+
+"I did. Surprising, isn't it?"
+
+"Maybe there's hope for him yet."
+
+You doubt it. Ward will be back to his anti-imperialist rants within a week. But for now, he's made your job easier.
+
+The wharfies won't forgive him, though. That's Ward's problem.
+
+**The NSW Right has successfully enforced discipline...**
+
+on-arrival: {!
+Q.right_alp_nsw_strength += 0.6;
+Q.groupers_strength += 0.4;
+Q.centre_federal_strength += 0.3;
+Q.wharfies_relation -= 8;
+Q.left_nsw_dissent += 6;
+Q.ward_credibility_damaged = 1;
+!}
+
+go-to: bridges_response
+
+@cahill_neutral
+
+= NSW Labor HQ - Cahill's Office
+
+**J.J. Cahill's Perspective**
+
+You read Ward's statement. "This is Robert Menzies' debt crisis."
+
+Clever. He's deflected the question entirely, putting it back on Menzies without committing to a position. It's not what you would have said, but it's not a disaster either.
+
+The Groupers will be disappointed he didn't condemn it. The Left will be disappointed he didn't support it. But everyone else will just see it as political gamesmanship.
+
+You can work with this.
+
+**The NSW machine remains neutral, watching and waiting...**
+
+on-arrival: {!
+Q.right_alp_nsw_strength += 0.2;
+Q.centre_federal_strength += 0.4;
+Q.ward_deflection_noted = 1;
+!}
+
+go-to: bridges_response
+
+# ============================================
+# BRIDGES RESPONSE
+# ============================================
+
+@bridges_response
+title: Bridges Responds
+new-page: true
+on-arrival: bridges_response_seen = 1
+go-to: bridges_celebrates if taft_strike_status == "full_strike"; bridges_frustrated if taft_strike_status == "delayed"; bridges_disappointed if taft_strike_status == "work_protest"; bridges_angry if taft_strike_status == "unloaded"
+
+@bridges_celebrates
+
+= San Francisco - ILWU Hall
+
+**Harry Bridges' Perspective**
+
+The news from Australia is mixed. Some Labor MPs support the strike, others condemn it, but the *Southern Cross* is still sitting at anchor, unloaded.
+
+You address the assembled longshoremen, your voice carrying the authority of decades of waterfront battles.
+
+"Brothers, what we've done here today shows the power of international solidarity! The bosses think they can play workers of different countries against each other. They're wrong!"
+
+The hall erupts in cheers.
+
+"The Australian wharfies are fighting the same fight we are - against debt slavery, against exploitation, against capitalism that puts profits before people! When they're under attack, we stand with them!"
+
+Someone shouts: "What about the FBI?"
+
+You grin. "Let them watch. Let them take notes. We're not doing anything illegal - we're exercising our right to refuse to handle cargo we find morally objectionable. That's protected union activity."
+
+"The *Southern Cross* stays at anchor until we get assurances about fair treatment for Australian workers!"
+
+**The ILWU digs in. This strike is going to escalate...**
+
+on-arrival: {!
+Q.usa_labor_solidarity += 5;
+Q.ilwu_militancy += 0.1;
+Q.fbi_surveillance += 3;
+Q.usa_relation -= 5;
+Q.taft_pressure_building = 1;
+!}
+
+go-to: taft_response
+
+@bridges_frustrated
+
+= San Francisco - ILWU Hall
+
+**Harry Bridges' Perspective**
+
+The slow-down continues. The *Southern Cross* is being unloaded at a crawl while you negotiate for better terms for Australian workers.
+
+It's not a full strike, but it's something. The bosses are furious, the FBI is circling, and the press is paying attention.
+
+"We're using our leverage," you tell the assembled longshoremen. "Not shutting down completely, but making sure everyone knows what this debt scheme is doing to Australian workers."
+
+It's a tactical compromise - enough pressure to make a statement, not enough to trigger a full crackdown.
+
+"Keep it slow. Keep it visible. Let the world see what international solidarity looks like."
+
+**The ILWU maintains pressure without triggering full confrontation...**
+
+on-arrival: {!
+Q.usa_labor_solidarity += 2;
+Q.ilwu_militancy += 0.04;
+Q.fbi_surveillance += 1;
+Q.usa_relation -= 2;
+Q.taft_pressure_moderate = 1;
+!}
+
+go-to: taft_response
+
+@bridges_disappointed
+
+= San Francisco - ILWU Hall
+
+**Harry Bridges' Perspective**
+
+The *Southern Cross* is being unloaded - slowly, with protest signs and press statements, but unloaded nonetheless.
+
+You address the assembled longshoremen with barely concealed frustration.
+
+"Brothers, we made our statement. The world knows we stand with Australian workers. But symbolic protest without direct action... it's not enough."
+
+Some of the men look defensive. Others nod in agreement.
+
+"Next time - and there will be a next time - we need to be ready to actually *stop* the cargo. Not just complain about it while we move it."
+
+It's a lukewarm outcome. Better than nothing, but far from the international solidarity you'd hoped for.
+
+**The ILWU's symbolic protest has limited impact...**
+
+on-arrival: {!
+Q.usa_labor_solidarity += 1;
+Q.ilwu_militancy += 0.01;
+Q.usa_relation -= 1;
+Q.taft_pressure_minimal = 1;
+!}
+
+go-to: taft_response
+
+@bridges_angry
+
+= San Francisco - ILWU Hall
+
+**Harry Bridges' Perspective**
+
+The *Southern Cross* has been fully unloaded. Business as usual.
+
+You face the assembled longshoremen, and you can barely contain your anger.
+
+"So that's it? Australian workers are being crushed under debt slavery, and we just shrug and unload the cargo?"
+
+The men look uncomfortable. Some won't meet your eyes.
+
+"International solidarity means nothing if we're not willing to sacrifice for it. The bosses are laughing at us. The Australian wharfies are wondering why we talked big and did nothing."
+
+You pace the hall, seething.
+
+"Next time there's a call for solidarity, I want to see some goddamn backbone! We're longshoremen, not cargo handlers for capitalist exploitation!"
+
+The meeting ends in uncomfortable silence.
+
+**The ILWU's failure to act damages its credibility...**
+
+on-arrival: {!
+Q.usa_labor_solidarity -= 2;
+Q.ilwu_militancy -= 0.02;
+Q.australian_wharfie_disappointment = 1;
+Q.taft_pressure_none = 1;
+!}
+
+go-to: taft_response
+
+# ============================================
+# TAFT COMPANY & US GOVERNMENT RESPONSE
+# ============================================
+
+@taft_response
+title: The American Response
+new-page: true
+on-arrival: taft_response_seen = 1
+go-to: taft_crackdown if taft_strike_status == "full_strike"; taft_pressure if taft_strike_status == "delayed" or taft_strike_status == "work_protest"; taft_satisfied if taft_strike_status == "unloaded"
+
+@taft_crackdown
+
+= Washington D.C. - State Department
+
+**Official US Response**
+
+The Taft Shipping Company has lodged formal complaints with the State Department. The *Southern Cross* sitting unloaded is costing money - lots of money - and threatening the entire debt repayment arrangement with Australia.
+
+Secretary of State Dean Acheson reviews the situation with cold pragmatism.
+
+"This is communist agitation, pure and simple. Harry Bridges is a known fellow traveler. The ILWU has been infiltrated by Moscow sympathizers."
+
+He looks at the FBI reports. "We need to send a message. The debt arrangement with Australia is crucial to maintaining our Pacific alliance structure. We can't let communist-aligned unions sabotage American foreign policy."
+
+Within 48 hours:
+
+- FBI surveillance of Harry Bridges intensifies
+- Taft Hartley Act injunctions are prepared
+- State Department lodges protest with Australian government about "communist sabotage"
+- Press releases emphasize "Soviet-directed disruption of free world commerce"
+
+The Australian Ambassador is summoned.
+
+"The United States expects the Australian government to condemn this action and work to ensure future shipments aren't disrupted by communist agitation."
+
+**The US government treats this as communist sabotage threatening the alliance...**
+
+on-arrival: {!
+Q.usa_relation -= 10;
+Q.anti_communist += 6;
+Q.fbi_crackdown = 1;
+Q.menzies_pressure += 5;
+Q.red_scare_australia += 3;
+Q.ilwu_under_attack = 1;
+Q.groupers_strength += 0.8;
+Q.left_vic_dissent += 4;
+Q.left_nsw_dissent += 4;
+!}
+
+= Canberra - Menzies' Office
+
+Menzies receives the American complaint with barely concealed glee.
+
+"Communist sabotage of Australian exports. Supported by Labor MPs. My word, Christmas has come early."
+
+He immediately calls a press conference.
+
+"The Australian Labor Party has shown its true colors. While communist-aligned unions in America block Australian cargo, Labor MPs like Eddie Ward applaud. This is economic sabotage directed from Moscow!"
+
+[? if ward_taft_position == "full_support" : "Mr. Ward's statement supporting this strike is nothing short of treasonous. He places communist solidarity above Australian national interest!" ?]
+
+"My government will not tolerate this. We will work with American authorities to ensure our exports reach their destination. And we will remember which party stood with Australia, and which stood with the communists."
+
+**The political firestorm has begun. Labor will need to respond...**
+
+on-arrival: {!
+Q.liberal_relation -= 8;
+Q.workers_lib += 0.5;
+Q.business_lib += 1.5;
+Q.workers_alp -= 0.8;
+Q.business_alp -= 1.5;
+Q.white_collar_alp -= 1.0;
+Q.electoral_damage_taft = 1;
+!}
+
+go-to: taft_chain_end
+
+@taft_pressure
+
+= Washington D.C. - State Department
+
+**Official US Response**
+
+The Taft Shipping Company complains about delays and disruptions, but the *Southern Cross* is being unloaded - albeit slowly.
+
+The State Department notes the situation but doesn't escalate. It's annoying, but it's not worth a major diplomatic incident.
+
+"Monitor the situation," an undersecretary decides. "If it develops into a full strike, we'll respond. For now, it's just union grumbling."
+
+The FBI keeps tabs on Harry Bridges, but no major action is taken.
+
+**The US government is annoyed but not alarmed...**
+
+on-arrival: {!
+Q.usa_relation -= 3;
+Q.anti_communist += 2;
+Q.menzies_pressure += 2;
+!}
+
+= Canberra - Menzies' Office
+
+Menzies notes the American waterfront disruptions and prepares talking points.
+
+"Labor-aligned unions causing problems for Australian exports. Typical."
+
+He mentions it in Parliament, but without the fury of a full crisis. It's ammunition, but not a smoking gun.
+
+**Menzies files this away for future use...**
+
+on-arrival: {!
+Q.liberal_relation -= 3;
+Q.workers_alp -= 0.3;
+Q.business_alp -= 0.5;
+!}
+
+go-to: taft_chain_end
+
+@taft_satisfied
+
+= Washington D.C. - State Department
+
+**Official US Response**
+
+The *Southern Cross* was unloaded on schedule. The debt repayment proceeds as planned.
+
+The State Department notes that some ILWU members made noise about "Australian debt slavery," but ultimately the cargo moved.
+
+"Business as usual," the report concludes.
+
+No diplomatic incident. No crisis. The system continues.
+
+**The Americans are satisfied. The debt machinery grinds on...**
+
+on-arrival: {!
+Q.usa_relation += 1;
+Q.sterling_reserves += 2;
+!}
+
+= Canberra - Menzies' Office
+
+Menzies notes that Australian exports proceeded without major disruption.
+
+"See? The system works. The doom-sayers were wrong."
+
+He has nothing to attack Labor with on this issue.
+
+**No political crisis emerges...**
+
+go-to: taft_chain_end
+
+@taft_chain_end
+
+= Melbourne - ALP Federal Executive
+
+The reports from America are in. The consequences are becoming clear.
+
+[? if taft_strike_status == "full_strike" : The strike has become an international incident. Menzies is calling it communist sabotage. The Americans are furious. ?]
+
+[? if taft_strike_status == "delayed" or taft_strike_status == "work_protest" : The disruptions have caused diplomatic friction but not a full crisis. ?]
+
+[? if taft_strike_status == "unloaded" : The cargo moved without major incident. The crisis was averted. ?]
+
+[? if ward_taft_position == "full_support" : Eddie Ward's statement supporting the strike has given Menzies powerful ammunition. ?]
+
+[? if ward_taft_position == "condemn" : Eddie Ward's condemnation has alienated the waterfront unions. ?]
+
+The Federal Executive must now decide the party's official position.
+
+**Major Party Decision Coming: "Labor's Official Response to the Taft Strike"**
+
+This will be a major card where the player (as party leadership) makes the official decision.
+
+on-arrival: major_taft_decision_pending = 1; day_actions = 0
