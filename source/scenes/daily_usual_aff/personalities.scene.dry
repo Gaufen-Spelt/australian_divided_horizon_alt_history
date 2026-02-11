@@ -9,7 +9,214 @@ Arrange a private meeting with a key figure in Australian politics. These conver
 
 Who should we meet with?
 
-- @chifley: Ben Chifley (ALP Leader) 
+- @chifley: Ben Chifley (ALP Leader)
+- @evatt: H.V. Evatt (Deputy Leader)
+- @calwell: Arthur Calwell (Immigration)
+- @ward: Eddie Ward (Firebrand Left)
+- @cairns: Jim Cairns (Intellectual Left)
+- @cahill: J.J. Cahill (NSW Right Boss)
+- @daly: Fred Daly (NSW Operator)
+- @gair: Vince Gair (QLD Right/Grouper)
+- @santamaria: B.A. Santamaria ("The Movement")
+- @-keon: Stan Keon (Grouper MP)
+- @monk: Albert Monk (ACTU President)
+- @healey: Jim Healey (Wharfies/CPA)
+- @lang: Jack Lang (Langist Boss)
+- @menzies: Robert Menzies (PM/Liberal)
+- @cancel: Cancel meeting
+
+
+@calwell
+view-if: calwell_available = 1
+on-arrival: {!
+Q.calwell_meetings = (Q.calwell_meetings || 0) + 1;
+!}
+
+Arthur Calwell, the Immigration Minister in the previous Labor government, meets you with characteristic bluntness. He's passionate about his work but controversial.
+
+"Two million migrants in twenty-five years - that's my vision. But they must be the right sort. Australia must remain British in character."
+
+What do you want to discuss?
+
+- @calwell_immigration: The immigration program
+- @calwell_white_australia: White Australia Policy
+- @calwell_integration: Migrant integration
+- @calwell_goodbye: End meeting
+
+@calwell_immigration
+on-arrival: centre_federal_strength += 0.7; immigration_program += 1; migrants_alp += 1.0; resources += 1; immigration_support += 2
+
+"Australia needs people! Empty lands, growing industries, defense concerns - we need bodies. Europeans fleeing communism - Poles, Balts, Ukrainians. They make good Australians."
+
+Calwell's ambitious immigration program is transforming Australia.
+
+**The immigration program expands. New Australians tend to support Labor.**
+
+@calwell_white_australia
+on-arrival: centre_federal_strength += 0.5; white_australia_support += 3; left_vic_dissent += 3; asia_relation -= 3
+
+"Two Wongs don't make a white," Calwell says with a grim smile at his own infamous quote. "It's not personal - it's policy. Australia must remain European. That's just reality."
+
+His defense of White Australia is uncompromising and increasingly controversial.
+
+**White Australia Policy support increases, but progressive dissent grows.**
+
+@calwell_integration
+on-arrival: centre_federal_strength += 0.6; migrants_alp += 0.8; white_collar_alp += 0.3; immigration_support += 1
+
+"The 'New Australians' - that's what we call them. Not 'migrants' or 'foreigners.' They're Australians now. We help them learn English, find jobs, settle in. That's our responsibility."
+
+Calwell's emphasis on integration helps migrants become Labor supporters.
+
+**Migrant integration programs strengthen Labor support among New Australians.**
+
+@calwell_goodbye
+
+"Remember," Calwell says, "populate or perish. Australia's future depends on the right kind of migration."
+
+@daly
+view-if: daly_available = 1
+on-arrival: {!
+Q.daly_meetings = (Q.daly_meetings || 0) + 1;
+!}
+
+Fred Daly, a pragmatic NSW Right operator, meets you in a modest office. Unlike Cahill's bombast, Daly is quietly effective.
+
+"Politics is the art of the possible. You work with what you've got, make the deals you can, and move forward incrementally."
+
+What do you want to discuss?
+
+- @daly_pragmatism: Pragmatic politics
+- @daly_organization: Party organization
+- @daly_left_relations: Managing the Left
+- @daly_goodbye: End meeting
+
+@daly_pragmatism
+on-arrival: centre_federal_strength += 0.6; right_alp_nsw_strength += 0.7; dissent -= 1; resources += 1
+
+"Grand ideological battles are for university students. Real politics is about incremental progress - better wages, better conditions, better services. One step at a time."
+
+Daly's pragmatism offers a middle path between Left idealism and Right cynicism.
+
+**Daly's pragmatic approach reduces tensions and increases resources.**
+
+@daly_organization
+on-arrival: right_alp_nsw_strength += 0.9; nsw_workers_alp += 0.5; resources += 2
+
+Daly walks you through the nuts and bolts of political organization - membership drives, branch meetings, fundraising, candidate recruitment, campaign planning.
+
+"The Right wins because we do the boring work. Every week, every month, year after year."
+
+**NSW organization strengthens. Resources increase significantly.**
+
+@daly_left_relations
+on-arrival: right_alp_nsw_strength += 0.5; left_nsw_dissent -= 2; centre_unity_strength += 0.4
+
+"The Left? They're comrades, even when they're wrong. You give them some positions, some policy wins, let them have their conferences. But on the big decisions, numbers matter."
+
+Daly's approach is firm but not hostile - he manages the Left rather than crushing them.
+
+**Daly's management of the Left reduces NSW Left dissent.**
+
+@daly_goodbye
+
+"Remember," Daly says, "politics is a marathon, not a sprint."
+
+@gair
+view-if: gair_available = 1
+on-arrival: {!
+Q.gair_meetings = (Q.gair_meetings || 0) + 1;
+!}
+
+Vince Gair, Queensland Labor politician and Catholic, represents the overlap between the Queensland Right and the Groupers. He's ambitious and uncompromising.
+
+"Queensland Labor is strong because we maintain discipline and Catholic values."
+
+What do you want to discuss?
+
+- @gair_queensland: Queensland Labor's strength
+- @gair_catholicism: Catholic influence in Labor
+- @gair_communists: Fighting communism
+- @gair_goodbye: End meeting
+
+@gair_queensland
+on-arrival: right_alp_qld_strength += 1.0; qld_workers_alp += 0.8; qld_rural_alp += 0.5; qld_catholics_alp += 0.8
+
+"Queensland Labor is disciplined. We don't have the factional chaos of Victoria or the machine politics of NSW. We're united, strong, and we win."
+
+Gair's confidence reflects Queensland's relative stability under Right control.
+
+**Queensland Labor's organizational strength grows.**
+
+@gair_catholicism
+on-arrival: right_alp_qld_strength += 0.7; groupers_strength += 0.6; catholics_alp += 1.0; left_vic_dissent += 4
+
+"Catholic social teaching and Labor values are perfectly compatible - dignity of labor, solidarity with the poor, subsidiarity. The Left's atheist materialism is alien to working-class Catholics."
+
+Gair's fusion of Catholicism and Labor politics strengthens the religious Right.
+
+**Catholic Labor support increases, but secular Left dissent grows.**
+
+@gair_communists
+on-arrival: right_alp_qld_strength += 0.6; groupers_strength += 0.8; anti_communist += 3; qld_workers_cpa *= 0.97
+
+"Communism is atheistic totalitarianism. Every Catholic, every Christian, every person who values freedom must oppose it absolutely. No compromise, no collaboration."
+
+Gair's anti-communism is religiously motivated and uncompromising.
+
+**Queensland's anti-communist stance strengthens.**
+
+@gair_goodbye
+
+"God bless Labor," Gair says, "and God save us from the communists."
+
+@keon
+view-if: keon_available = 1
+on-arrival: {!
+Q.keon_meetings = (Q.keon_meetings || 0) + 1;
+!}
+
+Stan Keon, Victorian Grouper MP, meets you with missionary zeal. He's a true believer in the anti-communist crusade.
+
+"The Movement isn't a faction - it's a mission. We're saving Labor from communist infiltration."
+
+What do you want to discuss?
+
+- @keon_movement: The Movement's activities
+- @keon_unions: Union takeovers
+- @keon_split_warning: Warning about a potential split
+- @keon_goodbye: End meeting
+
+@keon_movement
+on-arrival: groupers_strength += 1.1; right_alp_south_strength += 0.5; anti_communist += 3; left_vic_dissent += 6
+
+Keon describes the Groupers' secretive organization - the cells, the study groups, the coordinated campaigns to win union positions, the Catholic Action network.
+
+"We're organized, disciplined, and we're winning. Union by union, branch by branch."
+
+**The Groupers' organizational power grows, deepening factional divisions.**
+
+@keon_unions
+on-arrival: groupers_strength += 0.9; ironworkers_communist -= 0.06; miners_communist -= 0.04; actu_communist -= 0.03; left_vic_dissent += 7; actu_militancy -= 0.02
+
+"We're taking back the unions from the reds. Ironworkers, shop assistants, clerks - these unions belong to Labor, not to Moscow. We'll fight ballot by ballot if we have to."
+
+The Groupers' union campaigns are effective but divisive.
+
+**Communist union influence decreases, but the Left is enraged by Grouper tactics.**
+
+@keon_split_warning
+on-arrival: groupers_strength += 0.7; groupers_dissent += 3; dlp_split_progress += 1; left_vic_strength += 0.5
+
+"If the ALP leadership can't see the communist threat - if Evatt keeps defending the reds - we might have to consider whether we can remain in the party."
+
+It's a warning. The Groupers might split if they feel Labor is too soft on communism.
+
+**Warning: The Groupers may consider leaving Labor if communist influence isn't addressed.**
+
+@keon_goodbye
+
+"Vigilance eternal," Keon says, like a soldier reporting for duty.
 
 # ============================================
 # ALP LEADERSHIP
