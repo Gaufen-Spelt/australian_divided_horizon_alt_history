@@ -9,20 +9,20 @@ Arrange a private meeting with a key figure in Australian politics. These conver
 
 Who should we meet with?
 
-- @chifley: Ben Chifley (ALP Leader) [+ chifley_available : [? if chifley_available : ✓ ?] +]
-- @evatt: H.V. Evatt (Deputy Leader) [+ evatt_available : [? if evatt_available : ✓ ?] +]
-- @calwell: Arthur Calwell (Immigration) [+ calwell_available : [? if calwell_available : ✓ ?] +]
-- @ward: Eddie Ward (Firebrand Left) [+ ward_available : [? if ward_available : ✓ ?] +]
-- @cairns: Jim Cairns (Intellectual Left) [+ cairns_available : [? if cairns_available : ✓ ?] +]
-- @cahill: J.J. Cahill (NSW Right Boss) [+ cahill_available : [? if cahill_available : ✓ ?] +]
-- @daly: Fred Daly (NSW Operator) [+ daly_available : [? if daly_available : ✓ ?] +]
-- @gair: Vince Gair (QLD Right/Grouper) [+ gair_available : [? if gair_available : ✓ ?] +]
-- @santamaria: B.A. Santamaria ("The Movement") [+ santamaria_available : [? if santamaria_available : ✓ ?] +]
-- @keon: Stan Keon (Grouper MP) [+ keon_available : [? if keon_available : ✓ ?] +]
-- @monk: Albert Monk (ACTU President) [+ monk_available : [? if monk_available : ✓ ?] +]
-- @healey: Jim Healey (Wharfies/CPA) [+ healey_available : [? if healey_available : ✓ ?] +]
-- @lang: Jack Lang (Langist Boss) [+ lang_available : [? if lang_available : ✓ ?] +]
-- @menzies: Robert Menzies (PM/Liberal) [+ menzies_available : [? if menzies_available : ✓ ?] +]
+- @chifley: Ben Chifley (ALP Leader) 
+- @evatt: H.V. Evatt (Deputy Leader) 
+- @calwell: Arthur Calwell (Immigration) 
+- @ward: Eddie Ward (Firebrand Left) 
+- @cairns: Jim Cairns (Intellectual Left)
+- @cahill: J.J. Cahill (NSW Right Boss) 
+- @daly: Fred Daly (NSW Operator) 
+- @gair: Vince Gair (QLD Right/Grouper) 
+- @santamaria: B.A. Santamaria ("The Movement") 
+- @keon: Stan Keon (Grouper MP) 
+- @monk: Albert Monk (ACTU President) 
+- @healey: Jim Healey (Wharfies/CPA) 
+- @lang: Jack Lang (Langist Boss) 
+- @menzies: Robert Menzies (PM/Liberal) 
 - @cancel: Cancel meeting
 
 # ============================================
