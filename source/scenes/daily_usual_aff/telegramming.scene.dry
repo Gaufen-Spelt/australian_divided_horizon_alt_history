@@ -2,8 +2,8 @@ Title: Party Telegram
 new-page: true
 is-card: true
 tags: day_affairs
-view-if: partytelegram_daily_timer = 0
-on-arrival: day_actions += 1; partytelegram_daily_timer += 2
+view-if: partytelegram_timer = 0
+on-arrival: day_actions += 1; partytelegram_timer += 2
 
 Send a telegram to party branches across a state, rallying members around a specific message or cause. Quick communication to coordinate the movement.
 
