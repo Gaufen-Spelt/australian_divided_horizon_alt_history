@@ -869,7 +869,7 @@ Q.timers = ['advisor_action', 'confronting_communists', 'crisis_program',
             'korean_war', 'petrov_affair',
             'industrial_disputes', 'cold_war_pressure'];
 
-Q.daily_timers = ['leafleting', 'unionvisit', 'party_telegram'];
+Q.daily_timers = ['leafleting', 'unionvisit', 'partytelegram',];
 
 Q.advisor_action_timer = 0;
 // party affairs timers
