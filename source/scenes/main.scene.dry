@@ -19,7 +19,6 @@ max-cards: 3
 
 - @party
 - @govt
-- #advisor
 - @shuffle_leadership_pinned
 - @eddie
 
@@ -44,7 +43,6 @@ max-cards: 4
 
 - @party
 - @govt
-- #advisor
 - @shuffle_leadership_pinned
 - @eddie
 
