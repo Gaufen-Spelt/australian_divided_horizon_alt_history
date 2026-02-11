@@ -52,12 +52,8 @@ title: Party Affairs
 card-image: img/Vorwaerts_nr_1.png
 is-deck: true
 
-- #party_affairs
-
 @govt
 title: Government Affairs
 view-if: time >= 6
 card-image: img/reichstag_2.jpg
 is-deck: true
-
-- #govt_affairs
