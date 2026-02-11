@@ -43,8 +43,19 @@ body.dark-mode .tools {
 }
 
 #main_column {
-  flex: 1; /* Takes up the remaining space */
-  max-width: 600px; /* Keeps text lines easy to read */
+  flex: 1;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Consistent spacing between content and bottom panel */
+}
+
+#bottom_panel {
+  background-color: var(--content-bg-color);
+  font-size: 1.1em;
+  padding: 1em 1.5em;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+  margin-top: 20px; /* Gap between main content and bottom panel */
 }
 
 #content {
