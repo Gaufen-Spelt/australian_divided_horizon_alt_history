@@ -23,7 +23,6 @@ Who should we meet with?
 - @healey: Jim Healey (Wharfies/CPA) [+ healey_available : [? if healey_available : ✓ ?] +]
 - @lang: Jack Lang (Langist Boss) [+ lang_available : [? if lang_available : ✓ ?] +]
 - @menzies: Robert Menzies (PM/Liberal) [+ menzies_available : [? if menzies_available : ✓ ?] +]
-
 - @cancel: Cancel meeting
 
 # ============================================
