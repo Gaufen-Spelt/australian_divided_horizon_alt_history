@@ -2,6 +2,7 @@ title: The Party Responds - Cahill's Move
 subtitle: Automatic Event Chain
 new-page: true
 view-if: taft_strike_seen = 1 and cahill_response_seen = 0
+tags: event
 on-arrival: cahill_response_seen = 1
 go-to: cahill_furious if ward_taft_position == "full_support"; cahill_annoyed if ward_taft_position == "nuanced_support"; cahill_satisfied if ward_taft_position == "condemn"; cahill_neutral if ward_taft_position == "deflect"
 
