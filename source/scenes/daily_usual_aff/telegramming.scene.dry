@@ -1,0 +1,256 @@
+Title: Party Telegram
+new-page: true
+is-card: true
+tags: day_affairs
+view-if: party_telegram_daily_timer = 0
+on-arrival: day_actions += 1; party_telegram_daily_timer = 2
+
+Send a telegram to party branches across a state, rallying members around a specific message or cause. Quick communication to coordinate the movement.
+
+Which state's branches should receive our telegram?
+
+- @nsw: New South Wales
+- @vic: Victoria
+- @qld: Queensland
+- @sa: South Australia
+- @wa: Western Australia
+- @tas: Tasmania
+- @no_telegram: Don't send telegram
+
+@nsw
+choose-if: resources >= 0
+unavailable-subtitle: [? if resources < 0 : Not enough resources. ?]
+
+What message should we telegraph to NSW branches?
+
+- @nsw_unity: Unity and solidarity
+- @nsw_anticommunist: Vigilance against communists
+- @nsw_election: Prepare for electoral work
+- @nsw_industrial: Support workers' struggles
+
+@nsw_unity
+on-arrival: centre_federal_strength += 0.3; centre_unity_strength += 0.4; right_alp_nsw_dissent -= 1; left_nsw_dissent -= 1; resources -= 0
+
+**TELEGRAM TO NSW BRANCHES STOP UNITY IS OUR STRENGTH STOP LABOR MUST STAND TOGETHER STOP FACTIONALISM SERVES ONLY OUR ENEMIES STOP SOLIDARITY FOREVER STOP**
+
+Our message of unity resonates across NSW branches. Party discipline strengthens, and factional tensions ease slightly.
+
+@nsw_anticommunist
+on-arrival: groupers_strength += 0.4; right_alp_nsw_strength += 0.2; left_nsw_dissent += 3; nsw_workers_cpa *= 0.98; anti_communist += 1; resources -= 0
+
+**TELEGRAM TO NSW BRANCHES STOP REMAIN VIGILANT AGAINST COMMUNIST INFILTRATION STOP LABOR PRINCIPLES NOT MOSCOW ORDERS STOP REPORT SUSPICIOUS ACTIVITY STOP UNITY UNDER LABOR BANNER STOP**
+
+The anti-communist message emboldens the Right and Groupers, but the Left faction is furious at what they call "red-baiting hysteria."
+
+@nsw_election
+on-arrival: right_alp_nsw_strength += 0.5; nsw_workers_alp *= 1.005; nsw_white_collar_alp *= 1.005; resources -= 0
+
+**TELEGRAM TO NSW BRANCHES STOP BEGIN ELECTORAL PREPARATIONS STOP ENROLL VOTERS STOP UPDATE MEMBERSHIP LISTS STOP ORGANIZE STREET STALLS STOP VICTORY AWAITS STOP**
+
+The NSW machine swings into action. Branch secretaries across the state begin the methodical work of building our voter base.
+
+@nsw_industrial
+on-arrival: right_alp_union_strength += 0.4; left_nsw_strength += 0.3; nsw_workers_alp *= 1.01; actu_militancy += 0.02; resources -= 0
+
+**TELEGRAM TO NSW BRANCHES STOP SUPPORT ALL LEGITIMATE INDUSTRIAL ACTION STOP LABOR STANDS WITH WORKERS STOP ATTEND PICKET LINES STOP COLLECT RELIEF FUNDS STOP SOLIDARITY STOP**
+
+Our message of industrial solidarity strengthens ties with the union movement. Both the Left and union officials approve.
+
+@vic
+choose-if: resources >= 0
+unavailable-subtitle: [? if resources < 0 : Not enough resources. ?]
+
+What message should we telegraph to Victorian branches?
+
+- @vic_unity: Unity and solidarity
+- @vic_anticommunist: Vigilance against communists
+- @vic_election: Prepare for electoral work
+- @vic_intellectual: Socialist principles
+
+@vic_unity
+on-arrival: centre_federal_strength += 0.3; centre_unity_strength += 0.4; left_vic_dissent -= 1; groupers_dissent -= 1; resources -= 0
+
+**TELEGRAM TO VICTORIAN BRANCHES STOP FACTIONALISM WEAKENS US STOP LABOR UNITY ABOVE ALL STOP RESPECT ALL COMRADES STOP TOGETHER WE WIN STOP**
+
+The plea for unity finds receptive ears in some quarters, though Victoria's deep factional divisions won't heal overnight.
+
+@vic_anticommunist
+on-arrival: groupers_strength += 0.6; right_alp_south_strength += 0.3; left_vic_dissent += 5; vic_workers_cpa *= 0.97; anti_communist += 2; resources -= 0
+
+**TELEGRAM TO VICTORIAN BRANCHES STOP COMMUNISM IS NOT SOCIALISM STOP DEFEND DEMOCRATIC LABOR PRINCIPLES STOP EXPOSE FELLOW TRAVELERS STOP GOD DEFEND AUSTRALIA STOP**
+
+The Groupers are jubilant - this is their battle cry. The Victorian Left explodes in fury, calling this "McCarthyism" and a betrayal of working-class solidarity.
+
+@vic_election
+on-arrival: right_alp_south_strength += 0.3; centre_federal_strength += 0.2; vic_workers_alp *= 1.005; vic_white_collar_alp *= 1.005; resources -= 0
+
+**TELEGRAM TO VICTORIAN BRANCHES STOP ELECTORAL VICTORY REQUIRES DISCIPLINE STOP CANVASS EVERY STREET STOP RECRUIT SCRUTINEERS STOP LABOR WILL GOVERN STOP**
+
+Victorian branches begin electoral preparations. The focus on practical campaigning temporarily sidelines factional disputes.
+
+@vic_intellectual
+on-arrival: left_vic_strength += 0.6; centre_federal_strength += 0.2; groupers_dissent += 3; vic_workers_alp *= 1.005; socialism += 1; resources -= 0
+
+**TELEGRAM TO VICTORIAN BRANCHES STOP DEMOCRATIC SOCIALISM IS OUR GOAL STOP STUDY LABOR PRINCIPLES STOP EDUCATE ORGANIZE AGITATE STOP WORKERS OF THE WORLD UNITE STOP**
+
+The intellectual Left responds enthusiastically to this call for socialist education. The Groupers mutter about "crypto-communism."
+
+@qld
+choose-if: resources >= 0
+unavailable-subtitle: [? if resources < 0 : Not enough resources. ?]
+
+What message should we telegraph to Queensland branches?
+
+- @qld_unity: Unity and solidarity
+- @qld_discipline: Party discipline
+- @qld_election: Prepare for electoral work
+- @qld_rural: Support rural workers
+
+@qld_unity
+on-arrival: centre_federal_strength += 0.3; centre_unity_strength += 0.4; right_alp_qld_dissent -= 1; resources -= 0
+
+**TELEGRAM TO QUEENSLAND BRANCHES STOP LABOR SOLIDARITY FROM CAIRNS TO COOLANGATTA STOP UNITED WE STAND STOP DIVIDED WE FALL STOP**
+
+Queensland branches receive the message warmly. Unity is easier to maintain when one faction dominates.
+
+@qld_discipline
+on-arrival: right_alp_qld_strength += 0.6; centre_federal_strength += 0.2; dissent -= 1; resources -= 0
+
+**TELEGRAM TO QUEENSLAND BRANCHES STOP MAINTAIN PARTY DISCIPLINE STOP FOLLOW STATE EXECUTIVE DECISIONS STOP NO UNAUTHORIZED STATEMENTS STOP LOYALTY REWARDED STOP**
+
+The Queensland Right's machine tightens its grip. Discipline is enforced, dissent is discouraged.
+
+@qld_election
+on-arrival: right_alp_qld_strength += 0.5; qld_workers_alp *= 1.008; qld_rural_alp *= 1.008; resources -= 0
+
+**TELEGRAM TO QUEENSLAND BRANCHES STOP ELECTORAL MOBILIZATION BEGINS NOW STOP EVERY BOOTH COVERED STOP EVERY VOTE COUNTED STOP QUEENSLAND FOR LABOR STOP**
+
+The efficient Queensland machine swings into electoral mode. Rural and urban branches alike begin organizing.
+
+@qld_rural
+on-arrival: right_alp_qld_strength += 0.4; qld_rural_alp *= 1.015; qld_workers_alp *= 1.005; resources -= 0
+
+**TELEGRAM TO QUEENSLAND BRANCHES STOP SUPPORT CANE CUTTERS MINERS SHEARERS STOP RURAL WORKERS ARE LABOR WORKERS STOP DEMAND FAIR PRICES FAIR WAGES STOP**
+
+Our message resonates in the sugar fields, mines, and sheep stations. Queensland Labor's rural base strengthens.
+
+@sa
+choose-if: resources >= 0
+unavailable-subtitle: [? if resources < 0 : Not enough resources. ?]
+
+What message should we telegraph to SA branches?
+
+- @sa_unity: Unity and solidarity
+- @sa_anticommunist: Vigilance against communists
+- @sa_election: Prepare for electoral work
+- @sa_catholic: Catholic social teaching
+
+@sa_unity
+on-arrival: centre_federal_strength += 0.3; centre_unity_strength += 0.4; right_alp_south_dissent -= 1; groupers_dissent -= 1; resources -= 0
+
+**TELEGRAM TO SA BRANCHES STOP SOUTH AUSTRALIA UNITED IN LABOR CAUSE STOP COOPERATION NOT CONFLICT STOP TOGETHER WE SERVE STOP**
+
+The unity message finds moderate support across SA's Labor community.
+
+@sa_anticommunist
+on-arrival: groupers_strength += 0.7; right_alp_south_strength += 0.4; sa_workers_cpa *= 0.97; anti_communist += 2; resources -= 0
+
+**TELEGRAM TO SA BRANCHES STOP GODLESS COMMUNISM THREATENS AUSTRALIA STOP DEFEND CHRISTIAN CIVILIZATION STOP VIGILANCE ESSENTIAL STOP LABOR NOT LENINISM STOP**
+
+The Groupers dominate SA - this message plays perfectly to their Catholic, anti-communist base.
+
+@sa_election
+on-arrival: right_alp_south_strength += 0.4; sa_workers_alp *= 1.005; sa_white_collar_alp *= 1.005; resources -= 0
+
+**TELEGRAM TO SA BRANCHES STOP ELECTORAL PREPARATION COMMENCES STOP ORGANIZE BOOTHS RECRUIT VOLUNTEERS STOP LABOR SHALL GOVERN STOP**
+
+SA branches begin the familiar rhythm of electoral organizing.
+
+@sa_catholic
+on-arrival: groupers_strength += 0.5; right_alp_south_strength += 0.3; sa_catholics_alp *= 1.01; resources -= 0
+
+**TELEGRAM TO SA BRANCHES STOP LABOR EMBODIES CATHOLIC SOCIAL JUSTICE STOP DIGNITY OF LABOR SOLIDARITY WITH POOR STOP FAITH AND FAIRNESS STOP**
+
+The marriage of Catholic social teaching and Labor principles resonates deeply in SA's Catholic working class.
+
+@wa
+choose-if: resources >= 0
+unavailable-subtitle: [? if resources < 0 : Not enough resources. ?]
+
+What message should we telegraph to WA branches?
+
+- @wa_unity: Unity and solidarity
+- @wa_independence: WA independence
+- @wa_election: Prepare for electoral work
+- @wa_industrial: Support workers' struggles
+
+@wa_unity
+on-arrival: centre_federal_strength += 0.3; centre_unity_strength += 0.4; resources -= 0
+
+**TELEGRAM TO WA BRANCHES STOP FROM PERTH TO THE PILBARA LABOR STANDS UNITED STOP SOLIDARITY TRANSCENDS DISTANCE STOP**
+
+The unity message reaches across the vast distances of Western Australia.
+
+@wa_independence
+on-arrival: right_alp_union_strength += 0.4; left_nsw_strength += 0.2; wa_workers_alp *= 1.008; resources -= 0
+
+**TELEGRAM TO WA BRANCHES STOP WA LABOR DECIDES WA POLICY STOP EASTERN STATES CANNOT DICTATE STOP LOCAL AUTONOMY ESSENTIAL STOP RESPECT OUR VOICE STOP**
+
+WA's isolation breeds independence. This message of autonomy strengthens local Labor organization, though eastern states factions grumble.
+
+@wa_election
+on-arrival: right_alp_union_strength += 0.3; wa_workers_alp *= 1.005; wa_white_collar_alp *= 1.005; resources -= 0
+
+**TELEGRAM TO WA BRANCHES STOP ELECTORAL ORGANIZING BEGINS STOP COVER EVERY CORNER OF THIS VAST STATE STOP VICTORY IS POSSIBLE STOP**
+
+WA branches face the logistical challenge of organizing across Australia's largest state.
+
+@wa_industrial
+on-arrival: right_alp_union_strength += 0.5; left_nsw_strength += 0.3; wa_workers_alp *= 1.01; actu_militancy += 0.03; resources -= 0
+
+**TELEGRAM TO WA BRANCHES STOP SUPPORT WHARFIES MINERS SHEARERS STOP INDUSTRIAL SOLIDARITY ABOVE ALL STOP PICKET LINES HOLD THE LINE STOP**
+
+The message of industrial militancy resonates with WA's combative union culture, especially in the ports and mines.
+
+@tas
+choose-if: resources >= 0
+unavailable-subtitle: [? if resources < 0 : Not enough resources. ?]
+
+What message should we telegraph to Tasmanian branches?
+
+- @tas_unity: Unity and solidarity
+- @tas_personal: Personal loyalty
+- @tas_election: Prepare for electoral work
+- @tas_federal: Federal connections
+
+@tas_unity
+on-arrival: centre_federal_strength += 0.4; centre_unity_strength += 0.5; resources -= 0
+
+**TELEGRAM TO TASMANIAN BRANCHES STOP SMALL STATE STRONG SOLIDARITY STOP EVERY MEMBER MATTERS STOP UNITY IN THE APPLE ISLE STOP**
+
+Tasmania's tight-knit Labor community responds well to calls for unity.
+
+@tas_personal
+on-arrival: centre_federal_strength += 0.5; tas_workers_alp *= 1.008; resources -= 0
+
+**TELEGRAM TO TASMANIAN BRANCHES STOP PERSONAL RELATIONSHIPS BUILD MOVEMENT STOP KNOW YOUR NEIGHBORS RECRUIT YOUR MATES STOP COMMUNITY IS STRENGTH STOP**
+
+In Tasmania, politics is personal. This message recognizes that reality.
+
+@tas_election
+on-arrival: centre_federal_strength += 0.4; tas_workers_alp *= 1.008; tas_white_collar_alp *= 1.008; resources -= 0
+
+**TELEGRAM TO TASMANIAN BRANCHES STOP ELECTORAL WORK BEGINS STOP SMALL STATE MEANS EVERY VOTE CRUCIAL STOP ORGANIZE NOW STOP**
+
+Tasmania's small size makes every vote count. The branches mobilize efficiently.
+
+@tas_federal
+on-arrival: centre_federal_strength += 0.6; tas_workers_alp *= 1.005; resources -= 0
+
+**TELEGRAM TO TASMANIAN BRANCHES STOP FEDERAL LABOR STANDS WITH TASMANIA STOP YOUR CONCERNS ARE OUR CONCERNS STOP NATIONAL SOLIDARITY STOP**
+
+Tasmania often feels forgotten by the mainland. This message of federal attention strengthens local-national ties.
+
+@no_telegram
+
+We decided not to send a telegram today. The party branches continue their work without central direction.
