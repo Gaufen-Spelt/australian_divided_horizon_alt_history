@@ -55,7 +55,14 @@ body.dark-mode .tools {
   font-size: 1.1em;
   padding: 1em 1.5em;
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
-  margin-top: 20px; /* Gap between main content and bottom panel */
+  margin-top: 20px;
+  border: 1px solid var(--border-color);
+}
+
+body.dark-mode #bottom_panel {
+  border-style: double;
+  border-width: 4px;
+  border-color: #888;
 }
 
 #content {
