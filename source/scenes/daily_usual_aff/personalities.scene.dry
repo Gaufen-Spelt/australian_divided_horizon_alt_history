@@ -2,8 +2,8 @@ title: Meeting with Personalities
 new-page: true
 is-card: true
 tags: day_affairs
-view-if: personalitymeeting_daily_timer = 0
-on-arrival: day_actions += 1; personalitymeeting_daily_timer = 2
+view-if: personalitymeeting_timer = 0
+on-arrival: day_actions += 1; personalitymeeting_timer = 2
 
 Arrange a private meeting with a key figure in Australian politics. These conversations can open doors, broker deals, or heal factional wounds.
 
