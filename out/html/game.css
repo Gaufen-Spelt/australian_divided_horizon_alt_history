@@ -182,9 +182,9 @@ body:not(.dark-mode) hr                  { border-top: 1px solid rgba(42,31,14,0
    ===================================================================== */
 #page {
   display: grid;
-  /* [sidebar] [main] — sidebar is fixed 260px, main takes rest */
-  grid-template-columns: 260px 1fr;
-  grid-template-areas: "sidebar main";
+  /* [main] [sidebar] — main takes the space, sidebar is fixed 260px on the right */
+  grid-template-columns: 1fr 260px;
+  grid-template-areas: "main sidebar";
   gap: 25px;
   max-width: 1400px;
   margin: 0 auto;
@@ -193,8 +193,10 @@ body:not(.dark-mode) hr                  { border-top: 1px solid rgba(42,31,14,0
 }
 
 /* =====================================================================
-   LEFT SIDEBAR — Intelligence dossier panel
-   aside.tools.left is a direct child of #page → grid-area: sidebar
+   SIDEBAR — Intelligence dossier panel (RIGHT side)
+   aside.tools.left in HTML — the "left" class is legacy, ignored.
+   CSS grid places it on the RIGHT via grid-area: sidebar.
+   DOM order doesn't matter; grid-template-areas controls placement.
    Contains two stacked .stats-box (vertically, gap between them)
    ===================================================================== */
 .tools {
@@ -977,7 +979,7 @@ a.card:hover .card-tooltip { visibility: visible; position: absolute; }
    ===================================================================== */
 @media screen and (max-width: 1200px) {
   #page {
-    grid-template-columns: 220px 1fr;
+    grid-template-columns: 1fr 220px;
     gap: 15px;
   }
   .tools { width: 220px; min-width: 220px; max-width: 220px; }
