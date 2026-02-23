@@ -235,9 +235,9 @@ body:not(.dark-mode) hr                  { border-top: 1px solid rgba(42,31,14,0
   flex-direction: column;
   overflow: hidden;
   width: 100%;
-  /* Each box takes equal share of available sidebar height */
-  flex: 1 1 0;
-  min-height: 0;
+  /* Fixed minimum so boxes are visible even when qualities panels are empty */
+  min-height: 200px;
+  flex: 0 0 auto;
 }
 
 #qualities,
