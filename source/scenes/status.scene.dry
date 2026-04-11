@@ -123,6 +123,8 @@ Sterling reserves: [+ sterling_reserves_2 +] million
 
 = Internal Factions
 
+<div id="faction-chart"></div>
+
 **Left - Victorians / Intellectual**
 Strength: [+ left_vic_strength : strength +] [+ left_vic_strength +] | Dissent: [+ left_vic_dissent : dissent +] [+ left_vic_dissent +] |
 Ideological direction: [+ left_vic_direction +]
