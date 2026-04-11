@@ -5,7 +5,6 @@ max-cards: 9
 on-arrival: use_main_2 = 1;
 on-display: {!
 
-const Q = {};
 Q.factions = ["left_in", "left_fi", "centre_federal", "groupers", "right_alp", "right_alp_union", "langist"];
 
 // Real strength values from your on-arrival block
