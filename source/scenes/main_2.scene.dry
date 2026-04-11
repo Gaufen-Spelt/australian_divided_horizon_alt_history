@@ -3,6 +3,338 @@ set-bg: img/map_2.jpg
 is-hand: true
 max-cards: 9
 on-arrival: use_main_2 = 1;
+on-display: {!
+
+(function () {
+  /* ── DATA ─────────────────────────────────────────────────── */
+  const Q = {};
+  Q.factions = [
+    'left_in',
+    'left_fi',
+    'centre_federal',
+    'groupers',
+    'right_alp',
+    'right_alp_union',
+    'langist',
+  ];
+
+  /* Faction metadata – labels, colours, seat share (placeholder %) */
+  const FACTION_META = {
+    left_in:        { label: 'Left Independents',  color: '#c0392b', seats: 12 },
+    left_fi:        { label: 'Left Faction Inc.',  color: '#e74c3c', seats: 18 },
+    centre_federal: { label: 'Centre Federal',     color: '#f39c12', seats: 22 },
+    groupers:       { label: 'Groupers',           color: '#27ae60', seats: 15 },
+    right_alp:      { label: 'Right ALP',          color: '#2980b9', seats: 19 },
+    right_alp_union:{ label: 'Right ALP–Union',    color: '#1a5276', seats: 16 },
+    langist:        { label: 'Langist',            color: '#8e44ad', seats: 8  },
+  };
+
+  /* ── STYLES ────────────────────────────────────────────────── */
+  const CSS = `
+    @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Courier+Prime:wght@400;700&display=swap');
+
+    .fc-wrap {
+      font-family: 'Courier Prime', monospace;
+      background: #1a1209;
+      color: #e8d5a3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 36px 24px 48px;
+      min-height: 520px;
+      position: relative;
+      overflow: hidden;
+    }
+    .fc-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg, transparent, transparent 28px, rgba(255,255,255,.03) 29px
+      );
+      pointer-events: none;
+    }
+    .fc-title {
+      font-family: 'IM Fell English', serif;
+      font-size: 22px;
+      letter-spacing: .08em;
+      text-align: center;
+      margin-bottom: 4px;
+      color: #f0dc82;
+      text-shadow: 0 0 18px rgba(240,220,130,.35);
+    }
+    .fc-subtitle {
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: #7a6a45;
+      margin-bottom: 28px;
+    }
+    .fc-canvas-wrap {
+      position: relative;
+      width: 340px;
+      height: 340px;
+      flex-shrink: 0;
+    }
+    .fc-canvas-wrap canvas { position: absolute; top:0; left:0; }
+    .fc-legend {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 24px;
+      width: 100%;
+      max-width: 460px;
+    }
+    .fc-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      padding: 4px 6px;
+      border-radius: 3px;
+      transition: background .15s;
+    }
+    .fc-legend-item:hover { background: rgba(255,255,255,.06); }
+    .fc-legend-item.fc-dim { opacity: .32; }
+    .fc-swatch {
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 0 6px var(--sw);
+    }
+    .fc-legend-label { font-size: 12px; color: #c8b98a; }
+    .fc-legend-seats { font-size: 11px; color: #7a6a45; margin-left: auto; }
+    .fc-tooltip {
+      position: fixed;
+      background: #0e0c08;
+      border: 1px solid #5a4a28;
+      color: #f0dc82;
+      font-family: 'Courier Prime', monospace;
+      font-size: 12px;
+      padding: 8px 12px;
+      border-radius: 3px;
+      pointer-events: none;
+      display: none;
+      z-index: 9999;
+      line-height: 1.6;
+    }
+  `;
+
+  /* ── INIT ──────────────────────────────────────────────────── */
+  function initFactionChart(containerId = 'faction-chart') {
+    const host = document.getElementById(containerId);
+    if (!host) { console.warn(`#${containerId} not found`); return; }
+
+    /* inject styles once */
+    if (!document.getElementById('fc-style')) {
+      const st = document.createElement('style');
+      st.id = 'fc-style';
+      st.textContent = CSS;
+      document.head.appendChild(st);
+    }
+
+    /* build DOM */
+    host.innerHTML = `
+      <div class="fc-wrap">
+        <div class="fc-title">Parliamentary Factions</div>
+        <div class="fc-subtitle">seat distribution · hover to inspect</div>
+        <div class="fc-canvas-wrap">
+          <canvas id="fc-donut" width="340" height="340"></canvas>
+          <canvas id="fc-hover" width="340" height="340"></canvas>
+        </div>
+        <div class="fc-legend" id="fc-legend"></div>
+      </div>
+      <div class="fc-tooltip" id="fc-tip"></div>
+    `;
+
+    const factions = Q.factions.map(k => ({
+      key: k,
+      ...FACTION_META[k] || { label: k, color: '#888', seats: 10 },
+    }));
+
+    const total = factions.reduce((s, f) => s + f.seats, 0);
+    const TAU   = Math.PI * 2;
+    const CX = 170, CY = 170, R = 130, INNER = 74;
+    const GAP = 0.018; // radians between slices
+
+    /* pre-compute angles */
+    let cursor = -Math.PI / 2;
+    factions.forEach(f => {
+      f.startAngle = cursor + GAP / 2;
+      f.sweep      = (f.seats / total) * TAU - GAP;
+      f.endAngle   = f.startAngle + f.sweep;
+      f.midAngle   = f.startAngle + f.sweep / 2;
+      cursor += (f.seats / total) * TAU;
+    });
+
+    /* ── draw base donut ── */
+    const donut = document.getElementById('fc-donut');
+    const ctx   = donut.getContext('2d');
+
+    function drawDonut(dimKey = null) {
+      ctx.clearRect(0, 0, 340, 340);
+
+      /* outer glow ring */
+      factions.forEach(f => {
+        const alpha = dimKey && dimKey !== f.key ? 0.08 : 0.18;
+        ctx.beginPath();
+        ctx.arc(CX, CY, R + 8, f.startAngle, f.endAngle);
+        ctx.arc(CX, CY, R + 2, f.endAngle, f.startAngle, true);
+        ctx.closePath();
+        ctx.fillStyle = f.color + Math.round(alpha * 255).toString(16).padStart(2,'0');
+        ctx.fill();
+      });
+
+      /* slices */
+      factions.forEach(f => {
+        const dim = dimKey && dimKey !== f.key;
+        ctx.beginPath();
+        ctx.moveTo(CX, CY);
+        ctx.arc(CX, CY, R, f.startAngle, f.endAngle);
+        ctx.closePath();
+        ctx.fillStyle = dim ? '#2a2216' : f.color;
+        ctx.fill();
+
+        /* inner dark cutout per slice (creates donut gap feel) */
+        ctx.beginPath();
+        ctx.arc(CX, CY, INNER, f.startAngle, f.endAngle);
+        ctx.arc(CX, CY, INNER - 1, f.endAngle, f.startAngle, true);
+        ctx.closePath();
+        ctx.fillStyle = '#1a1209';
+        ctx.fill();
+      });
+
+      /* center hole */
+      ctx.beginPath();
+      ctx.arc(CX, CY, INNER, 0, TAU);
+      ctx.fillStyle = '#1a1209';
+      ctx.fill();
+
+      /* center text */
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#f0dc82';
+      ctx.font = `bold 26px 'Courier Prime', monospace`;
+      ctx.fillText(total, CX, CY + 4);
+      ctx.font = `11px 'Courier Prime', monospace`;
+      ctx.fillStyle = '#7a6a45';
+      ctx.fillText('SEATS', CX, CY + 20);
+
+      /* tick marks */
+      factions.forEach(f => {
+        if (dimKey && dimKey !== f.key) return;
+        const mx = CX + Math.cos(f.midAngle) * (R + 18);
+        const my = CY + Math.sin(f.midAngle) * (R + 18);
+        ctx.beginPath();
+        ctx.arc(mx, my, 3, 0, TAU);
+        ctx.fillStyle = f.color;
+        ctx.fill();
+      });
+    }
+
+    drawDonut();
+
+    /* ── legend ── */
+    const legend = document.getElementById('fc-legend');
+    factions.forEach(f => {
+      const item = document.createElement('div');
+      item.className = 'fc-legend-item';
+      item.dataset.key = f.key;
+      item.innerHTML = `
+        <span class="fc-swatch" style="background:${f.color};--sw:${f.color}"></span>
+        <span class="fc-legend-label">${f.label}</span>
+        <span class="fc-legend-seats">${f.seats}</span>
+      `;
+      legend.appendChild(item);
+    });
+
+    /* ── tooltip & hover logic ── */
+    const tip   = document.getElementById('fc-tip');
+    const hover = document.getElementById('fc-hover');
+
+    function hitTest(mx, my) {
+      const dx = mx - CX, dy = my - CY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < INNER || dist > R) return null;
+      let angle = Math.atan2(dy, dx);
+      if (angle < -Math.PI / 2) angle += TAU;
+      return factions.find(f => angle >= f.startAngle && angle <= f.endAngle) || null;
+    }
+
+    function showTip(f, pageX, pageY) {
+      tip.innerHTML = `<b>${f.label}</b><br>${f.seats} seats · ${((f.seats/total)*100).toFixed(1)}%`;
+      tip.style.display = 'block';
+      tip.style.left = (pageX + 14) + 'px';
+      tip.style.top  = (pageY - 10) + 'px';
+    }
+
+    let activeKey = null;
+
+    hover.addEventListener('mousemove', e => {
+      const rect = hover.getBoundingClientRect();
+      const f = hitTest(e.clientX - rect.left, e.clientY - rect.top);
+      const key = f ? f.key : null;
+      hover.style.cursor = f ? 'pointer' : 'default';
+      if (key !== activeKey) {
+        activeKey = key;
+        drawDonut(key);
+        highlightLegend(key);
+      }
+      if (f) showTip(f, e.clientX, e.clientY);
+      else tip.style.display = 'none';
+    });
+
+    hover.addEventListener('mouseleave', () => {
+      activeKey = null;
+      drawDonut();
+      highlightLegend(null);
+      tip.style.display = 'none';
+    });
+
+    function highlightLegend(key) {
+      document.querySelectorAll('.fc-legend-item').forEach(el => {
+        el.classList.toggle('fc-dim', key !== null && el.dataset.key !== key);
+      });
+    }
+
+    /* legend hover → sync chart */
+    document.querySelectorAll('.fc-legend-item').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        const key = el.dataset.key;
+        activeKey = key;
+        drawDonut(key);
+        highlightLegend(key);
+        const f = factions.find(x => x.key === key);
+        const r = el.getBoundingClientRect();
+        showTip(f, r.right, r.top + r.height / 2);
+      });
+      el.addEventListener('mouseleave', () => {
+        activeKey = null;
+        drawDonut();
+        highlightLegend(null);
+        tip.style.display = 'none';
+      });
+    });
+  }
+
+  /* ── AUTO-INIT ─────────────────────────────────────────────── */
+  function tryInit() {
+    if (document.getElementById('faction-chart')) {
+      initFactionChart('faction-chart');
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', tryInit);
+  } else {
+    tryInit();
+  }
+
+  /* expose for manual use */
+  window.initFactionChart = initFactionChart;
+  window.Q = Q;
+})();
+
+!}
 
 Eddie's personal life. Micro scene. brodimba, here are variables
 
