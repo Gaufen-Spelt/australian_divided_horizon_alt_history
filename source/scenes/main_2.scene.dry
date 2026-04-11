@@ -3,90 +3,94 @@ set-bg: img/map_2.jpg
 is-hand: true
 max-cards: 9
 on-arrival: use_main_2 = 1;
+```
 on-display: {!
 
-Q.factions = ["left_in", "left_fi", "centre_federal", "groupers", "right_alp", "right_alp_union", "langist"];
+(function() {
 
-// Real strength values from your on-arrival block
-const META = {
-  left_in:         { label: "Left Independents",  color: "#c0392b", seats: 20 },
-  left_fi:         { label: "Left Firebrand",      color: "#e74c3c", seats: 10 },
-  centre_federal:  { label: "Centre Federal",      color: "#f39c12", seats: 20 },
-  groupers:        { label: "Groupers",            color: "#27ae60", seats: 9  },
-  right_alp:       { label: "Right ALP",           color: "#2980b9", seats: 12 },
-  right_alp_union: { label: "Right ALP–Union",     color: "#1a5276", seats: 10 },
-  langist:         { label: "Langist",             color: "#8e44ad", seats: 5  },
-};
+// ── DATA ────────────────────────────────────────────────────────
+const factions = [
+  { key: 'left_in',         label: 'Left Independents', color: '#c0392b', str: Q.left_in_strength         || 20 },
+  { key: 'left_fi',         label: 'Left Firebrand',    color: '#e74c3c', str: Q.left_fi_strength         || 10 },
+  { key: 'centre_federal',  label: 'Centre Federal',    color: '#f39c12', str: Q.centre_federal_strength  || 20 },
+  { key: 'groupers',        label: 'Groupers',          color: '#27ae60', str: Q.groupers_strength        || 9  },
+  { key: 'right_alp',       label: 'Right ALP',         color: '#2980b9', str: Q.right_alp_strength       || 12 },
+  { key: 'right_alp_union', label: 'Right ALP–Union',   color: '#1a5276', str: Q.right_alp_union_strength || 10 },
+  { key: 'langist',         label: 'Langist',           color: '#8e44ad', str: Q.langist_strength         || 5  },
+];
 
-const factions = Q.factions.map(k => ({ key: k, ...META[k] }));
-const total = factions.reduce((s, f) => s + f.seats, 0);
-const TAU = Math.PI * 2;
-const GAP = 0.018;
+const total  = factions.reduce((s, f) => s + f.str, 0);
+const maxStr = Math.max(...factions.map(f => f.str));
+const TAU    = Math.PI * 2;
+const GAP    = 0.018;
 
-function buildAngles(fs) {
-  let cur = -Math.PI / 2;
-  return fs.map(f => {
-    const start = cur + GAP / 2;
-    const sweep = (f.seats / total) * TAU - GAP;
-    cur += (f.seats / total) * TAU;
-    return { ...f, startAngle: start, sweep, endAngle: start + sweep, midAngle: start + sweep / 2 };
-  });
-}
+// ── BUILD ANGLES ────────────────────────────────────────────────
+let cur = -Math.PI / 2;
+factions.forEach(f => {
+  f.startAngle = cur + GAP / 2;
+  f.sweep      = (f.str / total) * TAU - GAP;
+  f.endAngle   = f.startAngle + f.sweep;
+  f.midAngle   = f.startAngle + f.sweep / 2;
+  cur += (f.str / total) * TAU;
+});
 
-function drawDonut(ctx, size, facs, dimKey = null) {
-  const cx = size / 2, cy = size / 2;
-  const r = size * 0.38;
-  const inner = size * 0.215;
+// ── DRAW ─────────────────────────────────────────────────────────
+function draw(canvas, dimKey) {
+  const size = canvas.width;
+  const ctx  = canvas.getContext('2d');
+  const cx   = size / 2, cy = size / 2;
+  const R    = size * 0.38;
+  const INNER = size * 0.215;
+
   ctx.clearRect(0, 0, size, size);
 
-  // glow halos
-  facs.forEach(f => {
-    const alpha = dimKey && dimKey !== f.key ? 0.05 : 0.14;
+  // halos
+  factions.forEach(f => {
+    const alpha = (dimKey && dimKey !== f.key) ? 0.05 : 0.14;
     ctx.beginPath();
-    ctx.arc(cx, cy, r + size * 0.025, f.startAngle, f.endAngle);
-    ctx.arc(cx, cy, r + size * 0.006, f.endAngle, f.startAngle, true);
+    ctx.arc(cx, cy, R + size * 0.025, f.startAngle, f.endAngle);
+    ctx.arc(cx, cy, R + size * 0.006, f.endAngle, f.startAngle, true);
     ctx.closePath();
-    ctx.fillStyle = f.color + Math.round(alpha * 255).toString(16).padStart(2, "0");
+    ctx.fillStyle = f.color + Math.round(alpha * 255).toString(16).padStart(2, '0');
     ctx.fill();
   });
 
   // slices
-  facs.forEach(f => {
-    const dim = dimKey && dimKey !== f.key;
+  factions.forEach(f => {
     ctx.beginPath();
     ctx.moveTo(cx, cy);
-    ctx.arc(cx, cy, r, f.startAngle, f.endAngle);
+    ctx.arc(cx, cy, R, f.startAngle, f.endAngle);
     ctx.closePath();
-    ctx.fillStyle = dim ? "rgba(80,60,30,0.3)" : f.color;
+    ctx.fillStyle = (dimKey && dimKey !== f.key) ? 'rgba(80,60,30,0.3)' : f.color;
     ctx.fill();
-    ctx.strokeStyle = "rgba(255,255,255,0.07)";
+    ctx.strokeStyle = 'rgba(255,255,255,0.07)';
     ctx.lineWidth = 1;
     ctx.stroke();
   });
 
-  // center hole — transparent so page bg shows through
-  ctx.globalCompositeOperation = "destination-out";
+  // punch transparent hole
+  ctx.globalCompositeOperation = 'destination-out';
   ctx.beginPath();
-  ctx.arc(cx, cy, inner, 0, TAU);
+  ctx.arc(cx, cy, INNER, 0, TAU);
   ctx.fill();
-  ctx.globalCompositeOperation = "source-over";
+  ctx.globalCompositeOperation = 'source-over';
 
-  // center text (re-draw on top after punch-through)
-  const fontSize = Math.round(size * 0.076);
-  const subSize  = Math.round(size * 0.032);
-  ctx.textAlign = "center";
-  ctx.fillStyle = "#f0dc82";
-  ctx.font = `bold ${fontSize}px 'Courier Prime', monospace`;
-  ctx.fillText(total, cx, cy + fontSize * 0.15);
-  ctx.font = `${subSize}px 'Courier Prime', monospace`;
-  ctx.fillStyle = "#9a8a65";
-  ctx.fillText("FACTION STR", cx, cy + fontSize * 0.65);
+  // center text
+  const fs  = Math.round(size * 0.076);
+  const sub = Math.round(size * 0.032);
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#f0dc82';
+  ctx.font = `bold ${fs}px Georgia, serif`;
+  ctx.fillText(total, cx, cy + fs * 0.15);
+  ctx.fillStyle = '#9a8a65';
+  ctx.font = `${sub}px Georgia, serif`;
+  ctx.fillText('FACTION STR', cx, cy + fs * 0.65);
 
-  // mid-dot accents
-  facs.forEach(f => {
+  // mid-dots
+  factions.forEach(f => {
     if (dimKey && dimKey !== f.key) return;
-    const mx = cx + Math.cos(f.midAngle) * (r + size * 0.053);
-    const my = cy + Math.sin(f.midAngle) * (r + size * 0.053);
+    const mx = cx + Math.cos(f.midAngle) * (R + size * 0.053);
+    const my = cy + Math.sin(f.midAngle) * (R + size * 0.053);
     ctx.beginPath();
     ctx.arc(mx, my, size * 0.009, 0, TAU);
     ctx.fillStyle = f.color;
@@ -94,181 +98,141 @@ function drawDonut(ctx, size, facs, dimKey = null) {
   });
 }
 
-function hitTest(mx, my, size, facs) {
+// ── HIT TEST ────────────────────────────────────────────────────
+function hitTest(mx, my, size) {
   const cx = size / 2, cy = size / 2;
-  const r = size * 0.38, inner = size * 0.215;
+  const R = size * 0.38, INNER = size * 0.215;
   const dx = mx - cx, dy = my - cy;
-  const dist = Math.sqrt(dx * dx + dy * dy);
-  if (dist < inner || dist > r) return null;
+  const dist = Math.sqrt(dx*dx + dy*dy);
+  if (dist < INNER || dist > R) return null;
   let angle = Math.atan2(dy, dx);
   if (angle < -Math.PI / 2) angle += TAU;
-  return facs.find(f => angle >= f.startAngle && angle <= f.endAngle) || null;
+  return factions.find(f => angle >= f.startAngle && angle <= f.endAngle) || null;
 }
 
-export default function App() {
-  const canvasRef = useRef(null);
-  const wrapRef   = useRef(null);
-  const facsRef   = useRef(buildAngles(factions));
-  const [size, setSize]       = useState(340);
-  const [hovered, setHovered] = useState(null);
-  const [tip, setTip]         = useState({ visible: false, x: 0, y: 0, f: null });
+// ── BUILD DOM ────────────────────────────────────────────────────
+const wrap = document.createElement('div');
+wrap.style.cssText = 'width:100%;font-family:Georgia,serif;color:#e8d5a3;padding:16px 0 24px;';
 
-  // Responsive: match wrapper width
-  useEffect(() => {
-    const obs = new ResizeObserver(entries => {
-      for (const e of entries) {
-        const w = Math.floor(e.contentRect.width);
-        setSize(Math.max(180, Math.min(w, 520)));
-      }
-    });
-    if (wrapRef.current) obs.observe(wrapRef.current);
-    return () => obs.disconnect();
-  }, []);
+// title
+wrap.innerHTML = `
+  <div style="text-align:center;margin-bottom:8px">
+    <div style="font-size:clamp(14px,2.2vw,20px);letter-spacing:.07em;color:#f0dc82;
+                text-shadow:0 0 14px rgba(240,220,130,.28)">ALP Internal Factions</div>
+    <div style="font-size:clamp(8px,1vw,10px);letter-spacing:.2em;text-transform:uppercase;
+                color:#7a6a45;margin-top:3px">faction strength · ${Q.year || 1949}</div>
+  </div>
+  <div id="fc-canvas-wrap" style="width:100%;max-width:480px;margin:0 auto;position:relative">
+    <canvas id="fc-canvas" style="display:block;width:100%;height:auto;cursor:default"></canvas>
+  </div>
+  <div id="fc-legend" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+       gap:5px 16px;max-width:520px;margin:12px auto 0;padding:0 8px"></div>
+  <div id="fc-tip" style="position:fixed;display:none;pointer-events:none;z-index:9999;
+       font-family:Georgia,serif;font-size:12px;line-height:1.7;padding:7px 11px;
+       border-radius:3px;background:rgba(12,10,6,0.93);color:#f0dc82"></div>
+`;
 
-  // Redraw on size or hover change
-  useEffect(() => {
-    const cv = canvasRef.current;
-    if (!cv) return;
-    drawDonut(cv.getContext("2d"), size, facsRef.current, hovered);
-  }, [size, hovered]);
+// find Dendry's content area and prepend
+const target = document.querySelector('.content') || document.querySelector('main') || document.body;
+target.insertBefore(wrap, target.firstChild);
 
-  function onMouseMove(e) {
-    const rect = canvasRef.current.getBoundingClientRect();
-    const scaleX = size / rect.width;
-    const scaleY = size / rect.height;
-    const f = hitTest(
-      (e.clientX - rect.left) * scaleX,
-      (e.clientY - rect.top)  * scaleY,
-      size, facsRef.current
-    );
-    const key = f ? f.key : null;
-    if (key !== hovered) setHovered(key);
-    setTip({ visible: !!f, x: e.clientX, y: e.clientY, f });
-  }
+// ── CANVAS SETUP ────────────────────────────────────────────────
+const canvasWrap = document.getElementById('fc-canvas-wrap');
+const canvas     = document.getElementById('fc-canvas');
+const tip        = document.getElementById('fc-tip');
 
-  function onMouseLeave() {
-    setHovered(null);
-    setTip(t => ({ ...t, visible: false }));
-  }
-
-  const maxStr = Math.max(...factions.map(f => f.seats));
-
-  return (
-    <div style={{ width: "100%", fontFamily: "'Courier Prime', monospace", color: "#e8d5a3", padding: "20px 0 28px" }}>
-
-      {/* Title */}
-      <div style={{ textAlign: "center", marginBottom: 8 }}>
-        <div style={{
-          fontFamily: "Georgia, serif",
-          fontSize: "clamp(15px, 2.4vw, 21px)",
-          letterSpacing: ".07em",
-          color: "#f0dc82",
-          textShadow: "0 0 16px rgba(240,220,130,.28)",
-        }}>
-          ALP Internal Factions
-        </div>
-        <div style={{
-          fontSize: "clamp(9px, 1.1vw, 11px)",
-          letterSpacing: ".2em",
-          textTransform: "uppercase",
-          color: "#7a6a45",
-          marginTop: 3,
-        }}>
-          faction strength · 1949
-        </div>
-      </div>
-
-      {/* Canvas wrapper — drives responsive sizing */}
-      <div ref={wrapRef} style={{ width: "100%", maxWidth: 500, margin: "0 auto" }}>
-        <canvas
-          ref={canvasRef}
-          width={size}
-          height={size}
-          style={{ display: "block", width: "100%", height: "auto", cursor: hovered ? "pointer" : "default" }}
-          onMouseMove={onMouseMove}
-          onMouseLeave={onMouseLeave}
-        />
-      </div>
-
-      {/* Legend */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(175px, 1fr))",
-        gap: "5px 18px",
-        maxWidth: 540,
-        margin: "12px auto 0",
-        padding: "0 10px",
-      }}>
-        {factions.map(f => (
-          <div
-            key={f.key}
-            onMouseEnter={() => setHovered(f.key)}
-            onMouseLeave={() => { setHovered(null); setTip(t => ({ ...t, visible: false })); }}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 7,
-              padding: "5px 7px",
-              borderRadius: 3,
-              cursor: "pointer",
-              background: hovered === f.key ? "rgba(255,255,255,.06)" : "transparent",
-              border: hovered === f.key ? `1px solid ${f.color}55` : "1px solid transparent",
-              opacity: hovered && hovered !== f.key ? 0.25 : 1,
-              transition: "opacity .13s, background .13s, border-color .13s",
-            }}
-          >
-            <span style={{
-              width: 9, height: 9, borderRadius: "50%", flexShrink: 0,
-              background: f.color,
-              boxShadow: hovered === f.key ? `0 0 7px ${f.color}` : "none",
-              transition: "box-shadow .13s",
-            }} />
-            <span style={{ fontSize: "clamp(10px,1.3vw,12px)", color: "#c8b98a", flexGrow: 1 }}>
-              {f.label}
-            </span>
-            {/* mini strength bar */}
-            <div style={{ width: 44, height: 3, background: "rgba(255,255,255,.1)", borderRadius: 2, overflow: "hidden" }}>
-              <div style={{
-                width: `${(f.seats / maxStr) * 100}%`,
-                height: "100%",
-                background: f.color,
-                borderRadius: 2,
-              }} />
-            </div>
-            <span style={{ fontSize: "clamp(9px,1.1vw,11px)", color: "#7a6a45", minWidth: 18, textAlign: "right" }}>
-              {f.seats}
-            </span>
-          </div>
-        ))}
-      </div>
-
-      {/* Tooltip */}
-      {tip.visible && tip.f && (
-        <div style={{
-          position: "fixed",
-          left: tip.x + 14,
-          top: tip.y - 10,
-          background: "rgba(12,10,6,0.93)",
-          border: `1px solid ${tip.f.color}55`,
-          color: "#f0dc82",
-          fontFamily: "'Courier Prime', monospace",
-          fontSize: 12,
-          padding: "7px 11px",
-          borderRadius: 3,
-          pointerEvents: "none",
-          zIndex: 9999,
-          lineHeight: 1.7,
-          boxShadow: `0 0 14px ${tip.f.color}28`,
-        }}>
-          <b style={{ color: tip.f.color }}>{tip.f.label}</b><br />
-          Strength: {tip.f.seats} · {((tip.f.seats / total) * 100).toFixed(1)}%
-        </div>
-      )}
-    </div>
-  );
+function resize() {
+  const w = Math.max(180, Math.min(canvasWrap.offsetWidth, 480));
+  canvas.width  = w;
+  canvas.height = w;
+  draw(canvas, null);
+  buildLegend();
 }
 
+// ── LEGEND ───────────────────────────────────────────────────────
+function buildLegend() {
+  const leg = document.getElementById('fc-legend');
+  leg.innerHTML = '';
+  factions.forEach(f => {
+    const item = document.createElement('div');
+    item.dataset.key = f.key;
+    item.style.cssText = `display:flex;align-items:center;gap:7px;padding:5px 7px;
+      border-radius:3px;cursor:pointer;border:1px solid transparent;
+      transition:opacity .13s,background .13s;`;
+    item.innerHTML = `
+      <span style="width:9px;height:9px;border-radius:50%;flex-shrink:0;background:${f.color}"></span>
+      <span style="font-size:clamp(10px,1.3vw,12px);color:#c8b98a;flex-grow:1">${f.label}</span>
+      <div style="width:42px;height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden">
+        <div style="width:${Math.round((f.str/maxStr)*100)}%;height:100%;background:${f.color};border-radius:2px"></div>
+      </div>
+      <span style="font-size:11px;color:#7a6a45;min-width:18px;text-align:right">${f.str}</span>
+    `;
+    item.addEventListener('mouseenter', () => setHover(f.key));
+    item.addEventListener('mouseleave', clearHover);
+    leg.appendChild(item);
+  });
+}
 
+// ── HOVER STATE ──────────────────────────────────────────────────
+let activeKey = null;
+
+function setHover(key) {
+  activeKey = key;
+  draw(canvas, key);
+  document.querySelectorAll('#fc-legend [data-key]').forEach(el => {
+    const isActive = el.dataset.key === key;
+    el.style.opacity    = isActive ? '1' : '0.25';
+    el.style.background = isActive ? 'rgba(255,255,255,.06)' : 'transparent';
+    const f = factions.find(x => x.key === el.dataset.key);
+    el.style.borderColor = isActive ? f.color + '55' : 'transparent';
+  });
+}
+
+function clearHover() {
+  activeKey = null;
+  draw(canvas, null);
+  document.querySelectorAll('#fc-legend [data-key]').forEach(el => {
+    el.style.opacity     = '1';
+    el.style.background  = 'transparent';
+    el.style.borderColor = 'transparent';
+  });
+  tip.style.display = 'none';
+}
+
+// ── CANVAS MOUSE ─────────────────────────────────────────────────
+canvas.addEventListener('mousemove', e => {
+  const rect   = canvas.getBoundingClientRect();
+  const scaleX = canvas.width  / rect.width;
+  const scaleY = canvas.height / rect.height;
+  const f = hitTest((e.clientX - rect.left) * scaleX, (e.clientY - rect.top) * scaleY, canvas.width);
+  const key = f ? f.key : null;
+
+  if (key !== activeKey) {
+    if (key) setHover(key); else clearHover();
+  }
+
+  if (f) {
+    canvas.style.cursor = 'pointer';
+    tip.innerHTML = `<b style="color:${f.color}">${f.label}</b><br>Strength: ${f.str} · ${((f.str/total)*100).toFixed(1)}%`;
+    tip.style.display     = 'block';
+    tip.style.left        = (e.clientX + 14) + 'px';
+    tip.style.top         = (e.clientY - 10) + 'px';
+    tip.style.border      = `1px solid ${f.color}55`;
+    tip.style.boxShadow   = `0 0 12px ${f.color}28`;
+  } else {
+    canvas.style.cursor = 'default';
+    tip.style.display = 'none';
+  }
+});
+
+canvas.addEventListener('mouseleave', clearHover);
+
+// ── RESPONSIVE ───────────────────────────────────────────────────
+const ro = new ResizeObserver(() => resize());
+ro.observe(canvasWrap);
+resize();
+
+})();
 !}
 
 Eddie's personal life. Micro scene. brodimba, here are variables
